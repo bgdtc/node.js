@@ -8,6 +8,7 @@ const express = require('express'),
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
     contactController = require('./controllers/contactController'),
+    adminController = require('./controllers/adminController'),
     signupController = require('./controllers/signupController')
 
 
@@ -35,6 +36,13 @@ router.route('/contact')
 
 router.route('/signup')
     .get(signupController.get)
+
+
+//admin
+
+
+router.route('/admin')
+    .get(adminController.get)
 
 //export to server.js
 

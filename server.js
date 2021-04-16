@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
-app.use('/contact', ROUTER)
+
 
 
 
@@ -38,10 +38,5 @@ app.use('/contact', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });
-
-
-//req ip
-
-
 
 
