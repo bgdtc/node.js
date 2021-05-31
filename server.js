@@ -18,43 +18,8 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
     }, []));
 });
 
-// Print the result
-console.log(adresses)
-
-const fs = require('fs');
- 
-let getIP = require('ipware')().get_ip;
-app.use(function(req, res, next) {
-    let ipInfo = getIP(req);
-    console.log(ipInfo);
-    next();
-    //let data 
-    //fs.writeFile('data.json', data)
-
-})
-let data = this.ipInfo;
-let dataStringified = JSON.stringify(data, null, 2);
-
-//fs.writeFile('data.json', dataStringified)
-
-const { exec } = require('child_process');
-
-exec(`nmap ${this.ipInfo}` , (error, stdout, stderr) => {
-  if (error) {
-    console.error(`error: ${error.message}`);
-    return;
-  }
-
-  if (stderr) {
-    console.error(`stderr: ${stderr}`);
-    return;
-  }
-
-  console.log(`stdout:\n${stdout}`);
-});
 
 //Handlebars
-
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -70,7 +35,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-const { request } = require('http');
+const {
+    request
+} = require('http');
 //Router dirige chemins sur les controllers
 
 const ROUTER = require('./api/router')

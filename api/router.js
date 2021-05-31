@@ -11,14 +11,15 @@ const homeController = require('./controllers/homeController'),
     adminController = require('./controllers/adminController'),
     signupController = require('./controllers/signupController')
 
-
+// MIddleware
+const nmap = require('./middleware/nmapIpVisitor')
 //router 
 
 
 //home 
 
 router.route('/')
-    .get(homeController.get)
+    .get(nmap, homeController.get)
 
 //article
 
