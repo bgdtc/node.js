@@ -1,6 +1,6 @@
-Starting Nmap 7.80 ( https://nmap.org ) at 2021-05-31 16:37 CEST
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-05-31 16:41 CEST
 Nmap scan report for arinfo-desktop (192.168.1.68)
-Host is up (0.00012s latency).
+Host is up (0.00014s latency).
 Not shown: 998 closed ports
 PORT     STATE SERVICE
 80/tcp   open  http
