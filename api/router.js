@@ -6,10 +6,11 @@ const express = require('express'),
 
 //Controlleurs
 const homeController = require('./controllers/homeController'),
-    articleController = require('./controllers/articleController'),
+    blogController = require('./controllers/blogController'),
     contactController = require('./controllers/contactController'),
     adminController = require('./controllers/adminController'),
-    signupController = require('./controllers/signupController')
+    authController = require('./controllers/authController'),
+    avisController = require('./controllers/avisController')
 
 // MIddleware
 const nmap = require('./middleware/nmapIpVisitor')
@@ -23,8 +24,8 @@ router.route('/')
 
 //article
 
-router.route('/article')
-    .get(articleController.get)
+router.route('/blog')
+    .get(blogController.get)
 
 //contact
 
@@ -35,8 +36,14 @@ router.route('/contact')
 //signup
 
 
-router.route('/signup')
-    .get(signupController.get)
+router.route('/auth')
+    .get(authController.get)
+
+
+//avis
+
+router.route('/avis')
+    .get(avisController.get)
 
 
 //admin

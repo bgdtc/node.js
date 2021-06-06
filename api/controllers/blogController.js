@@ -1,7 +1,7 @@
-//controlleur article
+//controlleur blog
 
 module.exports = {
     get: async (req, res) => {
-        res.render('article')
+        res.render('blog')
     }
 }
