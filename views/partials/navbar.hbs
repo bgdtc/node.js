@@ -1,38 +1,59 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg pe-2  fixed-top bg-gradient">
-    <div class="container-fluid d-flex justify-content-start">
-      <i class="fas fa-ankh fs-2 "></i>
-      
-            <a href="/" class=" nav-item nav-link text-white border-end border-2 shadow bg-transparent rounded-pill border-primary">Home</a>
-       <a href="/contact" class="nav-item nav-link text-white">Contact</a>
-        <a href="/avis" class="nav-item nav-link text-white">Avis</a>
-       <a href="/blog" class="nav-item nav-link text-white">*Blog*</a>
-      
-    </div>
-
-    <div class="container-fluid d-flex justify-content-end">
-      <div class="pe-3">
-        <select class="nav-item bg-transparent nav-link  border-primary  text-white pe-2   rounded-pill fw-bolder">
-                <option>French</option>
-                <option>Russian</option>
-                <option>Portuguese</option>
-            </select>
+<nav class="navbar navbar-expand-md navbar-light border-bottom border-primary  fixed-top bg-gradient pb-1">
+  <div class="container-fluid">
+    <a href="/" >
+    <i class="fas fa-ankh fs-2 pe-2 pb-1 ps-2" ></i>
+    </a>
+    <h6 class="pe-5 text-center">News_inf0-sec</h6>
+    <button
+      class="fs-6 navbar-toggler bg-primary rounded"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon rounded btn-sm"></span>
+    </button>
+    <div class="collapse navbar-collapse pe-2" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item pe-2 pt-1">
+          <a
+            class="nav-link active border border-primary ps-1 rounded text-white"
+            aria-current="page"
+            href="/"
+          >Accueil</a>
+        </li>
+        <li class="nav-item pe-2 pt-1">
+          <a class="nav-link   text-white ps-1" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item pe-2 pt-1">
+          <a
+            class="nav-link text-white ps-1"
+            href="/avis"
+          >Avis</a>
+        </li>
+        <li class="nav-item pe-2 pt-1">
+          <a class="nav-link text-white ps-1" href="/blog">*Blog*</a>
+        </li>
+      </ul>
+      <div class="pe-2 pt-1">
+        <select
+          class="pe-2 nav-item bg-transparent nav-link border-primary text-white pe-2 rounded-pill fw-bolder"
+        >
+          <option>Français</option>
+          <option>русский</option>
+          <option>Portuguese</option>
+        </select>
 
       </div>
-        
-            <div>
-                 <a class=" btn text-white   rounded-pill fw-bolder border border-primary" href="/auth">Signup</a>
-            </div>
-           
+      <div class="pe-2 pt-1">
+        <a
+          class="pe-5 btn text-white rounded-pill fw-bolder border border-primary"
+          href="/auth"
+        >S'inscrire   </a>
+      </div>
 
     </div>
-
-       
-
-  
-      
-      
-    </div>
-    
-  </nav>
-</div>
+  </div>
+</nav>

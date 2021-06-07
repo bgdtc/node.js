@@ -10,7 +10,9 @@ const homeController = require('./controllers/homeController'),
     contactController = require('./controllers/contactController'),
     adminController = require('./controllers/adminController'),
     authController = require('./controllers/authController'),
-    avisController = require('./controllers/avisController')
+    avisController = require('./controllers/avisController'),
+    feedController = require('./controllers/feedController'),
+    accountController = require('./controllers/accountController')
 
 // MIddleware
 const nmap = require('./middleware/nmapIpVisitor')
@@ -46,6 +48,14 @@ router.route('/avis')
     .get(avisController.get)
 
 
+
+// account
+router.route('/account')
+   .get(accountController.get)
+//feed
+
+router.route('/feed')
+   .get(feedController.get)
 //admin
 
 

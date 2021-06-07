@@ -10870,3 +10870,13 @@ select {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+@media screen and (max-width: 640px) {
+  .test {
+    font-size:10px;
+
+  }
+  .test1 {
+    height: 100px;
+  }
+}

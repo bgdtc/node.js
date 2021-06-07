@@ -1,35 +1,38 @@
 <!--FORM-->
-<section class="famille-produits" id="formulaire">
-    <div class="container fw-bold">
-        <h2 class="text-center fw-bolder text-white pt-3 ">Contact Us !</h2>
-        <form action="" class="row g-3 border border-primary rounded">
-            <div class="col-md-6 mt-5">
-                <label for="EmailIn" class="form-label text-white">Email:</label>
-                <input type="email" class="form-control bgbg text-info" id="EmailIn" required>
+<section class="bg-gradient"  id="contactForm">
+    <div class="container-fluid fw-bold pt-2 pb-3">
+        <div class="col-md-12 text-center">
+          <h2 class=" fw-bolder text-primary rounded  text-white  pb-1 ">Contactez-moi !</h2>
+        </div>
+        <form action="" class=" pt-3  row pe-2  border-top border-primary">
+            <div class="col-md-6 pt-5">
+                <label for="email" class="form-label text-white">Email:</label>
+                <input type="email" class="form-control bg-gradient text-primary" id="email" required>
             </div>
-            <div class="col-md-6 mt-5">
-                <label for="NameIn" class="form-label text-white">Name:</label>
-                <input type="text" class="form-control bgbg text-info" id="NameIn" required>
-            </div>
-            <div class="col-12 ">
-                <label for="SubjectIn" class="form-label text-white">Subject:</label>
-                <input type="text" class="form-control bgbg text-info" id="SubjectIn" required>
+            <div class="col-md-6 pt-5">
+                <label for="nom" class="form-label text-white">Name:</label>
+                <input type="text" class="form-control bg-gradient text-primary" id="nom" required>
             </div>
             <div class="col-12 ">
-                <label for="MessageIn" class="form-label text-white">Message:</label>
-                <textarea name="" class="form-control bgbg text-info" id="MessageIn" cols="30" rows="10"
+                <label for="sujet" class="form-label text-white">Subject:</label>
+                <input type="text" class="form-control bg-gradient text-primary" id="sujet" required>
+            </div>
+            <div class="col-12 ">
+                <label for="message" class="form-label text-white">Message:</label>
+                <textarea name="" class="form-control bg-gradient text-primary" id="message" cols="30" rows="10"
                     required></textarea>
             </div>
-            <div class="col-12">
+            <div class="col-6 pt-2">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="gridCheck" required>
-                    <label for="gridCheck" class="form-check-label text-white">
-                        I accept GTU !
+                    <input type="checkbox" class="form-check-input " id="check" required>
+                    <label for="check" class="form-check-label text-white">
+                        J'accepte les <span class="text-primary"><a href="/">CGU</a></span> !
                     </label>
                 </div>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary fw-bolder text-white">Send</button>
+            
+            <div class="col-12 d-flex justify-content-end pb-2">
+                <button type="submit" class="btn bg-gradient  fw-bolder text-white">Envoyer</button>
             </div>
 
     </div>

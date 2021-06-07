@@ -1,35 +1,159 @@
-<!--FORM-->
-<section style="width: auto;" class="border border-4 rounded" id="formulaire">
-    <div  class="pb-5 container-fluid text-center bg-gradient  fw-bold">
-          <ul class="pt-2 pb-2 nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Connexion</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Inscription</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Mot de passe oublié</a>
-  </li>
-</ul>
-        <h2 class="text-center fw-bolder text-white pt-3 ">Connectez-vous</h2>
-    <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<section class="pt-5 bg-gradient">
+  <ul class="nav nav-tabs pb-3 ps-3 pt-5" id="myTab" role="tablist">
+    <li class="nav-item ps-2" role="presentation">
+      <button
+        class="nav-link border border-primary active text-white bg-gradient"
+        id="home-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#home"
+        type="button"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+      >Connexion</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link bg-gradient  border border-primary  text-white"
+        id="profile-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#profile"
+        type="button"
+        role="tab"
+        aria-controls="profile"
+        aria-selected="false"
+      >Inscription</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link bg-gradient  border border-primary  text-white"
+        id="messages-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#messages"
+        type="button"
+        role="tab"
+        aria-controls="messages"
+        aria-selected="false"
+      >Mot de passe oublié</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div
+      class="tab-pane active"
+      id="home"
+      role="tabpanel"
+      aria-labelledby="home-tab"
+    >
+      <form>
+        <div class="mb-3">
+          <h1 class="text-white text-center">Connexion</h1>
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">We'll never share your email
+            with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="pb-2">
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+        </div>
+
+      </form>
+    </div>
+    <div
+      class="tab-pane"
+      id="profile"
+      role="tabpanel"
+      aria-labelledby="profile-tab"
+    >
+      <form>
+        <div class="mb-3">
+          <h1 class="text-white text-center">Inscription</h1>
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">We'll never share your email
+            with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="pb-2">
+          <button type="submit" class="btn btn-primary">S'inscrire</button>
+        </div>
+
+      </form>
+    </div>
+    <div
+      class="tab-pane"
+      id="messages"
+      role="tabpanel"
+      aria-labelledby="messages-tab"
+    >
+      <form>
+        <div class="mb-3">
+          <h1 class="text-white text-center">Mot de passe oublié</h1>
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">We'll never share your email
+            with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="pb-2">
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+
+      </form>
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <div class="pb-2">
-<button type="submit" class="btn btn-primary">Submit</button>
-  </div>
-  
-</form>
 </section>
+
+<script>
+  var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
+  = new bootstrap.Tab(firstTabEl) firstTab.show()
+</script>
