@@ -1,6 +1,7 @@
-<section class="pt-5 bg-gradient">
-  <ul class="nav nav-tabs pb-3 ps-3 pt-5" id="myTab" role="tablist">
-    <li class="nav-item ps-2" role="presentation">
+<section class="pt-5 container-fluid bg-gradient" style="height: 100vh;">
+  {{! tabs }}
+  <ul class="nav nav-tabs container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+    <li class="nav-item ps-2 pe-2" role="presentation">
       <button
         class="nav-link border border-primary active text-white bg-gradient"
         id="home-tab"
@@ -12,9 +13,9 @@
         aria-selected="true"
       >Connexion</button>
     </li>
-    <li class="nav-item" role="presentation">
+    <li class="nav-item pe-2" role="presentation">
       <button
-        class="nav-link bg-gradient  border border-primary  text-white"
+        class="nav-link bg-gradient border border-primary text-white"
         id="profile-tab"
         data-bs-toggle="tab"
         data-bs-target="#profile"
@@ -26,7 +27,7 @@
     </li>
     <li class="nav-item" role="presentation">
       <button
-        class="nav-link bg-gradient  border border-primary  text-white"
+        class="nav-link bg-gradient border border-primary text-white"
         id="messages-tab"
         data-bs-toggle="tab"
         data-bs-target="#messages"
@@ -37,112 +38,137 @@
       >Mot de passe oublié</button>
     </li>
   </ul>
-
-  <div class="tab-content">
+  {{! tab content }}
+  <div class="tab-content ">
+    {{! Connexion }}
     <div
-      class="tab-pane active"
+      class=" tab-pane active"
       id="home"
       role="tabpanel"
       aria-labelledby="home-tab"
     >
-      <form>
+      <form class="container">
         <div class="mb-3">
-          <h1 class="text-white text-center">Connexion</h1>
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <h1 class="text-white pt-4 text-center">Connexion</h1>
+          {{!-- Email --}}
+          <label for="email" class="form-label">Email:</label>
           <input
             type="email"
             class="form-control"
-            id="exampleInputEmail1"
+            id="email"
             aria-describedby="emailHelp"
+            required
           />
-          <div id="emailHelp" class="form-text">We'll never share your email
-            with anyone else.</div>
+          <div id="emailHelp" class="form-text"></div>
         </div>
+        {{!-- Password --}}
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
+          <label for="password" class="form-label">Mot de passe:</label>
+          <input type="password" class="form-control" id="password" required />
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <div class="pb-2">
-          <button type="submit" class="btn btn-primary">Se connecter</button>
+        <div>
+          <div class="col-12 pb-3 form-check">
+            <input type="checkbox" class="form-check-input justify-content-end" id="check" required />
+            <label class="form-check-label pe-3" for="check">J'accepte les CGU</label>
+          </div>
+          <div class="col-12 pb-4 text-center">
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+          </div>
         </div>
 
       </form>
     </div>
+    {{! Register }}
     <div
-      class="tab-pane"
+      class="tab-pane container"
       id="profile"
       role="tabpanel"
       aria-labelledby="profile-tab"
     >
       <form>
+        <h1 class="text-white text-center pt-4">Inscription</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Nom:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+              required
+            />
+            <div id="emailHelp" class="form-text"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="nickname" class="form-label">Pseudo:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nickname"
+              aria-describedby="emailHelp"
+              required
+            />
+            <div id="emailHelp" class="form-text"></div>
+          </div>
+        </div>
+
         <div class="mb-3">
-          <h1 class="text-white text-center">Inscription</h1>
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+
+          <label for="email" class="form-label">Email:</label>
           <input
             type="email"
             class="form-control"
-            id="exampleInputEmail1"
+            id="email"
             aria-describedby="emailHelp"
+            required
           />
-          <div id="emailHelp" class="form-text">We'll never share your email
-            with anyone else.</div>
+          <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
+          <label for="password" class="form-label">Mot de passe:</label>
+          <input type="password" class="form-control" id="password" required/>
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <div class="mb-3">
+          <label for="passwordConfirm" class="form-label">Confirmer le mot de
+            passe:</label>
+          <input type="password" class="form-control" id="passwordConfirm" required/>
         </div>
-        <div class="pb-2">
-          <button type="submit" class="btn btn-primary">S'inscrire</button>
+        <div class="row">
+            <div class="mb-3 col-12 form-check">
+          <input type="checkbox" class="form-check-input" id="check" required/>
+          <label class="form-check-label" for="check">J'accepte les CGU</label>
         </div>
+        <div class="pb-4 col-12 text-center">
+          <button type="submit" class="btn btn-primary text-center">S'inscrire</button>
+        </div>
+        </div>
+        
 
       </form>
     </div>
+    {{! lost password }}
     <div
-      class="tab-pane"
+      class="tab-pane container"
       id="messages"
       role="tabpanel"
       aria-labelledby="messages-tab"
     >
       <form>
         <div class="mb-3">
-          <h1 class="text-white text-center">Mot de passe oublié</h1>
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
+          <label for="email" class="form-label">Email:</label>
           <input
             type="email"
             class="form-control"
-            id="exampleInputEmail1"
+            id="email"
             aria-describedby="emailHelp"
+            required
           />
-          <div id="emailHelp" class="form-text">We'll never share your email
-            with anyone else.</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
+          <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          <input type="checkbox" class="form-check-input" required id="check" />
+          <label class="form-check-label" for="check">J'accepte les CGU</label>
         </div>
         <div class="pb-2">
           <button type="submit" class="btn btn-primary">Envoyer</button>

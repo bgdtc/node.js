@@ -1,13 +1,19 @@
-<section class="famille-produits">
+<section class="famille-produits container-fluid pt-5">
   <div class="container pb-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col-md-12">
         <h3
-          class="text-center bg-gradient fw-bold rounded text-decoration-underline"
+          class="tist text-center bg-gradient fw-bold rounded text-decoration-underline"
         >Articles récents</h3>
+        <div class="alert alert-danger" role="alert">
+          Seuls les
+          <a href="/auth" class="alert-link">utilisateurs connectés</a>
+          peuvent accéder aux articles complets.
+        </div>
       </div>
+
       <div class="col">
-        <div class="card bg-gradient h-100">
+        <div class="card tist bg-gradient h-100">
           <img
             src="../assets/images/ankh-solid.png"
             class="card-img-top"
@@ -20,7 +26,10 @@
               content is a little bit longer.</p>
           </div>
           <div class="text-center">
-            <span class="badge btn bg-primary text-muted w-50">Lire la suite...</span>
+            <span class="badge btn bg-primary text-muted w-50"><a
+                class="text-muted"
+                href="/id"
+              >Lire la suite...</a></span>
           </div>
 
           <div class="card-footer">
@@ -29,7 +38,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="card bg-gradient h-100">
+        <div class="card tist bg-gradient h-100">
           <img
             src="../assets/images/ankh-solid.png"
             class="card-img-top"
@@ -41,7 +50,10 @@
               as a natural lead-in to additional content.</p>
           </div>
           <div class="text-center">
-            <span class="badge btn bg-primary text-muted w-50">Lire la suite...</span>
+            <span class="badge btn bg-primary text-muted w-50"><a
+                class="text-muted"
+                href="/id"
+              >Lire la suite...</a></span>
           </div>
 
           <div class="card-footer">
@@ -50,7 +62,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="card bg-gradient h-100">
+        <div class="card tist bg-gradient h-100">
           <img
             src="../assets/images/ankh-solid.png"
             class="card-img-top"
@@ -64,7 +76,10 @@
               action.</p>
           </div>
           <div class="text-center">
-            <span class="badge btn bg-primary text-muted w-50">Lire la suite...</span>
+            <span class="badge btn bg-primary text-muted w-50"><a
+                class="text-muted"
+                href="/id"
+              >Lire la suite...</a></span>
           </div>
           <div class="card-footer">
             <small class="text-muted">Mis en ligne le ??/??/????</small>

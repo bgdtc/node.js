@@ -10847,6 +10847,10 @@ body {
   height: 25vh;
 }
 
+.tist {
+  opacity: 0.7 ;
+}
+
 .backsignup {
   background-image: url(/assets/images/backsignup.jpg);
   background-position: center;

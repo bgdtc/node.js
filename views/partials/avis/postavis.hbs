@@ -1,7 +1,7 @@
- <section class="bg-gradient">
+ <section class="bg-gradient container-fluid">
      <div class="container">
-<form action="" class=" pt-3  row pe-2 border-3 ">
-            <div class="col-12 ">
+<form action="" class=" pt-3  row  border-3 ">
+            <div class="col-12">
                 <label for="MessageIn" class="form-label text-white">Votre Avis:</label>
                 <textarea name="" class="form-control bg-gradient text-primary" id="message" cols="30" rows="10"
                     required></textarea>
@@ -14,10 +14,13 @@
                     </label>
                 </div>
             </div>
-            
-            <div class="col-12 d-flex justify-content-end pb-2">
+  
+            <div class="col-6 d-flex justify-content-end pt-2 pb-4">
                 <button type="submit" class="btn bg-gradient  fw-bolder text-white">Envoyer</button>
             </div>
+                      <div class="alert alert-danger" role="alert">
+  Seuls les <a href="/auth" class="alert-link">utilisateurs connectés</a>  peuvent poster un avis.
+</div>
 
     </div>
 
