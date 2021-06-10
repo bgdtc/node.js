@@ -1,0 +1,66 @@
+BLOCS à ne pas confondres :
+--------------------------------------------
+TAB USER : users
+TAB MESSAGES : messages
+TAB AVIS ET COMMENTAIRES : comments
+TAB ARTICLES : articles
+
+---------------------------------------------
+MODAL MODIF ARTICLE :
+
+IMAGE ARTICLE : artImage
+TITRE ARTICLE : artTitre
+DESCR ARTICLE : artDescription
+CNTNT ARTICLE : artContenu
+
+MODAL AJOUT ARTICLE :
+
+IMAGE ARTICLE : artImage
+TITRE ARTICLE : artTitre
+DESCR ARTICLE : artDescription
+CNTNT ARTICLE : artContenu
+
+
+---------------------------------------------
+
+CONNEXION :
+
+email : email
+password : password
+
+
+---------------------------------------------
+
+INSCRIPTION : 
+
+nom :  name
+pseudo : nickname
+email : email
+password : password
+password confirm : passwordConfirm
+
+---------------------------------------------
+
+LOST PASSWORD :
+
+email : email
+----------------------------------------------
+
+POSTER UN AVIS :
+
+avis : avis
+----------------------------------------------
+
+POSTER UN COMMENTAIRE :
+
+commentaire : comment
+----------------------------------------------
+
+
+FORMULAIRE DE CONTACT :
+
+email : email
+nom : nom 
+sujet : sujet 
+message : message
+----------------------------------------------

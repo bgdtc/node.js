@@ -1,67 +1,39 @@
+{{!-- FORMULAIRES DE CONNEXION / INSCRIPTION / MOT DE PASSE OUBLIE --}}
+
 <section class="pt-5 container-fluid bg-dark" style="height: 100vh;">
-  {{! tabs }}
+  {{! TABS AUTH }}
   <ul class="nav nav-tabs container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+    {{!-- BOUTON CONNEXION --}}
     <li class="nav-item ps-2 pe-2" role="presentation">
-      <button
-        class="nav-link border border-primary active text-dark bg-gradient"
-        id="home-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#home"
-        type="button"
-        role="tab"
-        aria-controls="home"
-        aria-selected="true"
-      >Connexion</button>
+      <button class="nav-link border border-primary active text-dark bg-gradient" id="home-tab" data-bs-toggle="tab"
+        data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Connexion</button>
     </li>
+    {{!-- BOUTON INSCRIPTION --}}
     <li class="nav-item pe-2" role="presentation">
-      <button
-        class="nav-link bg-gradient border border-primary text-dark"
-        id="profile-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#profile"
-        type="button"
-        role="tab"
-        aria-controls="profile"
-        aria-selected="false"
-      >Inscription</button>
+      <button class="nav-link bg-gradient border border-primary text-dark" id="profile-tab" data-bs-toggle="tab"
+        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+        aria-selected="false">Inscription</button>
     </li>
+    {{!-- BOUTON MOT DE PASSE OUBLIE --}}
     <li class="nav-item" role="presentation">
-      <button
-        class="nav-link bg-gradient border border-primary text-dark"
-        id="messages-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#messages"
-        type="button"
-        role="tab"
-        aria-controls="messages"
-        aria-selected="false"
-      >Mot de passe oublié</button>
+      <button class="nav-link bg-gradient border border-primary text-dark" id="messages-tab" data-bs-toggle="tab"
+        data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Mot de passe
+        oublié</button>
     </li>
   </ul>
-  {{! tab content }}
+  {{! CONTENU TABS AUTH }}
   <div class="tab-content ">
-    {{! Connexion }}
-    <div
-      class=" tab-pane active"
-      id="home"
-      role="tabpanel"
-      aria-labelledby="home-tab"
-    >
+    {{!-- FORMULAIRE DE CONNEXION --}}
+    <div class=" tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <form class="container">
         <div class="mb-3">
           <h1 class="text-white pt-4 text-center">Connexion</h1>
-          {{!-- Email --}}
+          {{!-- INPUT MAIL --}}
           <label for="email" class="form-label">Email:</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            required
-          />
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
-        {{!-- Password --}}
+        {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
           <label for="password" class="form-label">Mot de passe:</label>
           <input type="password" class="form-control" id="password" required />
@@ -78,92 +50,63 @@
 
       </form>
     </div>
-    {{! Register }}
-    <div
-      class="tab-pane container"
-      id="profile"
-      role="tabpanel"
-      aria-labelledby="profile-tab"
-    >
+    {{! FORMULAIRE D'INSCRIPTION }}
+    <div class="tab-pane container" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <form>
         <h1 class="text-white text-center pt-4">Inscription</h1>
         <div class="row">
+          {{!-- INPUT NOM --}}
           <div class="col-md-6">
             <label for="name" class="form-label">Nom:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              aria-describedby="emailHelp"
-              required
-            />
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required />
             <div id="emailHelp" class="form-text"></div>
           </div>
+          {{!-- INPUT PSEUDO --}}
           <div class="col-md-6">
             <label for="nickname" class="form-label">Pseudo:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nickname"
-              aria-describedby="emailHelp"
-              required
-            />
+            <input type="text" class="form-control" id="nickname" aria-describedby="emailHelp" required />
             <div id="emailHelp" class="form-text"></div>
           </div>
         </div>
-
+        {{!-- INPUT EMAIL --}}
         <div class="mb-3">
 
           <label for="email" class="form-label">Email:</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            required
-          />
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
+        {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
           <label for="password" class="form-label">Mot de passe:</label>
-          <input type="password" class="form-control" id="password" required/>
+          <input type="password" class="form-control" id="password" required />
         </div>
+        {{!-- INPUT PASSWORD CONFIRM --}}
         <div class="mb-3">
           <label for="passwordConfirm" class="form-label">Confirmer le mot de
             passe:</label>
-          <input type="password" class="form-control" id="passwordConfirm" required/>
+          <input type="password" class="form-control" id="passwordConfirm" required />
         </div>
         <div class="row">
-            <div class="mb-3 col-12 form-check">
-          <input type="checkbox" class="form-check-input" id="check" required/>
-          <label class="form-check-label" for="check">J'accepte les CGU</label>
+          <div class="mb-3 col-12 form-check">
+            <input type="checkbox" class="form-check-input" id="check" required />
+            <label class="form-check-label" for="check">J'accepte les CGU</label>
+          </div>
+          <div class="pb-4 col-12 text-center">
+            <button type="submit" class="btn btn-primary text-center">S'inscrire</button>
+          </div>
         </div>
-        <div class="pb-4 col-12 text-center">
-          <button type="submit" class="btn btn-primary text-center">S'inscrire</button>
-        </div>
-        </div>
-        
+
 
       </form>
     </div>
-    {{! lost password }}
-    <div
-      class="tab-pane container"
-      id="messages"
-      role="tabpanel"
-      aria-labelledby="messages-tab"
-    >
+    {{!-- MOT DE PASSE OUBLIE --}}
+    <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
       <form>
         <div class="mb-3">
           <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
+          {{!-- INPUT EMAIL --}}
           <label for="email" class="form-label">Email:</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            required
-          />
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3 form-check">
@@ -181,5 +124,5 @@
 
 <script>
   var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
-  = new bootstrap.Tab(firstTabEl) firstTab.show()
+    = new bootstrap.Tab(firstTabEl) firstTab.show()
 </script>

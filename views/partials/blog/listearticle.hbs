@@ -1,7 +1,7 @@
-{{! liste d'articles }}
+{{! LISTE DES ARTICLES }}
 <section class="famille-produits pt-5">
   <div class="container pt-5">
-    {{!-- titres --}}
+    {{!-- TITRES PAGE --}}
     <div class="col-md-12">
       <h3
         class="tist text-center bg-gradient fw-bold rounded text-decoration-underline"
@@ -12,12 +12,13 @@
         peuvent accéder aux articles complets.
       </div>
     </div>
-    <!-- Affichages de cards de la db -->
+    <!-- AFFICHAGE CARDS DB -->
     <div class="row">
 
       {{#each dbArticle}}
 
         <div class="col-md-4 pb-2">
+          {{!-- IMAGE DB --}}
           <div class="card bg-gradient tist" style="width: auto;">
             <img
               src="{{ img }}"
@@ -25,6 +26,7 @@
               alt=""
               style="max-height: 120px; min-height: 120px; min-width:150px;"
             />
+            {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
             <div class="card-body text-center">
               <h2 class="card-title text-center mb-4">{{title}}</h2>
               <p class="card-text"> {{description}} {{id}} </p>
