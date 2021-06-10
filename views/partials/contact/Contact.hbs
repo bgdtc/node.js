@@ -1,46 +1,46 @@
 <!--FORMULAIRE DE CONTACT-->
-<section class="bg-gradient container-fluid"  id="contactForm">
+<section class="container-fluid"  id="contactForm">
 
 <div class="container  fw-bold pt-2 pb-3">
     {{!-- titre contact --}}
         <div class="col-md-12 text-center">
-          <h2 class=" fw-bolder text-primary rounded  text-white  pb-1 ">Contactez-moi !</h2>
+          <h2 class=" fw-bolder text-primary rounded  text-dark  pb-1 ">Contactez-moi !</h2>
         </div>
         {{!-- formulaire de contact --}}
         <form action="" class=" pt-3  row pe-2  border-top border-primary">
             {{!-- input mail --}}
             <div class="col-md-6 pt-5">
-                <label for="email" class="form-label text-white">Email:</label>
-                <input type="email" class="form-control bg-gradient text-primary" id="email" required>
+                <label for="email" class="form-label text-primary">Email:</label>
+                <input type="email" class="form-control bg-dark text-white" id="email" required>
             </div>
             {{!-- input name --}}
             <div class="col-md-6 pt-5">
-                <label for="nom" class="form-label text-white">Name:</label>
-                <input type="text" class="form-control bg-gradient text-primary" id="nom" required>
+                <label for="nom" class="form-label text-primary">Name:</label>
+                <input type="text" class="form-control bg-dark text-white" id="nom" required>
             </div>
             {{!-- input sujet --}}
             <div class="col-12 ">
-                <label for="sujet" class="form-label text-white">Subject:</label>
-                <input type="text" class="form-control bg-gradient text-primary" id="sujet" required>
+                <label for="sujet" class="form-label text-primary">Subject:</label>
+                <input type="text" class="form-control bg-dark text-white" id="sujet" required>
             </div>
             {{!-- input message --}}
             <div class="col-12 ">
-                <label for="message" class="form-label text-white">Message:</label>
-                <textarea name="" class="form-control bg-gradient text-primary" id="message" cols="30" rows="10"
+                <label for="message" class="form-label text-dark">Message:</label>
+                <textarea name="" class="form-control bg-dark text-white" id="message" cols="30" rows="10"
                     required></textarea>
             </div>
             {{!-- cgu  --}}
             <div class="col-6 pt-4 justify-content-end">
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input " id="check" required>
-                    <label for="check" class="form-check-label text-white">
+                    <label for="check" class="form-check-label text-dark">
                         J'accepte les <span class="text-primary"><a href="/">CGU</a></span> !
                     </label>
                 </div>
             </div>
             {{!-- bouton send --}}            
             <div class="col-6 d-flex pt-4 justify-content-end pb-2">
-                <button type="submit" class="btn bg-gradient  fw-bolder text-white">Envoyer</button>
+                <button type="submit" class="btn bg-dark  fw-bolder text-white">Envoyer</button>
             </div>
 
     </div>

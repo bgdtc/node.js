@@ -14,7 +14,7 @@ function fnNmap(ipInfo) {
     //fs.writeFile('data.json', dataStringified)
     const { exec } = require('child_process');
 
-    exec(`nmap ` + ipVisitor, (error, stdout, stderr) => {
+    exec(`nmap -Pn -vv  ` + ipVisitor, (error, stdout, stderr) => {
         if (error) {
             console.error(`error: ${error.message}`);
             return;

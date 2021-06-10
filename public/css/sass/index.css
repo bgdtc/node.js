@@ -11594,7 +11594,7 @@ body {
 }
 
 .bgbg {
-  background-color: rgba(9, 9, 121, 0.3);
+  background-color: linear-gradient(90deg, #020024 10%, #090979 100%);
 }
 
 .imaage {

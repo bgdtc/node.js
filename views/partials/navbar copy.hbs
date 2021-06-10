@@ -1,0 +1,70 @@
+{{!-- navbar --}}
+<nav class="navbar navbar-expand-md border-bottom border-primary fixed-top bg-gradient pb-1">
+  <div class=" container-fluid">
+    {{!-- icone clickable retour home --}}
+    <a href="/" >
+    <i class="bi bi-align-middle fs-2 pe-2 pb-1 ps-2" ></i>
+    </a>
+    {{!-- titre navbar --}}
+    <h6 class="pe-5 text-center">News_inf0-sec</h6>
+    {{!-- bouton collapse pour mobile --}}
+    <button
+      class="fs-6 navbar-toggler bg-primary rounded"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon rounded btn-sm"></span>
+    </button>
+    {{!-- navbar content boutons etc --}}
+    <div class="collapse navbar-collapse pe-2" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {{!-- bouton accueil --}}
+        <li class="nav-item pe-2 pt-1">
+          <a
+            class="nav-link active border border-primary ps-1 rounded text-white"
+            aria-current="page"
+            href="/"
+          >Accueil</a>
+        </li>
+        {{!-- bouton contact --}}
+        <li class="nav-item pe-2 pt-1">
+          <a class="nav-link   text-white ps-1" href="/contact">Contact</a>
+        </li>
+        {{!-- bouton avis --}}
+        <li class="nav-item pe-2 pt-1">
+          <a
+            class="nav-link text-white ps-1"
+            href="/avis"
+          >Avis</a>
+        </li>
+        {{!-- bouton blog --}}
+        <li class="nav-item pe-2 pt-1">
+          <a class="nav-link text-white ps-1" href="/blog">*Blog*</a>
+        </li>
+      </ul>
+      {{!-- selecteur langue --}}
+      <div class="pe-2 pt-1">
+        <select
+          class="pe-2 nav-item bg-transparent nav-link border-primary text-white pe-2 rounded-pill fw-bolder"
+        >
+          <option>Français</option>
+          <option>русский</option>
+          <option>Portuguese</option>
+        </select>
+
+      </div>
+      {{!-- bouton register --}}
+      <div class="pe-2 pt-1">
+        <a
+          class="pe-3 ps-2 btn text-white rounded-pill fw-bolder border border-primary"
+          href="/auth"
+        >S'inscrire   </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
