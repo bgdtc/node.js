@@ -1,0 +1,148 @@
+{{!-- 
+     ROUTE : /ADMIN
+     PARTIAL AVIS ET COMMENTAIRES
+ --}}
+
+{{!-- PARTIAL AVIS ET COMMENTAIRES ADMIN --}}
+<table class="table">
+    {{!-- LEGENDE TABLEAU --}}
+    <thead>
+        <tr>
+            <th scope="col">#id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Avis / Commentaire</th>
+            <th scope="col">Contenu</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+    </thead>
+    {{!-- CONTENU DU TABLEAU --}}
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Avis</td>
+            <td>
+                Avis #45 : super site trop cool !
+            </td>
+            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    Supprimer
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
+                                    supprimer cet utilisateur ?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-dark">
+                                -Suppression de : *username*
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-success">Appliquer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>thorn</td>
+            <td>Commentaire</td>
+            <td>
+                Article: #4 : super article génial wouhou!
+            </td>
+            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    Supprimer
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
+                                    supprimer cet utilisateur ?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-dark">
+                                -Suppression de : *username*
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-success">Appliquer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>Commentaire</td>
+            <td>
+                Article: #54 : super article génial !
+            </td>
+            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    Supprimer
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
+                                    supprimer cet utilisateur ?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-dark">
+                                -Suppression de : *username*
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-success">Appliquer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{!-- MODAL DE SUPPRESSION DE COMMENTAIRE/AVIS --}}
+<div class="d-flex justify-content-end">
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Suppression commentaire/avis</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark">
+                    Êtes vous sur de vouloir supprimer cet Avis/Commentaire ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                    <button type="button" class="btn btn-danger">Oui</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

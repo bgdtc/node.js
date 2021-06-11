@@ -1,0 +1,212 @@
+{{!--
+ROUTE : /ADMIN
+PARTIAL MESSAGES
+--}}
+
+{{!-- TABLE MESSAGES --}}
+
+{{!-- BOUTON NOUVEAU MESSAGE --}}
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal1">
+    Nouveau Message
+</button>
+
+<!-- MODAL NOUVEAU MESSAGE -->
+<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            {{!-- TITRE DU MODAL DE NOUVEAU MESSAGE --}}
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Formulaire d'envoi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{!-- CORPS DU MODAL DE NOUVEAU MESSAGE --}}
+            <div class="modal-body">
+                <!--FORMULAIRE DE MESSAGE-->
+                <section class="container-fluid" id="contactForm">
+
+                    <div class="container  fw-bold pt-2 pb-3">
+                        {{!-- TITRE NOUVEAU MESSAGE --}}
+                        <div class="col-md-12 text-center">
+                            <h2 class=" fw-bolder text-primary rounded  text-dark  pb-1 ">Nouveau Message
+                            </h2>
+                        </div>
+                        {{!-- FORMULAIRE ENVOI MESSAGE --}}
+                        <form action="" class=" pt-3  row pe-2  border-top border-primary">
+                            {{!-- input destinataire --}}
+                            <div class="col-md-12 pt-5">
+                                <label for="email" class="form-label text-primary">Destinataire:</label>
+                                <input type="email" class="form-control bg-dark text-white" id="email" required>
+                            </div>
+                            {{!-- input sujet --}}
+                            <div class="col-12 ">
+                                <label for="sujet" class="form-label text-primary">Objet:</label>
+                                <input type="text" class="form-control bg-dark text-white" id="sujet" required>
+                            </div>
+                            {{!-- input message --}}
+                            <div class="col-12 ">
+                                <label for="message" class="form-label text-dark">Message:</label>
+                                <textarea name="" class="form-control bg-dark text-white" id="message" cols="30"
+                                    rows="10" required></textarea>
+                            </div>
+                            {{!-- cgu --}}
+                            <div class="col-6 pt-4 justify-content-end">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input " id="check" required>
+                                    <label for="check" class="form-check-label text-dark">
+                                        J'accepte les <span class="text-primary"><a href="/">CGU</a></span>
+                                        !
+                                    </label>
+                                </div>
+                            </div>
+                            {{!-- bouton send --}}
+                            <div class="col-6 d-flex pt-4 justify-content-end pb-2">
+                                <button type="submit" class="btn bg-dark  fw-bolder text-white">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- AFFICHAGE DES MESSAGES RECUS --}}
+<table class="table">
+    {{!-- LEGENDE TABLEAU --}}
+    <thead>
+        <tr>
+            <th scope="col">#id</th>
+            <th scope="col">Expediteur</th>
+            <th scope="col">Email</th>
+            <th scope="col">Objet</th>
+            <th scope="col">Action</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+    </thead>
+    {{!-- CONTENU TABLEAU --}}
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>michel@michou.fr</td>
+            <td>
+                blablablablabla
+            </td>
+            <td>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#modal3"
+                    class="btn btn-primary">Lire</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal2">
+                    Supprimer
+                </button>
+            </td>
+        </tr>
+        <!-- MODAL SUPPRESSION MESSAGE -->
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
+                            supprimer ce message ?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        -Suppression du message de : *tetedebite*
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger">Appliquer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- MODAL LECTURE DU MESSAGE --}}
+        <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Message de : *tetedebite*
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        <h6>objet: blablabla</h6>
+                        <p>Contenu du message : 00000000000000000000000</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" data-bs-toggle="collapse" data-bs-target="#modal4"
+                            class="btn btn-success">Répondre</button>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="modal4" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Formulaire de réponse</h5>
+
+                        </div>
+                        <div class="modal-body">
+                            <!--FORMULAIRE DE REPONSE -->
+                            <section class="container-fluid" id="contactForm">
+
+                                <div class="container  fw-bold pt-2 pb-3">
+                                    {{!-- TITRE REPONSE MESSAGE --}}
+                                    <div class="col-md-12 text-center">
+                                        <h2 class=" fw-bolder text-primary rounded  text-dark  pb-1 ">
+                                            Répondre
+                                        </h2>
+                                    </div>
+                                    {{!-- FORMULAIRE REPONSE MESSAGE --}}
+                                    <form action="" class=" pt-3  row pe-2  border-top border-primary">
+                                        {{!-- input destinataire --}}
+                                        <div class="col-md-12 pt-5">
+                                            <label for="email" class="form-label text-primary">Destinataire:</label>
+                                            <input type="email" disabled placeholder="Michel@michou.fr"
+                                                class="form-control bg-dark text-white" id="email" required>
+                                        </div>
+                                        {{!-- input sujet --}}
+                                        <div class="col-12 ">
+                                            <label for="sujet" class="form-label text-primary">Objet:</label>
+                                            <input type="text" class="form-control bg-dark text-white" id="sujet"
+                                                required>
+                                        </div>
+                                        {{!-- input message --}}
+                                        <div class="col-12 ">
+                                            <label for="message" class="form-label text-dark">Message:</label>
+                                            <textarea name="" class="form-control bg-dark text-white" id="message"
+                                                cols="30" rows="10" required></textarea>
+                                        </div>
+                                        {{!-- cgu --}}
+                                        <div class="col-6 pt-4 justify-content-end">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input " id="check" required>
+                                                <label for="check" class="form-check-label text-dark">
+                                                    J'accepte les <span class="text-primary"><a href="/">CGU</a></span>
+                                                    !
+                                                </label>
+                                            </div>
+                                        </div>
+                                        {{!-- bouton send --}}
+                                        <div class="col-6 d-flex pt-4 justify-content-end pb-2">
+                                            <button type="submit"
+                                                class="btn bg-dark  fw-bolder text-white">Envoyer</button>
+                                        </div>
+
+                                </div>
+
+                                </form>
+
+
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- MODAL DE REPONSE AU MESSAGE --}}
+
+    </tbody>
+</table>

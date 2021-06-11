@@ -18,12 +18,17 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
     }, []));
 });
 
+const { limitArray, upcase, lowercase } = require('./api/helpers/hbs')
 
 //Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        limitArray: limitArray,
+        upcase, lowercase
+    }
 }));
 
 //Express static pour le chemin de dossier

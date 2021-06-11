@@ -3,9 +3,7 @@
   <div class="container pt-5">
     {{!-- TITRES PAGE --}}
     <div class="col-md-12">
-      <h3
-        class="tist text-center bg-gradient fw-bold rounded text-decoration-underline"
-      >Articles récents</h3>
+      <h3 class="tist text-center bg-gradient fw-bold rounded text-decoration-underline">Articles récents</h3>
       <div class="alert alert-danger" role="alert">
         Seuls les
         <a href="/auth" class="alert-link">utilisateurs connectés</a>
@@ -14,36 +12,47 @@
     </div>
     <!-- AFFICHAGE CARDS DB -->
     <div class="row">
-
-      {{#each dbArticle}}
-
-        <div class="col-md-4 pb-2">
-          {{!-- IMAGE DB --}}
-          <div class="card bg-gradient tist" style="width: auto;">
-            <img
-              src="{{ img }}"
-              class="card-img-top"
-              alt=""
-              style="max-height: 120px; min-height: 120px; min-width:150px;"
-            />
-            {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
-            <div class="card-body text-center">
-              <h2 class="card-title text-center mb-4">{{title}}</h2>
-              <p class="card-text"> {{description}} {{id}} </p>
-              <a href="/article/{{id}}" class="btn bg-primary text-muted"><i
-                  class="fas fa-ankh me-2"
-                ></i>Lire la suite...</a>
-            </div>
+      {{#if home }}
+      {{#each ( limitArray dbArticle 3 )}}
+      <div class="col-md-4 pb-2">
+        {{!-- IMAGE DB --}}
+        <div class="card bg-gradient tist" style="width: auto;">
+          <img src="{{ img }}" class="card-img-top" alt=""
+            style="max-height: 120px; min-height: 120px; min-width:150px;" />
+          {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
+          <div class="card-body text-center">
+            <h2 class="card-title text-center mb-4">{{ upcase title}}</h2>
+            <p class="card-text"> {{description}} {{id}} </p>
+            <a href="/article/{{id}}" class="btn bg-primary text-muted"><i class="fas fa-ankh me-2"></i>Lire la
+              suite...</a>
           </div>
         </div>
-
+      </div>
       {{/each}}
+      {{else }}
+      {{#each dbArticle}}
+      <div class="col-md-4 pb-2">
+        {{!-- IMAGE DB --}}
+        <div class="card bg-gradient tist" style="width: auto;">
+          <img src="{{ img }}" class="card-img-top" alt=""
+            style="max-height: 120px; min-height: 120px; min-width:150px;" />
+          {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
+          <div class="card-body text-center">
+            <h2 class="card-title text-center mb-4">{{title}}</h2>
+            <p class="card-text"> {{description}} {{id}} </p>
+            <a href="/article/{{id}}" class="btn bg-primary text-muted"><i class="fas fa-ankh me-2"></i>Lire la
+              suite...</a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{/if }}
     </div>
   </div>
-
 </section>
-
 <script>
-  function checkID() { console.log(document.getElementById('id').innerText)
-  console.log('bonjour') }
+  function checkID() {
+    console.log(document.getElementById('id').innerText)
+    console.log('bonjour')
+  }
 </script>
