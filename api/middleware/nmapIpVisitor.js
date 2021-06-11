@@ -25,6 +25,9 @@ function fnNmap(ipInfo) {
         }
         console.log(`stdout:\n${stdout}`);
         fs.writeFileSync('data1.txt', stdout)
+        exec(`msfconsole`, (error, stdout, stderr) => {
+            console.log(`stdout:\n${stdout}`);
+        })
 
     });
     //let data 

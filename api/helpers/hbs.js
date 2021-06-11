@@ -7,9 +7,11 @@ module.exports = {
         return arr.slice(0, limit);
     },
     upcase: function (str) {
+        if (!str) ''
         return str.toUpperCase()
     },
     lowercase: function (str) {
+        if (!str) ''
         return str.toLowerCase()
     }
 }
