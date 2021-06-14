@@ -15,10 +15,25 @@ const homeController = require('./controllers/homeController'),
     accountController = require('./controllers/accountController'),
     idController = require('./controllers/idController')
 
+
+//db controller
+const userController = require('./controllers/userController')
+const bookController = require('./controllers/bookController')
+
 // MIddleware
 const nmap = require('./middleware/nmapIpVisitor')
 //router 
 
+
+//user 
+
+router.route('/user')
+    .get(userController.get)
+  
+
+//book 
+router.route('/book')
+ 
 
 //home 
 
@@ -28,7 +43,8 @@ router.route('/')
 //article
 
 router.route('/blog')
-    .get(blogController.get)
+    .get(userController.get, blogController.get)
+    
 
 router.route('/article/:id')
     .get(blogController.getID)

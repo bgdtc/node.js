@@ -1,10 +1,11 @@
 //import modules
-
 const
     express = require('express'),
     app = express(),
+    cors = require('cors'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
+    mysql = require('mysql2'),
     port = process.env.PORT || 4000;
 
 
@@ -19,6 +20,26 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
 });
 
 const { limitArray, upcase, lowercase } = require('./api/helpers/hbs')
+
+
+// Cors
+app.use(cors({
+    origin: ['http://localhost:8080'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}))
+
+// 
+db = mysql.createConnection({
+    host: 'localhost',
+    user: 'theo',
+    password: 'toor',
+    database: 'inf0_sec'
+});
+
+db.connect((err) => {
+    if (err) console.error('erreur de connection a la db: ' + err.stack);
+});
 
 //Handlebars
 app.set('view engine', 'hbs');
@@ -35,11 +56,9 @@ app.engine('hbs', hbs({
 app.use('/assets', express.static('public'));
 
 //BODY PARSER 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
+    extended: true
+  }));
 const {
     request
 } = require('http');
