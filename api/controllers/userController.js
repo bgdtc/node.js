@@ -10,7 +10,7 @@ exports.get =   (req, res) => {
             listUser: data,
             message: "users lists retrieved successfullt"        
         }),
-        console.log(data[0].name);
+        console.log(data.full_name);
         
     })
 }

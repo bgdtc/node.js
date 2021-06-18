@@ -60,6 +60,7 @@ router.route('/contact')
 
 router.route('/auth')
     .get(authController.get)
+    .post(authController.auth)
 
 
 //avis

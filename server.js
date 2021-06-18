@@ -3,6 +3,8 @@ const
     express = require('express'),
     app = express(),
     cors = require('cors'),
+    // Gestion de la session
+    expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     mysql = require('mysql2'),
@@ -19,7 +21,11 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
     }, []));
 });
 
-const { limitArray, upcase, lowercase } = require('./api/helpers/hbs')
+const {
+    limitArray,
+    upcase,
+    lowercase
+} = require('./api/helpers/hbs')
 
 
 // Cors
@@ -48,9 +54,20 @@ app.engine('hbs', hbs({
     defaultLayout: 'main',
     helpers: {
         limitArray: limitArray,
-        upcase, lowercase
+        upcase,
+        lowercase
     }
 }));
+
+
+// Express-session
+app.use(expressSession({
+    secret: 'securite',
+    name: 'ptiBiscuit',
+    saveUninitialized: true,
+    resave: false
+}));
+
 
 //Express static pour le chemin de dossier
 app.use('/assets', express.static('public'));
@@ -58,20 +75,23 @@ app.use('/assets', express.static('public'));
 //BODY PARSER 
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
-const {
-    request
-} = require('http');
-//Router dirige chemins sur les controllers
+}));
 
+app.use('*', (req, res, next) => {
+    res.locals.user = req.session.user
+
+    next()
+})
+
+// const {
+//     request
+// } = require('http');
+
+//Router dirige chemins sur les controllers
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
-
-
-
 //Run express notre projet
-
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });

@@ -1,6 +1,11 @@
 {{!-- FORMULAIRES DE CONNEXION / INSCRIPTION / MOT DE PASSE OUBLIE --}}
 
 <section class="pt-5 container-fluid bg-dark" style="height: 100vh;">
+
+  {{#if user }}
+  <h5>Bonjour {{ session.name }}, tu as {{ session.age }} quennels ! | email {{ session.email }}</h5>
+  {{/if }}
+
   {{! TABS AUTH }}
   <ul class="nav nav-tabs container pb-3 ps-3 pt-5" id="myTab" role="tablist">
     {{!-- BOUTON CONNEXION --}}
@@ -21,26 +26,35 @@
         oublié</button>
     </li>
   </ul>
+
+  {{!-- Req.flash --}}
+  {{#if error}}
+  <div class="w-100 text-center"> {{ error }} </div>
+  {{/if}}
+  {{#if success}}
+  <div class="w-100 text-center"> {{ success }} </div>
+  {{/if}}
+
   {{! CONTENU TABS AUTH }}
   <div class="tab-content ">
     {{!-- FORMULAIRE DE CONNEXION --}}
     <div class=" tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <form class="container">
+      <form class="container" action='/auth' method="POST">
         <div class="mb-3">
           <h1 class="text-white pt-4 text-center">Connexion</h1>
           {{!-- INPUT MAIL --}}
           <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required />
+          <input type="email" class="form-control" name='email' id="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
           <label for="password" class="form-label">Mot de passe:</label>
-          <input type="password" class="form-control" id="password" required />
+          <input type="password" class="form-control" name='password' id="password" required />
         </div>
         <div>
           <div class="col-12 pb-3 form-check">
-            <input type="checkbox" class="form-check-input justify-content-end" id="check" required />
+            <input type="checkbox" class="form-check-input justify-content-end" name='checked' id="check" />
             <label class="form-check-label pe-3" for="check">J'accepte les CGU</label>
           </div>
           <div class="col-12 pb-4 text-center">
