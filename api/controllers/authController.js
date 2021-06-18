@@ -16,10 +16,13 @@ exports.auth = (req, res) => {
     } else {
         const sql = `SELECT * FROM user WHERE email = '${req.body.email}';`
         db.query(sql, (err, data) => {
-            if (err) console.log(err) 
-            if (data[0].email === req.body.email) {
-                // Génère le hash du mot de passe reçu dans la requete
-                // bcrypt.hash(req.body.password, 10, (hash) => {
+            if (err) console.log(err)
+            if (!data[0]) res.redirect('/auth')
+            else {
+                let dat = data[0].email
+                if (dat === req.body.email) {
+                    // Génère le hash du mot de passe reçu dans la requete
+                    // bcrypt.hash(req.body.password, 10, (hash) => {
                     // console.log('Pass hash: ', req.body.password, hash)
 
                     // Compare le hash de la base de donné (mdp simulé) avec le hash creer avec le password de la requete
@@ -32,7 +35,9 @@ exports.auth = (req, res) => {
 
                         else console.log('Mot de passe OK !')
                     })
-                // })
+                    // })
+                }
+
             }
 
         })
