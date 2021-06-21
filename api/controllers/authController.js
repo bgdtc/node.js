@@ -1,9 +1,10 @@
+//IMPORT BCRYPT
 const bcrypt = require('bcrypt')
-
+ //GET 
 exports.get = (req, res) => {
     res.render('auth');
 }
-
+//REGISTER
 exports.register = async (req, res) => {
     console.log('AUTH controller register ', req.body)
 
@@ -15,17 +16,24 @@ exports.register = async (req, res) => {
                      VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 10) }');`
 
         db.query(sql, (err, data) => {
-            if (err) console.log(err)
+            if (err) console.log(err) 
+            if (err) res.render('auth', {
+                    error: 'shit happened !'
+                })
+            
             console.log(data)
+            res.render('auth', {
+                success: 'bien joué tu est inscrit maintenant vérifie tes mails'
+            })
         })
-        res.end()
+        
 
 
     }
 
 
 }
-
+//LOST PASSWORD
 exports.lostPassword = (req, res) => {
     console.log('AUTH controller lost_password ', req.body)
 
@@ -40,6 +48,8 @@ exports.lostPassword = (req, res) => {
 
         const passwordMatch = await bcrypt.compare('de', data[0].password);
 
+        console.log(passwordMatch)
+
         if (!passwordMatch) console.log('pas match')
         else if (passwordMatch) {
             res.render('auth', {
@@ -52,7 +62,7 @@ exports.lostPassword = (req, res) => {
 
 }
 
-
+//LOGIN
 exports.auth = (req, res) => {
     console.log('AUTH controller auth', req.body)
 

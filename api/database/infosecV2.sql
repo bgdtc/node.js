@@ -27,9 +27,9 @@ USE `inf0_sec` ;
 CREATE TABLE IF NOT EXISTS `inf0_sec`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image` VARCHAR(255) NULL,
-  `full_name` VARCHAR(20) NOT NULL,
-  `nickname` VARCHAR(20) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
+  `full_name` VARCHAR(20) NOT NULL UNIQUE,
+  `nickname` VARCHAR(20) NOT NULL UNIQUE,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
   `password` VARCHAR(255) NOT NULL,
   `is_verified` TINYINT NOT NULL DEFAULT 0,
   `is_admin` TINYINT NOT NULL DEFAULT 0,
