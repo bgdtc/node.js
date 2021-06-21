@@ -27,14 +27,6 @@
     </li>
   </ul>
 
-  {{!-- Req.flash --}}
-  {{#if error}}
-  <div class="w-100 text-center"> {{ error }} </div>
-  {{/if}}
-  {{#if success}}
-  <div class="w-100 text-center"> {{ success }} </div>
-  {{/if}}
-
   {{! CONTENU TABS AUTH }}
   <div class="tab-content ">
     {{!-- FORMULAIRE DE CONNEXION --}}
@@ -66,19 +58,19 @@
     </div>
     {{! FORMULAIRE D'INSCRIPTION }}
     <div class="tab-pane container" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <form>
+      <form class="container"  action='/auth/register' method="POST">
         <h1 class="text-white text-center pt-4">Inscription</h1>
         <div class="row">
           {{!-- INPUT NOM --}}
           <div class="col-md-6">
             <label for="name" class="form-label">Nom:</label>
-            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required />
+            <input type="text" class="form-control" id="name" name='full_name' aria-describedby="emailHelp" required />
             <div id="emailHelp" class="form-text"></div>
           </div>
           {{!-- INPUT PSEUDO --}}
           <div class="col-md-6">
             <label for="nickname" class="form-label">Pseudo:</label>
-            <input type="text" class="form-control" id="nickname" aria-describedby="emailHelp" required />
+            <input type="text" class="form-control" id="nickname" name='nickname' aria-describedby="emailHelp" required />
             <div id="emailHelp" class="form-text"></div>
           </div>
         </div>
@@ -86,23 +78,23 @@
         <div class="mb-3">
 
           <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required />
+          <input type="email" class="form-control" id="email" name='email' aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
           <label for="password" class="form-label">Mot de passe:</label>
-          <input type="password" class="form-control" id="password" required />
+          <input type="password" class="form-control" name='password' id="password" required />
         </div>
         {{!-- INPUT PASSWORD CONFIRM --}}
         <div class="mb-3">
           <label for="passwordConfirm" class="form-label">Confirmer le mot de
             passe:</label>
-          <input type="password" class="form-control" id="passwordConfirm" required />
+          <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required />
         </div>
         <div class="row">
           <div class="mb-3 col-12 form-check">
-            <input type="checkbox" class="form-check-input" id="check" required />
+            <input type="checkbox" class="form-check-input" name='checked' id="check" required  />
             <label class="form-check-label" for="check">J'accepte les CGU</label>
           </div>
           <div class="pb-4 col-12 text-center">
@@ -115,12 +107,12 @@
     </div>
     {{!-- MOT DE PASSE OUBLIE --}}
     <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-      <form>
+      <form class="container"  action='/auth/lost_pwd' method="POST">
         <div class="mb-3">
           <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
           {{!-- INPUT EMAIL --}}
           <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required />
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3 form-check">

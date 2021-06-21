@@ -4,6 +4,55 @@ exports.get = (req, res) => {
     res.render('auth');
 }
 
+exports.register = async (req, res) => {
+    console.log('AUTH controller register ', req.body)
+
+
+    if (req.body.checked !== 'on' || req.body.password !== req.body.passwordConfirm) {
+        console.log('pas checké ou password pas égal')
+    } else {
+        const sql = `INSERT INTO user (full_name, nickname, email, password)
+                     VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 10) }');`
+
+        db.query(sql, (err, data) => {
+            if (err) console.log(err)
+            console.log(data)
+        })
+        res.end()
+
+
+    }
+
+
+}
+
+exports.lostPassword = (req, res) => {
+    console.log('AUTH controller lost_password ', req.body)
+
+    let sqlUser = ` SELECT user.password, user.email, user.nickname
+                    FROM user
+                    WHERE email = "${ req.body.email }"`
+
+    db.query(sqlUser, async (err, data) => {
+        if (err) console.log(err)
+
+        console.log('data1: ', data)
+
+        const passwordMatch = await bcrypt.compare('de', data[0].password);
+
+        if (!passwordMatch) console.log('pas match')
+        else if (passwordMatch) {
+            res.render('auth', {
+                success: 'Welcome ' + data[0].nickname
+            })
+        } else console.log('erreur')
+
+        console.log('data2: ', data)
+    })
+
+}
+
+
 exports.auth = (req, res) => {
     console.log('AUTH controller auth', req.body)
 
@@ -33,7 +82,8 @@ exports.auth = (req, res) => {
 
                         if (!result) console.log('les mot de passe ne correspondent pas')
 
-                        else console.log('Mot de passe OK !')
+                        else console.log('Mot de passe OK !'), res.redirect('/')
+
                     })
                     // })
                 }

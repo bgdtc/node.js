@@ -55,14 +55,22 @@ router.route('/contact')
     .get(contactController.get)
 
 
-//signup
 
+//login
 
 router.route('/auth')
     .get(authController.get)
     .post(authController.auth)
 
+//register
 
+router.route('/auth/register')
+    .post(authController.register)
+
+//lostpassword
+
+router.route('/auth/lost_pwd')
+    .post(authController.lostPassword)
 //avis
 
 router.route('/avis')

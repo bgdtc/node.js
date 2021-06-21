@@ -2,6 +2,17 @@
 {{> head }}
 {{!-- NAVBAR COMMUNE --}}
 {{> navbar }}
+
+
+{{!-- Req.flash --}}
+{{#if error}}
+<div style="margin-top: 10vh" class="w-100 text-center"> {{ error }} </div>
+{{/if}}
+{{#if success}}
+<div style="margin-top: 10vh" class="w-100 text-center"> {{ success }} </div>
+{{/if}}
+
+
 {{!-- DEBUT DE BODY --}}
 {{{ body }}}
 {{!-- FOOTER COMMUN --}}
