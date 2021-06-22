@@ -17,23 +17,26 @@ Partial: table User
     </thead>
     {{!-- CONTENU TABLEAU --}}
     <tbody>
+        {{#each dbuser}}
         <tr>
-            <th scope="row">1</th>
+
             {{!-- Req.flash --}}
-            {{#if admin}}
-            
-            <td style="margin-top: 10vh" class=""> {{ full_name }} </td>
-             <td style="margin-top: 10vh" class=""> {{ email }} </td>
-              <td style="margin-top: 10vh" class="">{{ is_verified }} </td>
-            
-            {{/if}}
+
+            <th scope="row">{{ this.id }}</th>
+            <td style="margin-top: 10vh" class=""> {{ this.full_name }} </td>
+            <td style="margin-top: 10vh" class=""> {{ this.email }} </td>
+            <td style="margin-top: 10vh" class="">{{ this.is_verified }} </td>
             <td>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> X
-                </button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#modalDeleteUser{{ this.id }}"> X </button>
             </td>
 
+            {{> modal/deleteUser user=this }}
+
+
+            {{!--
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="modalDeleteUser{{ id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -43,18 +46,20 @@ Partial: table User
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-dark">
-                            -Suppression de : *username*
+                            -Suppression de : {{ this.name }}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-success">Appliquer</button>
+                            <form method="POST" action="/user?_method=DELETE">
+                                <button type="button" class="btn btn-success">Appliquer</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
-           
-           
-            </div>
+            </div> --}}
         </tr>
+        {{/each }}
     </tbody>
 </table>
 

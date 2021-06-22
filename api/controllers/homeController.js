@@ -1,13 +1,10 @@
-/*
- * Module
- * ****** */ 
+// CONTROLLEUR HOME --------------------------------
+
+// IMPORT DB SIMULÉE -------------------------------
 const simulate = require('../simulate.json')
-// const rSSimulate = simulate.slice(simulate.length - 3, simulate.length).reverse()
 const rSSimulate = simulate
 
-/*
- * Controller
- *************/ 
+// CONTROLLEUR HOME --------------------------------
 module.exports = {
     get: (req, res) => {
 

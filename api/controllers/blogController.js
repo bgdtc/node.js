@@ -1,14 +1,11 @@
-/*
- * Module
- * ****** */
+// CONTROLLEUR BLOG ---------------------------------------------------
+
+// IMPORT DB SIMULÉE ET REVERSE ---------------------------------------
 const simulater = require('../simulate.json')
 const rSimulate = simulater.reverse()
 
-/*
- * Controller
- *************/
 
-//affichage de la page blog en fonction du status
+//AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT ---------------------
 exports.get = (req, res) => {
 
   
@@ -30,7 +27,7 @@ exports.get = (req, res) => {
     })
 }
 
-//affichage de la page id selon le status
+//AFFICHAGE DE LA PAGE ID SELON LE STATUT -----------------------------
 exports.getID = async (req, res) => {
   const sql = `SELECT user.is_verified FROM user WHERE id = 1;`;
 

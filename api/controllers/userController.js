@@ -1,9 +1,13 @@
-exports.get =   (req, res) => {
-
-    let sql = `SELECT user.is_verified FROM user WHERE id = 1;`;
+// CONTROLLEUR USER ???????
+exports.deleteUserById = (req, res) => {
+    console.log('Controller Delete User By ID', req.params.id)
     
-     db.query(sql, (error, data) => {
-        if (error) throw error;
-        res.render('blog')
+    let sql = `DELETE
+               FROM user
+               WHERE id = ${ req.params.id };`;
+
+    db.query(sql, (err) => {
+        if (err) throw err;
+        res.redirect('/admin')
     })
 }

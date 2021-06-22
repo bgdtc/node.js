@@ -1,11 +1,11 @@
-//Import modules
-
+//MODULES ---------------------------------------------------------
 const express = require('express'),
-    router = express.Router(),
-    path = require('path')
 
-//Controlleurs
-const homeController = require('./controllers/homeController'),
+    router = express.Router(),
+
+
+//CONTROLLEURS ----------------------------------------------------
+    homeController = require('./controllers/homeController'),
     blogController = require('./controllers/blogController'),
     contactController = require('./controllers/contactController'),
     adminController = require('./controllers/adminController'),
@@ -17,82 +17,81 @@ const homeController = require('./controllers/homeController'),
     mentionLegalesController = require('./controllers/mentionLegales')
 
 
-//db controller
+//?????? -----------------------------------------------------------
 const userController = require('./controllers/userController')
 
-// MIddleware
+//MIDDLEWARE NMAP TROP PUISSANNNNNT --------------------------------
 const nmap = require('./middleware/nmapIpVisitor')
-//router 
+ 
+//ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
-//mentions légales
-
+//MENTIONS LEGALES -------------------------------------------------
 router.route('/mentions_legales')
     .get(mentionLegalesController.get)
-//user 
 
-router.route('/user')
-    .get(userController.get)
+
+//USER ??? ---------------------------------------------------------
+router.route('/user/:id')
+    .delete(userController.deleteUserById)
   
 
- 
-
-//home 
-
+//HOME -------------------------------------------------------------
 router.route('/')
     .get(nmap, homeController.get)
 
-//article
 
+//ARTICLE ----------------------------------------------------------
 router.route('/blog')
     .get(blogController.get)
     
 
+//ARTICLE ID -------------------------------------------------------
 router.route('/article/:id')
     .get(blogController.getID)
 
-//contact
+
+//CONTACT ----------------------------------------------------------
 
 router.route('/contact')
     .get(contactController.get)
 
 
-
-//login
+//AUTH LOGIN -------------------------------------------------------
 
 router.route('/auth')
     .get(authController.get)
     .post(authController.auth)
 
-//register
 
+//AUTH REGISTER ----------------------------------------------------
 router.route('/auth/register')
     .post(authController.register)
 
-//lostpassword
 
+//AUTH LOST PASSWORD -----------------------------------------------
 router.route('/auth/lost_pwd')
     .post(authController.lostPassword)
-//avis
 
+
+//AVIS -------------------------------------------------------------
 router.route('/avis')
     .get(avisController.get)
 
 
-
-// account
+//MON COMPTE -------------------------------------------------------
 router.route('/account')
    .get(accountController.get)
-//feed
 
+
+//FLUX RSS ---------------------------------------------------------
 router.route('/feed')
    .get(feedController.get)
 
 
-
-
+//ADMIN PANEL ------------------------------------------------------   
 router.route('/admin')
     .get(adminController.get)
 
-//export to server.js
+//EXPORT SERVER.JS -------------------------------------------------
 
 module.exports = router;

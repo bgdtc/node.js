@@ -1,10 +1,14 @@
-//IMPORT BCRYPT
+// CONTROLLEUR D'IDENTIFICATION ---------------------
+
+//IMPORT BCRYPT -------------------------------------
 const bcrypt = require('bcrypt')
- //GET 
+
+ //GET ----------------------------------------------
 exports.get = (req, res) => {
     res.render('auth');
 }
-//REGISTER
+
+//REGISTER ------------------------------------------
 exports.register = async (req, res) => {
     console.log('AUTH controller register ', req.body)
 
@@ -33,7 +37,8 @@ exports.register = async (req, res) => {
 
 
 }
-//LOST PASSWORD
+
+//LOST PASSWORD -------------------------------------
 exports.lostPassword = (req, res) => {
     console.log('AUTH controller lost_password ', req.body)
 
@@ -62,7 +67,7 @@ exports.lostPassword = (req, res) => {
 
 }
 
-//LOGIN
+//LOGIN ---------------------------------------------
 exports.auth = (req, res) => {
     console.log('AUTH controller auth', req.body)
 

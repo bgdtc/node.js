@@ -4,6 +4,7 @@ const
     app = express(),
     cors = require('cors'),
     // Gestion de la session
+    methodOverride = require('method-override')
     expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
@@ -20,6 +21,8 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
         return result.concat(details.family === 'IPv4');
     }, []));
 });
+
+app.use(methodOverride('_method'))
 
 const {
     limitArray,

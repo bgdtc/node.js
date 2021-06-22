@@ -1,3 +1,4 @@
+// CONTROLLEUR MON COMPTE
 module.exports = {
     get: async(req, res) => {
         const sql = `SELECT user.nickname FROM user where id = 1`
