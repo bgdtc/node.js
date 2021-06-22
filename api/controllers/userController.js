@@ -1,16 +1,9 @@
 exports.get =   (req, res) => {
 
-    let sql = `SELECT * FROM user`;
+    let sql = `SELECT user.is_verified FROM user WHERE id = 1;`;
     
-    
-     db.query(sql, (error, data, fields) => {
+     db.query(sql, (error, data) => {
         if (error) throw error;
-        res.json({
-            status: 200,
-            listUser: data,
-            message: "users lists retrieved successfullt"        
-        }),
-        console.log(data.full_name);
-        
+        res.render('blog')
     })
 }

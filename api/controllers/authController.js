@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
         console.log('pas checké ou password pas égal')
     } else {
         const sql = `INSERT INTO user (full_name, nickname, email, password)
-                     VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 10) }');`
+                     VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 16) }');`
 
         db.query(sql, (err, data) => {
             if (err) console.log(err) 
@@ -76,7 +76,9 @@ exports.auth = (req, res) => {
         const sql = `SELECT * FROM user WHERE email = '${req.body.email}';`
         db.query(sql, (err, data) => {
             if (err) console.log(err)
-            if (!data[0]) res.redirect('/auth')
+            if (!data[0]) res.render('auth', {
+                error: 'shit happened !'
+            }) 
             else {
                 let dat = data[0].email
                 if (dat === req.body.email) {
@@ -90,9 +92,13 @@ exports.auth = (req, res) => {
 
                         console.log('RESULT: ', result)
 
-                        if (!result) console.log('les mot de passe ne correspondent pas')
+                        if (!result) console.log('les mot de passe ne correspondent pas'), res.render('auth', {
+                            error: 'shit happened !'
+                        })
 
-                        else console.log('Mot de passe OK !'), res.redirect('/')
+                        else console.log('Mot de passe OK !'), res.render('home', {
+                            success: 'vous êtes connecté !'
+                        })
 
                     })
                     // })

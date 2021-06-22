@@ -7,21 +7,21 @@
   {{/if }}
 
   {{! TABS AUTH }}
-  <ul class="nav nav-tabs container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+  <ul class="nav nav-tabs  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
     {{!-- BOUTON CONNEXION --}}
     <li class="nav-item ps-2 pe-2" role="presentation">
-      <button class="nav-link border-2 border-primary active text-dark bg-gradient" id="home-tab" data-bs-toggle="tab"
+      <button class="nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab" data-bs-toggle="tab"
         data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Connexion</button>
     </li>
     {{!-- BOUTON INSCRIPTION --}}
     <li class="nav-item pe-2" role="presentation">
-      <button class="nav-link bg-gradient border-2 border-primary text-white" id="profile-tab" data-bs-toggle="tab"
+      <button class="nav-link text-primary bg-gradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
         aria-selected="false">Inscription</button>
     </li>
     {{!-- BOUTON MOT DE PASSE OUBLIE --}}
     <li class="nav-item" role="presentation">
-      <button class="nav-link bg-gradient border-2 border-primary text-white" id="messages-tab" data-bs-toggle="tab"
+      <button class="nav-link bg-gradient border-2 border-primary text-primary" id="messages-tab" data-bs-toggle="tab"
         data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Mot de passe
         oublié</button>
     </li>
@@ -46,7 +46,7 @@
         </div>
         <div>
           <div class="col-12 pb-3 form-check">
-            <input type="checkbox" class="form-check-input justify-content-end" name='checked' id="check" />
+            <input type="checkbox" class="form-check-input justify-content-end" name='checked' id="check" required />
             <label class="form-check-label pe-3" for="check">J'accepte les CGU</label>
           </div>
           <div class="col-12 pb-4 text-center">
@@ -57,7 +57,7 @@
       </form>
     </div>
     {{! FORMULAIRE D'INSCRIPTION }}
-    <div class="tab-pane container" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <form class="container"  action='/auth/register' method="POST">
         <h1 class="text-white text-center pt-4">Inscription</h1>
         <div class="row">

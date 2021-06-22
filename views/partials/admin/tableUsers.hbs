@@ -1,7 +1,7 @@
-{{!-- 
-    route: /admin
-    Partial: table User
- --}}
+{{!--
+route: /admin
+Partial: table User
+--}}
 
 <table class="table table-sm table-bordered ">
     {{!-- LEGENDE TABLEAU --}}
@@ -19,15 +19,14 @@
     <tbody>
         <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>michel@michou.fr</td>
-            <td>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Verified</option>
-                    <option value="2">Banned</option>
-                    <option value="3">User</option>
-                </select>
-            </td>
+            {{!-- Req.flash --}}
+            {{#if admin}}
+            
+            <td style="margin-top: 10vh" class=""> {{ full_name }} </td>
+             <td style="margin-top: 10vh" class=""> {{ email }} </td>
+              <td style="margin-top: 10vh" class="">{{ is_verified }} </td>
+            
+            {{/if}}
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> X
                 </button>
@@ -52,88 +51,9 @@
                         </div>
                     </div>
                 </div>
+           
+           
             </div>
-
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>thorn</td>
-            <td>thorn.lol@lol.fr</td>
-            <td>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Banned</option>
-                    <option value="1">Verified</option>
-
-                    <option value="3">User</option>
-                </select>
-
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    X
-                </button>
-       
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
-                                    supprimer cet utilisateur ?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-dark">
-                                -Suppression de : *username*
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-success">Appliquer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>thorn.lol@lol.fr</td>
-            <td>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>User</option>
-                    <option value="1">Verified</option>
-                    <option value="2">Banned</option>
-
-                </select>
-            </td>
-            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    X
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
-                                    supprimer cet utilisateur ?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-dark">
-                                -Suppression de : *username*
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-success">Appliquer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
         </tr>
     </tbody>
 </table>
@@ -164,5 +84,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

@@ -2,5 +2,13 @@
 {{> admin/head }}
 {{!-- DEBUT BODY --}}
 {{{ body }}}
+
+{{!-- Req.flash --}}
+{{#if error}}
+<div style="margin-top: 10vh" class="w-100 text-center"> {{ error }} </div>
+{{/if}}
+{{#if success}}
+<div style="margin-top: 10vh" class="w-100 text-center"> {{ success }} </div>
+{{/if}}
 {{!-- FIN SCRIPTS ETC --}}
 {{> end }}
