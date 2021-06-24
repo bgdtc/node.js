@@ -1,7 +1,7 @@
 {{!-- HEADER PAGE D'ACCUEIL --}}
-<section class="bg-gradient">
-  <header class=" container pt-5">
-    <div class="container-fluid pt-5">
+<section id="vantajs" class="bg-gradient">
+  <header  class=" container pt-5 pb-5" id="#your-element-selector">
+    <div class="container-fluid pt-5 pb-5">
       {{!-- TITRES SITE --}}
       <div>
         {{!-- TITRE DU SITE --}}
@@ -14,7 +14,7 @@
           concernant les failles de sécurités !</p>
       </div>
       {{!-- DESCRIPTION PLUS COMPLETE --}}
-      <div class="d-flex justify-content-end">
+      <div  class="d-flex justify-content-end">
         <p class="text-dark test">test testtest test testtest test testtest test
           testtest test testtest test testtest test testtest test testtest test
           test testtest test testtest test testtest test testtest test testtest
@@ -23,7 +23,7 @@
           test testtest test testtest test testtest testtest test test testtest
           test testtest test testtest test testtest test testtest test testtest
           test testtest test testtest test test</p>
-        <img class="bg-dark rounded-pill" src="../assets/images/ankh-solid.png" alt="" />
+        <img class="bg-dark rounded-pill" src="../assets/images/bleu.jpg" alt="" />
 
       </div>
       {{!-- AUTRE TEXTE --}}
@@ -36,3 +36,28 @@
     </div>
   </header>
 </section>
+
+<script>
+VANTA.NET({
+  el: "#vantajs",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x3f82ff,
+  backgroundColor: 0xf0f0f0,
+  points: 10.00,
+  maxDistance: 23.00,
+  spacing: 17.00
+})
+</script>
+
+
+<style>
+  #vantajs {
+  width: auto; height: 600px; margin-bottom: 10px;
+}
+</style>

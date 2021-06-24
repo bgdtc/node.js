@@ -1,18 +1,11 @@
-const { render } = require("node-sass");
-
 // CONTROLLEUR ADMIN PANEL
 module.exports = {
-    get: (req, res) => {
+    get: async (req, res) => {
 
-        const dbUser = `SELECT * FROM user `
-
-        
-        db.query(dbUser, (err, data) => {
             res.render('admin', {
-                dbuser: data
+                dbuser: await query(`SELECT * FROM user;`),
+                dbComments: await query(`SELECT * FROM comments;`)
             })
-        })
-
         // const sql = `SELECT user.is_admin FROM user WHERE id = 1;`
 
         // db.query(sql, (error, data) => {

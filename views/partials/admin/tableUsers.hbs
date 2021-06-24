@@ -2,7 +2,11 @@
 route: /admin
 Partial: table User
 --}}
-
+{{!-- BOUTON AJOUTER UN UTILISATEUR --}}
+<div>
+    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAddUser">Ajouter un Utilisateur</button>
+    {{> modal/addUser }}
+</div>
 <table class="table table-sm table-bordered ">
     {{!-- LEGENDE TABLEAU --}}
     <thead>
@@ -10,8 +14,11 @@ Partial: table User
         <tr>
             <th scope="col">#id</th>
             <th scope="col">Nom</th>
+            <th scope="col">Pseudo</th>
             <th scope="col">Email</th>
-            <th scope="col">Status</th>
+            <th scope="col">Verified</th>
+            <th scope="col">Admin</th>
+            <th scope="col">Banned</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -24,14 +31,19 @@ Partial: table User
 
             <th scope="row">{{ this.id }}</th>
             <td style="margin-top: 10vh" class=""> {{ this.full_name }} </td>
+            <td style="margin-top: 10vh" class=""> {{ this.nickname }} </td>
             <td style="margin-top: 10vh" class=""> {{ this.email }} </td>
-            <td style="margin-top: 10vh" class="">{{ this.is_verified }} </td>
+            <td style="margin-top: 10vh" class=""> {{ this.is_verified }}</td>
+            <td style="margin-top: 10vh" class=""> {{ this.is_admin }}</td>
+            <td style="margin-top: 10vh" class=""> {{ this.is_banned }}</td>
             <td>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#modalDeleteUser{{ this.id }}"> X </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modalDeleteUser{{ this.id }}"> X </button>
+                    <button type="button" class="btn btn-warning " data-bs-toggle="modal"
+                            data-bs-target="#modalModifyUser{{ this.id }}"> <i class="fas fa-edit"></i> </button>
             </td>
-
             {{> modal/deleteUser user=this }}
+            {{> modal/modifyUser user=this }}
 
 
             {{!--
@@ -62,32 +74,3 @@ Partial: table User
         {{/each }}
     </tbody>
 </table>
-
-{{!-- BOUTON APPLIQUER LES MODIFS --}}
-<div class="d-flex justify-content-end pb-5">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-        Appliquer les modifications
-    </button>
-
-    <!-- MODAL APPLIQUER LES MODIFS -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir appliquer les
-                        modifications</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-dark">
-                    -User : Mark status changed from 'user' => 'banned'
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success">Appliquer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>

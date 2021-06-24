@@ -14,7 +14,8 @@ const express = require('express'),
     feedController = require('./controllers/feedController'),
     accountController = require('./controllers/accountController'),
     idController = require('./controllers/idController'),
-    mentionLegalesController = require('./controllers/mentionLegales')
+    mentionLegalesController = require('./controllers/mentionLegales'),
+    commentController = require('./controllers/commentController')
 
 
 //?????? -----------------------------------------------------------
@@ -33,8 +34,14 @@ router.route('/mentions_legales')
 //USER ??? ---------------------------------------------------------
 router.route('/user/:id')
     .delete(userController.deleteUserById)
+    .put(userController.modifyUser)
   
 
+//USER  ------------------------------------------------------------
+router.route('/user/add')
+    .post(userController.addUser)
+    
+    
 //HOME -------------------------------------------------------------
 router.route('/')
     .get(nmap, homeController.get)
@@ -77,6 +84,11 @@ router.route('/auth/lost_pwd')
 router.route('/avis')
     .get(avisController.get)
 
+
+//COMMENTS ---------------------------------------------------------
+router.route('/comment/:id')
+    .delete(commentController.deleteCommentById)
+    .put(commentController.modifyComment)
 
 //MON COMPTE -------------------------------------------------------
 router.route('/account')

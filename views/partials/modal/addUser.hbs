@@ -1,0 +1,45 @@
+<!-- MODAL APPLIQUER LES MODIFS -->
+<div class="modal fade" id="modalAddUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajoutez un utilisateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/user/add" method="POST">
+                <div class="text-center container modal-body text-dark">
+                    <div>
+                        <label for="full_name">Full Name : </label>
+                        <input type="text"  name="full_name" required>
+                    </div>
+                    <div>
+                        <label for="nickname">Nickname : </label>
+                        <input type="text"  name="nickname" required>
+                    </div>
+                    <div>
+                        <label for="email">Mail adres : </label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password : </label>
+                        <input type="password"  name="password" required>
+                    </div>
+                   
+                    
+                   
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-success">
+                        Appliquer
+                        </button>
+                   
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+

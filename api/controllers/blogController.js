@@ -6,12 +6,12 @@ const rSimulate = simulater.reverse()
 
 
 //AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT ---------------------
-exports.get = (req, res) => {
+exports.get =  (req, res) => {
 
   
-    const sql = `SELECT user.is_verified FROM user WHERE id = 1;`;
+    const sql = `SELECT user.is_verified FROM user WHERE id = 21;`;
     
-     db.query(sql, (error, data) => {
+     query(sql, (error, data) => {
         if (error) throw error;
       if (data[0].is_verified === 0) {
 

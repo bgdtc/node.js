@@ -3,12 +3,12 @@ const
     express = require('express'),
     app = express(),
     cors = require('cors'),
-    // Gestion de la session
     methodOverride = require('method-override')
     expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     mysql = require('mysql2'),
+    util = require('util'),
     port = process.env.PORT || 4000;
 
 
@@ -50,6 +50,9 @@ db.connect((err) => {
     if (err) console.error('erreur de connection a la db: ' + err.stack);
 });
 
+const query = util.promisify(db.query).bind(db);
+global.query = query;
+
 //Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
@@ -61,6 +64,8 @@ app.engine('hbs', hbs({
         lowercase
     }
 }));
+
+
 
 
 // Express-session
