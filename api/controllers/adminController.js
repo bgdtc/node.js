@@ -1,10 +1,12 @@
+
 // CONTROLLEUR ADMIN PANEL
 module.exports = {
     get: async (req, res) => {
 
             res.render('admin', {
                 dbuser: await query(`SELECT * FROM user;`),
-                dbComments: await query(`SELECT * FROM comments;`)
+                dbComments: await query(`SELECT * FROM comments;`),
+                dbArticles: await query(`SELECT * FROM articles;`)
             })
         // const sql = `SELECT user.is_admin FROM user WHERE id = 1;`
 

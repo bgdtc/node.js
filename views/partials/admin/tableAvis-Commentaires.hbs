@@ -29,9 +29,9 @@
             <td>{{ this.is_avis }}</td>
             <td>{{ this.is_banned }}</td>
             <td>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteComment{{ this.id }}">Supprimer</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteComment{{ this.id }}"><i class="fas fa-trash-alt"></i></button>
             </td>
-            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalModifyComment{{ this.id }}"><i class="fas fa-edit"></i></button></td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModifyComment{{ this.id }}"><i class="fas fa-edit"></i></button></td>
              {{> modal/modalDeleteComment comment=this }}
              {{> modal/modalModifyComment comment=this }}
         </tr>

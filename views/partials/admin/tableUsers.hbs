@@ -38,8 +38,8 @@ Partial: table User
             <td style="margin-top: 10vh" class=""> {{ this.is_banned }}</td>
             <td>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#modalDeleteUser{{ this.id }}"> X </button>
-                    <button type="button" class="btn btn-warning " data-bs-toggle="modal"
+                            data-bs-target="#modalDeleteUser{{ this.id }}"><i class="fas fa-trash-alt"></i> </button>
+                    <button type="button" class="btn btn-primary " data-bs-toggle="modal"
                             data-bs-target="#modalModifyUser{{ this.id }}"> <i class="fas fa-edit"></i> </button>
             </td>
             {{> modal/deleteUser user=this }}

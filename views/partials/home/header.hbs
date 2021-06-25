@@ -1,7 +1,7 @@
 {{!-- HEADER PAGE D'ACCUEIL --}}
-<section id="vantajs" class="bg-gradient">
-  <header  class=" container pt-5 pb-5" id="#your-element-selector">
-    <div class="container-fluid pt-5 pb-5">
+<section  class="bg-gradient pt-5">
+  <header id="vantajs">
+    <div class="container pt-5 pb-5">
       {{!-- TITRES SITE --}}
       <div>
         {{!-- TITRE DU SITE --}}
@@ -23,7 +23,7 @@
           test testtest test testtest test testtest testtest test test testtest
           test testtest test testtest test testtest test testtest test testtest
           test testtest test testtest test test</p>
-        <img class="bg-dark rounded-pill" src="../assets/images/bleu.jpg" alt="" />
+        <img class="bg-dark rounded-pill" height="130px" src="../assets/images/bleu.jpg" alt="" />
 
       </div>
       {{!-- AUTRE TEXTE --}}
@@ -55,9 +55,8 @@ VANTA.NET({
 })
 </script>
 
-
 <style>
-  #vantajs {
-  width: auto; height: 600px; margin-bottom: 10px;
-}
+  #vantajs > canvas {
+    width: 100% !important;
+  }
 </style>

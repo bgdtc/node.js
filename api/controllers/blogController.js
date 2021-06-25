@@ -9,7 +9,7 @@ const rSimulate = simulater.reverse()
 exports.get =  (req, res) => {
 
   
-    const sql = `SELECT user.is_verified FROM user WHERE id = 21;`;
+    const sql = `SELECT user.is_verified FROM user WHERE id = 22;`;
     
      query(sql, (error, data) => {
         if (error) throw error;
@@ -29,7 +29,7 @@ exports.get =  (req, res) => {
 
 //AFFICHAGE DE LA PAGE ID SELON LE STATUT -----------------------------
 exports.getID = async (req, res) => {
-  const sql = `SELECT user.is_verified FROM user WHERE id = 1;`;
+  const sql = `SELECT user.is_verified FROM user WHERE id = 22;`;
 
   db.query(sql, (error, data) => {
     if (error) throw error;

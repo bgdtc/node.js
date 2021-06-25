@@ -1,0 +1,69 @@
+{{!-- MODAL AJOUTER UN ARTICLE --}}
+<div class="modal fade" id="modalAddArticle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <section class="container-fluid" id="contactForm">
+                    <div class="container  fw-bold pt-2 pb-3">
+                        <div class="col-md-12 text-center">
+                            <h2 class=" fw-bolder text-primary rounded  text-dark  pb-1 ">
+                                Ajouter un article
+                            </h2>
+                        </div>
+                        {{!-- FORMULAIRE AJOUT ARTICLE --}}
+                        <form action="/article" method="POST" class=" pt-3  row pe-2  border-top border-primary">
+                            {{!-- INPUT IMAGE --}}
+                            <div class="col-md-12 pt-5">
+                                <label for="for">Image de l'article</label>
+                                <input type="file" name="image" id="for">
+                            </div>
+                            {{!-- INPUT TITRE ARTICLE --}}
+                            <div class="col-md-12 pt-5">
+                                <label for="text" class="form-label text-primary">Titre de
+                                    l'article</label>
+                                <input type="text" placeholder="Noix de coco" name="title" class="form-control bg-dark text-white"
+                                    id="artTitle" required>
+                            </div>
+                            {{!-- INPUT DESCRIPTION ARTICLE --}}
+                            <div class="col-12 ">
+                                <label for="sujet" class="form-label text-primary">Description:</label>
+                                <input type="text" class="form-control bg-dark text-white" name="description" id="artDescription"
+                                    placeholder="description super géniale" required>
+                            </div>
+                            {{!-- INPUT CONTENU ARTICLE --}}
+                            <div class="col-12 ">
+                                <label for="message" class="form-label text-dark">Contenu:</label>
+                                <textarea name="content" class="form-control bg-dark text-white" id="artContenu"
+                                    placeholder="inserez du contenu" cols="30" rows="10" required></textarea>
+                            </div>
+                            {{!-- CASE ACCEPTER CGU --}}
+                            <div class="col-6 pt-4 justify-content-end">
+                                <div class="form-check">
+                                    <input type="checkbox" name="checked" class="form-check-input " id="check" required>
+                                    <label for="check" class="form-check-label text-dark">
+                                        J'accepte les <span class="text-primary"><a href="/">CGU</a></span>
+                                        !
+                                    </label>
+                                </div>
+                            </div>
+                            {{!-- BOUTON SUBMIT --}}
+                            <div class="col-6 d-flex pt-4 justify-content-end pb-2">
+                                <button type="submit" class="btn bg-dark  fw-bolder text-white">Ajouter</button>
+                            </div>
+                        </form>
+                    </div>
+
+                   
+
+
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+</div>

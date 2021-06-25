@@ -1,12 +1,149 @@
-<section class="pt-5 container-fluid">
-    <div class="container  pt-5">
-        <h1 class="text-center text-decoration-underline">Mon Compte</h1>
-        <img src="../assets/images/sylvie.jpg" class="rounded-pill img-thumbnail" alt="..." style="height: 80px;">
-        <div class="d-flex justify-content-between">
-            <label for="teee" class="text-dark">Changer votre image de profil :</label>
-            <input type="file" name="" id="teee" class="">
+{{!-- FORMULAIRES DE CONNEXION / INSCRIPTION / MOT DE PASSE OUBLIE --}}
+
+<section class="pt-5 container-fluid bg-light" style="height: 100vh;">
+
+    {{#if user }}
+    <h5>Bonjour {{ session.name }}, tu as {{ session.age }} quennels ! | email {{ session.email }}</h5>
+    {{/if }}
+
+    {{! TABS ACCOUNT }}
+    <ul class="nav nav-tabs  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+        {{!-- BOUTON CONNEXION --}}
+        <li class="nav-item ps-2 pe-2" role="presentation">
+            <button class="nav-link text-primary border-2 border-primary active bg-light" id="home-tab"
+                data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                aria-selected="true">Mon Compte</button>
+        </li>
+        {{!-- BOUTON INSCRIPTION --}}
+        <li class="nav-item pe-2" role="presentation">
+            <button class="nav-link text-primary bg-dark border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
+                data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes
+                Avis & commentaires</button>
+        </li>
+        {{!-- BOUTON MOT DE PASSE OUBLIE --}}
+        <li class="nav-item" role="presentation">
+            <button class="nav-link bg-dark border-2 border-primary text-primary" id="messages-tab" data-bs-toggle="tab"
+                data-bs-target="#messages" type="button" role="tab" aria-controls="messages"
+                aria-selected="false">Paramètres</button>
+        </li>
+    </ul>
+
+    {{! CONTENU TABS ACCOUNT }}
+    <div class="tab-content pb-5  ">
+        {{!-- MON COMPTE --}}
+        <div class="row tab-pane  active pb-5" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <form class="container" action='/account/{{ user.id }}?_method=PUT' method="POST">
+                <div class="mb-3 col-md-6">
+                    <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
+                    {{!-- INPUT FULLNAME --}}
+                    <label for="email" class="form-label">Nom Complet:</label>
+                    <input type="email" class="form-control" value="{{ user.full_name }}" name='full_name'
+                        id="full_name" aria-describedby="none" required />
+                </div>
+                <div class="mb-3 col-md-6">
+                    {{!-- INPUT NICKNAME --}}
+                    <label for="email" class="form-label">Pseudo:</label>
+                    <input type="email" class="form-control" value="{{ user.nickname }}" name='nickname' id="nickname"
+                        aria-describedby="none" required />
+                </div>
+                <div class="mb-3 col-md-6">
+                    {{!-- INPUT EMAIL --}}
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" value="{{ user.email }}" name='email' id="email"
+                        aria-describedby="none" required />
+                </div>
+                <div class="mb-3 col-md-6">
+                    {{!-- INPUT CHANGE PASSWORD --}}
+                    <label for="email" class="form-label">Mot de passe actuel:</label>
+                    <input type="email" class="form-control" name='password' id="password" aria-describedby="none"
+                        required />
+                    <label for="password">Nouveau mot de passe : </label>
+                    <input type="email" class="form-control" name='newPassword' id="newPassword" aria-describedby="none"
+                        required />
+                    <label for="passConfirm">Confirmez mot de passe:</label>
+                    <input type="email" class="form-control" name='passwordConfirm' id="passwordConfirm"
+                        aria-describedby="none" required />
+                </div>
+                <div class="col-md-6">
+                    <label for="image" class="pb-2">Séléctionnez une image de profil :</label>
+                    <input type="file" name="image" id="">
+                    <img src="/assets/images/sylvie.jpg" class="rounded-pill" height="90px" alt="">
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary" type="submit">Appliquer les modifications</button>
+                </div>
+
+            </form>
         </div>
+        {{! MES COMMENTAIRES ET AVIS }}
+        <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h1 class="h5 text-center">Mes Commentaires & avis</h1>
+                 <table class="table">
+                {{!-- LEGENDE TABLEAU --}}
+                <thead>
+                    <tr>
+                        <th scope="col">#id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Avis / Commentaire</th>
+                        <th scope="col">Contenu</th>
+                        <th scope="col">Is Avis</th>
+                        <th scope="col">Is Banned</th>
+                        <th scope="col">Supprimer</th>
+                        <th scope="col">Modifier</i></th>
+                    </tr>
+                </thead>
+                {{!-- CONTENU DU TABLEAU --}}
+                <tbody>
+                    {{#each userComments}}
+                    <tr>
+                        <th scope="row">{{ this.id }}</th>
+                        <td>{{ this.author_id }}</td>
+                        <td>{{ this.is_avis }}</td>
+                        <td>{{ this.content }}</td>
+                        <td>{{ this.is_avis }}</td>
+                        <td>{{ this.is_banned }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#modalDeleteComment{{ this.id }}"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </td>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalModifyComment{{ this.id }}"><i class="fas fa-edit"></i></button>
+                        </td>
+                        {{> account/modal/modalDeleteComment comment=this }}
+                        {{> account/modal/modalModifyComment comment=this }}
+                    </tr>
+                    {{/each }}
+                </tbody>
+                 </table>
+            <div class="d-flex justify-content-end">
+            </div>
+        </div>
+        {{!-- MOT DE PASSE OUBLIE --}}
+        <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+            <form class="container" action='/auth/lost_pwd' method="POST">
+                <div class="mb-3">
+                    <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
+                    {{!-- INPUT EMAIL --}}
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                        required />
+                    <div id="emailHelp" class="form-text"></div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" required id="check" />
+                    <label class="form-check-label" for="check">J'accepte les CGU</label>
+                </div>
+                <div class="pb-2">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
 
+            </form>
+        </div>
     </div>
-
 </section>
+
+<script>
+    var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
+        = new bootstrap.Tab(firstTabEl) firstTab.show()
+</script>

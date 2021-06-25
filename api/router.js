@@ -15,7 +15,8 @@ const express = require('express'),
     accountController = require('./controllers/accountController'),
     idController = require('./controllers/idController'),
     mentionLegalesController = require('./controllers/mentionLegales'),
-    commentController = require('./controllers/commentController')
+    commentController = require('./controllers/commentController'),
+    articleController = require('./controllers/articleController')
 
 
 //?????? -----------------------------------------------------------
@@ -52,10 +53,16 @@ router.route('/blog')
     .get(blogController.get)
     
 
+//ARTICLE ADMIN ----------------------------------------------------
+router.route('/article')
+    .post(articleController.addArticle)
+
+
 //ARTICLE ID -------------------------------------------------------
 router.route('/article/:id')
     .get(blogController.getID)
-
+    .delete(articleController.deleteArticleById)
+    .put(articleController.modifyArticle)
 
 //CONTACT ----------------------------------------------------------
 
@@ -93,6 +100,12 @@ router.route('/comment/:id')
 //MON COMPTE -------------------------------------------------------
 router.route('/account')
    .get(accountController.get)
+
+
+//MON COMPTE ID
+router.route('/account/:id')
+    .put(accountController.modifyComment)
+    .delete(accountController.deleteCommentById)
 
 
 //FLUX RSS ---------------------------------------------------------

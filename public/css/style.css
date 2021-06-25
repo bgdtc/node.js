@@ -48,12 +48,13 @@
 
 body {
   margin: 0;
+  width: auto;
   font-family: var(--bs-font-sans-serif);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #292621;
-  background-color: #fff;
+  background-color: #F0F0F0 !important;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -599,8 +600,7 @@ progress {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
+  
 }
 
 @media (min-width: 576px) {
@@ -10832,9 +10832,11 @@ body {
 }
 
 .famille-produits {
-  background-image: url(https://images.pexels.com/photos/601798/pexels-photo-601798.jpeg?cs=srgb&dl=pexels-neosiam-601798.jpg&fm=jpg);
+  background-image: url(/assets/images/test.jpg);
   background-position: center;
   background-size: cover;
+  height: 60vh;
+  width: auto;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -10848,7 +10850,7 @@ body {
 }
 
 .tist {
-  opacity: 0.7 ;
+  opacity: 0.9 ;
   
 }
 
