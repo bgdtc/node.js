@@ -53,27 +53,18 @@ db.connect((err) => {
 const query = util.promisify(db.query).bind(db);
 global.query = query;
 
-//Handlebars
-app.set('view engine', 'hbs');
-app.engine('hbs', hbs({
-    extname: 'hbs',
-    defaultLayout: 'main',
-    helpers: {
-        limitArray: limitArray,
-        upcase,
-        lowercase
-    }
-}));
 
 
 
 
 // Express-session
 app.use(expressSession({
-    secret: 'securite',
+    secret: 'lasecuavantout',
     name: 'ptiBiscuit',
     saveUninitialized: true,
-    resave: false
+    resave: false,
+    cookie: { maxAge: 300000 }
+    
 }));
 
 
@@ -88,8 +79,27 @@ app.use(bodyParser.urlencoded({
 app.use('*', (req, res, next) => {
     res.locals.user = req.session.user
 
+    if (req.session.is_admin === true)  res.locals.admin = req.session.is_admin
+
     next()
 })
+
+
+
+//Handlebars
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    helpers: {
+        limitArray: limitArray,
+        upcase,
+        lowercase
+    }
+}));
+
+
+
 
 // const {
 //     request

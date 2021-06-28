@@ -1,9 +1,9 @@
 {{! LISTE DES ARTICLES }}
-<section class=" container-fluid">
-  <div class=" container">
+<section class=" container-fluid ">
+  <div class=" container ">
     {{!-- TITRES PAGE --}}
-    <div class=" pt-5">
-      <h3 class="tist text-center bg-gradient fw-bold rounded text-decoration-underline">Articles récents</h3>
+    <div class=" pt-3 border-bottom border-1 border-primary">
+      <h3 class="tist text-center bg-gradient fw-bold rounded">Articles récents</h3>
     </div>
     <!-- AFFICHAGE CARDS DB -->
     <div class="row">
@@ -18,8 +18,16 @@
           <div class="card-body text-center" >
             <h2 class="card-title text-center mb-4">{{ upcase title}}</h2>
             <p class="card-text"> {{description}} {{id}} </p>
-            <a href="/article/{{id}}" class="btn bg-primary text-white"><i class="fas fa-ankh me-2"></i>Lire la
+            {{#if user}}
+            <a href="/article/{{id}}" class="tes btn bg-primary text-white"><i class="fas fa-ankh me-2"></i>Lire la
               suite...</a>
+              {{else}}
+            <a href="/article/{{id}}" class="disabled tes btn bg-primary text-white"><i class="fas fa-ankh me-2"></i>Lire la
+              suite...</a>
+              <div class="alert alert-danger" role="alert">
+                     Seuls les utilisateurs <span><a href="/auth">connectés</a> </span> peuvent lire les articles !
+              </div>
+              {{/if}}
           </div>
         </div>
       </div>
@@ -35,7 +43,7 @@
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{title}}</h2>
             <p class="card-text"> {{description}} {{id}} </p>
-            <a href="/article/{{id}}" class="btn bg-primary text-muted"><i class="fas fa-ankh me-2"></i>Lire la
+            <a href="/article/{{id}}" class="tes btn bg-primary text-muted"><i class="fas fa-ankh me-2"></i>Lire la
               suite...</a>
           </div>
         </div>
@@ -51,3 +59,9 @@
     console.log('bonjour')
   }
 </script>
+
+<style>
+.tes:hover {
+    background-color: white !important;
+  }
+</style>

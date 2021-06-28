@@ -3,7 +3,7 @@
   <div class="container pb-3 pt-5">
     {{!-- CARD CONTENANT L'ARTICLE --}}
     <div class="card mb-3 bg-gradient border text-center border-primary">
-      <img src="{{ artID.img }}" style="max-height: 130px; max-width: 130px;" class="card-img-top" alt="..." />
+      <img src="{{ artID.img }}" style="max-height: 200px; height:200px; max-width: 250px;" class="card-img-top" alt="..." />
       <h1 class="text-dark">{{artID.title}}</h1>
       <h2 class="text-dark">écrit par : {{artID.author}}</h2>
       <div class="card-body">
@@ -14,32 +14,17 @@
       </div>
     </div>
     {{!-- AFFICHAGE DES COMMENTAIRES --}}
-    <div class="card text-white bg-primary mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
+    <div class="card text-white bg-primary mb-3">
+      <div class="card-header">Michel72</div>
       <div class="card-body">
-        <h5 class="card-title">Primary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    <div class="card text-white bg-secondary mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h5 class="card-title">Secondary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    <div class="card text-white bg-success mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h5 class="card-title">Success card title</h5>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
+        <h5 class="card-title">Un super article !</h5>
+        <p class="card-text">contenu du super commentaire sur le super
+          article trop génial et tout blablabalbablabalbabl.
+        </p>
       </div>
     </div>
     {{!-- ZONE POUR POSTER UN COMMENTAIRE --}}
-    <div class="container">
+    <div>
       <form action="" class=" pt-3  row  border-3 ">
         <div class="col-12">
           <label for="comment" class="form-label text-white">Votre Commentaire:</label>

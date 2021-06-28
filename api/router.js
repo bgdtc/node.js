@@ -90,6 +90,7 @@ router.route('/auth/lost_pwd')
 //AVIS -------------------------------------------------------------
 router.route('/avis')
     .get(avisController.get)
+    .post(avisController.postAvis)
 
 
 //COMMENTS ---------------------------------------------------------
@@ -102,6 +103,12 @@ router.route('/account')
    .get(accountController.get)
 
 
+//MON COMPTE ID USER -------------------------------------------------
+router.route('/account/user/:id')
+   .get(accountController.get)
+   .put(accountController.modifyAccount)
+
+   
 //MON COMPTE ID
 router.route('/account/:id')
     .put(accountController.modifyComment)
@@ -116,6 +123,11 @@ router.route('/feed')
 //ADMIN PANEL ------------------------------------------------------   
 router.route('/admin')
     .get(adminController.get)
+
+
+//LOGOUT
+router.route('/logout')
+    .get(authController.logout)
 
 //EXPORT SERVER.JS -------------------------------------------------
 

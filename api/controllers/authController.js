@@ -3,7 +3,7 @@
 //IMPORT BCRYPT -------------------------------------
 const bcrypt = require('bcrypt')
 
- //GET ----------------------------------------------
+//GET ----------------------------------------------
 exports.get = (req, res) => {
     res.render('auth');
 }
@@ -20,17 +20,17 @@ exports.register = async (req, res) => {
                      VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 16) }');`
 
         db.query(sql, (err, data) => {
-            if (err) console.log(err) 
+            if (err) console.log(err)
             if (err) res.render('auth', {
-                    error: 'shit happened !'
-                })
-            
+                error: 'shit happened !'
+            })
+
             console.log(data)
             res.render('auth', {
                 success: 'bien joué tu est inscrit maintenant vérifie tes mails'
             })
         })
-        
+
 
 
     }
@@ -83,7 +83,7 @@ exports.auth = (req, res) => {
             if (err) console.log(err)
             if (!data[0]) res.render('auth', {
                 error: 'shit happened !'
-            }) 
+            })
             else {
                 let dat = data[0].email
                 if (dat === req.body.email) {
@@ -101,9 +101,25 @@ exports.auth = (req, res) => {
                             error: 'shit happened !'
                         })
 
-                        else console.log('Mot de passe OK !'), res.render('home', {
-                            success: 'vous êtes connecté !'
-                        })
+                        else console.log('Mot de passe OK !'),
+                            req.session.user = {
+                                full_name: data[0].full_name,
+                                email: data[0].email,
+                                is_admin: data[0].is_admin,
+                                is_verified: data[0].is_verified,
+                                is_banned: data[0].is_banned,
+                                id: data[0].id
+                            }
+                        console.log('connexion', req.session)
+                        res.locals.user = req.session.user
+                        if (data[0].is_admin === 1) {
+                            req.session.is_admin = true
+                            res.locals.admin = true
+                            return res.redirect('/admin')
+                        } else {
+                            res.redirect('/')
+                        }
+
 
                     })
                     // })
@@ -115,4 +131,12 @@ exports.auth = (req, res) => {
     }
 
 
+}
+
+exports.logout = (req, res) => {
+    req.session.destroy(() => {
+        res.clearCookie('ptiBiscuit')
+        console.log(req.session)
+        res.redirect('/')
+    })
 }

@@ -1,7 +1,7 @@
 {{!-- HEADER PAGE D'ACCUEIL --}}
-<section  class="bg-gradient pt-5">
+<section class="bg-gradient pt-5">
   <header id="vantajs">
-    <div class="container pt-5 pb-5">
+    <div class="container pt-5 pb-1  tist">
       {{!-- TITRES SITE --}}
       <div>
         {{!-- TITRE DU SITE --}}
@@ -14,15 +14,12 @@
           concernant les failles de sécurités !</p>
       </div>
       {{!-- DESCRIPTION PLUS COMPLETE --}}
-      <div  class="d-flex justify-content-end">
-        <p class="text-dark test">test testtest test testtest test testtest test
-          testtest test testtest test testtest test testtest test testtest test
-          test testtest test testtest test testtest test testtest test testtest
-          test testtest test testtest test testtest test testtest test testtest
-          test testtest test testtest test testtest test testtest test testtest
-          test testtest test testtest test testtest testtest test test testtest
-          test testtest test testtest test testtest test testtest test testtest
-          test testtest test testtest test test</p>
+      <div class="d-flex justify-content-end">
+        <p class="test text-dark fw-bold ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+          officia deserunt mollit anim id est laborum.</p>
         <img class="bg-dark rounded-pill" height="130px" src="../assets/images/bleu.jpg" alt="" />
 
       </div>
@@ -38,25 +35,25 @@
 </section>
 
 <script>
-VANTA.NET({
-  el: "#vantajs",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  color: 0x3f82ff,
-  backgroundColor: 0xf0f0f0,
-  points: 10.00,
-  maxDistance: 23.00,
-  spacing: 17.00
-})
+  VANTA.NET({
+    el: "#vantajs",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color:  0x0275D8,
+    backgroundColor: 0xf0f0f0,
+    points: 10.00,
+    maxDistance: 25.00,
+    spacing: 20.00
+  })
 </script>
 
 <style>
-  #vantajs > canvas {
+  #vantajs>canvas {
     width: 100% !important;
   }
 </style>

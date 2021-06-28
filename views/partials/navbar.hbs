@@ -1,12 +1,12 @@
 {{!-- NAVBAR --}}
-<nav class="navbar bg-dark navbar-light navbar-expand-md border-bottom border-primary fixed-top  pb-1">
+<nav class="navbar bg-dark navbar-light navbar-expand-md border-bottom border-primary border-2 fixed-top  pb-1">
   <div class=" container-fluid">
     {{!-- ICONE DE SITE HREF HOME --}}
     <a href="/" >
-    <i class="fas fa-ankh  fs-2 pe-2 pb-1 ps-2" ></i>
+    <i class="fas fa-ankh  fs-2 pe-2 pb-2 ps-2" ></i>
     </a>
     {{!-- TITRE NAVBAR --}}
-    <h6 class="pe-5 text-center">News_inf0-sec</h6>
+    <h6 class="pe-5 fw-bold text-center text-white">Inf0 Sec</h6>
     {{!-- BOUTON COLLAPSE --}}
     <button
       class="fs-6 navbar-toggler bg-primary rounded"
@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse pe-2" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {{!-- BOUTON ACCUEIL --}}
-        <li class="nav-item border-2 border-primary pe-2 pt-1">
+        <li class="nav-item border-2 border-primary pe-2">
           <a
             class="nav-link active  border-2 ps-1  text-white"
             aria-current="page"
@@ -31,40 +31,53 @@
           >Accueil</a>
         </li>
         {{!-- BOUTON CONTACT --}}
-        <li class="nav-item pe-2 pt-1">
+        <li class="nav-item pe-2 pb-1">
           <a class="nav-link   text-white ps-1" href="/contact">Contact</a>
         </li>
         {{!-- BOUTON AVIS --}}
-        <li class="nav-item pe-2 pt-1">
+        <li class="nav-item pe-2 pb-1">
           <a
             class="nav-link text-white ps-1"
             href="/avis"
           >Avis</a>
         </li>
         {{!-- BOUTON BLOG --}}
-        <li class="nav-item pe-2 pt-1">
-          <a class="nav-link text-white ps-1" href="/blog">*Blog*</a>
+        <li class="nav-item pe-2 pb-1">
+          <a class="nav-link text-white ps-1" href="/blog">Blog</a>
         </li>
+         {{#if admin}}
+       <li class="nav-item pe-2 pb-1">
+         <a class="nav-link text-danger ps-1" href="/admin">Admin</a>
+       </li>
+      {{/if}}
+      {{#if user}}
+       <li class="nav-item pe-2 pb-1">
+         <a class="nav-link text-primary ps-1" href="/account">Mon Compte</a>
+       </li>
+      {{/if}}
       </ul>
       {{!-- SELECTEUR DE LANGUE --}}
-      <div class="pe-2 pt-1">
+      <div class="pe-2 ">
         <select
           class="pe-2 nav-item bg-transparent nav-link border-primary border-2 text-white pe-2 rounded-pill fw-bolder"
         >
-          <option>Français</option>
-          <option>русский</option>
-          <option>Portuguese</option>
+          <option class="text-primary">Français</option>
+          <option class="text-primary">русский</option>
+          <option class="text-primary">Portuguese</option>
         </select>
 
       </div>
       {{!-- BOUTON INSCRIPTION --}}
-      <div class="pe-2 pt-1">
+      {{#if user }}
+      <a class="logout btn text-white rounded-pill fw-bolder border-2 border-primary" href="/logout">Se déconnecter</a>
+      {{else }}
+      <div class="pe-2 pb-1">
         <a
           class="pe-3 ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary"
           href="/auth"
         >S'inscrire   </a>
       </div>
-
+      {{/if}}
     </div>
   </div>
 </nav>
@@ -72,3 +85,14 @@
 <script>
   import { mdiAbacus } from '@mdi/js';
 </script>
+
+
+<style>
+  a:hover {
+    color: #0275d8 !important;
+  }
+
+  .logout:hover {
+    color: rgb(150, 27, 27) !important;
+  }
+</style>

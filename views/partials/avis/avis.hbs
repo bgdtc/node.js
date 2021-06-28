@@ -1,80 +1,21 @@
 {{!-- SECTION AVIS --}}
-<section class="bg-gradient container-fluid d-flex justify-content-center pt-5">
-  <div class="container-fluid pt-5 pb-3 d-flex row justify-content-around">
-    {{!-- TITRE PAGE AVIS --}}
-      <h1 class="text-center">Avis</h1>
-      {{!-- AVIS --}}
-    <div class="card  text-white bg-primary mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h2 class="h5 card-title">Primary card title</h2>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-white bg-secondary mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h3 class="h5 card-title">Secondary card title</h3>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-white bg-success mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h4 class="h5 card-title">Success card title</h4>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-white bg-danger mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h5 class="h5 card-title">Danger card title</h5>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-dark bg-warning mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h6 class="h5 card-title">Warning card title</h6>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-dark bg-info mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h7 class="h5 card-title">Info card title</h7>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-dark bg-light mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h8 class="h5 card-title">Light card title</h8>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {{!-- AVIS --}}
-    <div class="card text-white bg-dark mb-3" style="max-width: 43rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h9 class="h5 card-title">Dark card title</h9>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
-      </div>
+<div class=" pt-5">
+<div class=" pt-5 pb-3 d-flex row justify-content-around">
+  {{!-- TITRE PAGE AVIS --}}
+  <h1 class="text-center">Avis</h1>
+  {{!-- AVIS --}}
+  {{#each dbAvis}}
+  <div class="row d-flex justify-content-center">
+        <div class="card  text-white bg-primary mb-3" style="max-width: 43rem;">
+    <div class="card-header">{{ this.author_id }} <span class=" d-flex justify-content-end">publié le {{
+        this.update_date }}</span></div>
+    <div class="card-body">
+      <h2 class="h5 card-title">{{ this.title }}</h2>
+      <p class="card-text">{{ this.content }}</p>
     </div>
   </div>
+  </div>
 
-</section>
+  {{/each}}
+</div>
+</div>

@@ -2,9 +2,9 @@
 
 <section class="pt-5 container-fluid bg-light" style="height: 100vh;">
 
-    {{#if user }}
-    <h5>Bonjour {{ session.name }}, tu as {{ session.age }} quennels ! | email {{ session.email }}</h5>
-    {{/if }}
+    {{#each userID }}
+    <h5 class="pt-5">Bonjour {{ this.full_name }}, tu as {{ this.id }} quennels ! | email {{ session.email }}</h5>
+    {{/each }}
 
     {{! TABS ACCOUNT }}
     <ul class="nav nav-tabs  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
@@ -31,50 +31,52 @@
     {{! CONTENU TABS ACCOUNT }}
     <div class="tab-content pb-5  ">
         {{!-- MON COMPTE --}}
+        {{#each userID}}
         <div class="row tab-pane  active pb-5" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <form class="container" action='/account/{{ user.id }}?_method=PUT' method="POST">
+            <form class="container" action='/account/user/{{ this.id }}?_method=PUT' method="POST">
                 <div class="mb-3 col-md-6">
                     <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
                     {{!-- INPUT FULLNAME --}}
-                    <label for="email" class="form-label">Nom Complet:</label>
-                    <input type="email" class="form-control" value="{{ user.full_name }}" name='full_name'
+                    <label for="full_name" class="form-label">Nom Complet:</label>
+                    <input type="text" class="form-control" value="{{ this.full_name }}" name='full_name'
                         id="full_name" aria-describedby="none" required />
                 </div>
                 <div class="mb-3 col-md-6">
                     {{!-- INPUT NICKNAME --}}
-                    <label for="email" class="form-label">Pseudo:</label>
-                    <input type="email" class="form-control" value="{{ user.nickname }}" name='nickname' id="nickname"
+                    <label for="nickname" class="form-label">Pseudo:</label>
+                    <input type="text" class="form-control" value="{{ this.nickname }}" name='nickname' id="nickname"
                         aria-describedby="none" required />
                 </div>
                 <div class="mb-3 col-md-6">
                     {{!-- INPUT EMAIL --}}
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" value="{{ user.email }}" name='email' id="email"
+                    <input type="email" class="form-control" value="{{ this.email }}" name='email' id="email"
                         aria-describedby="none" required />
                 </div>
                 <div class="mb-3 col-md-6">
                     {{!-- INPUT CHANGE PASSWORD --}}
-                    <label for="email" class="form-label">Mot de passe actuel:</label>
-                    <input type="email" class="form-control" name='password' id="password" aria-describedby="none"
-                        required />
+                    <label for="password" class="form-label">Mot de passe actuel:</label>
+                    <input type="password" class="form-control"   value="" name='password' id="password" aria-describedby="none"
+                         />
                     <label for="password">Nouveau mot de passe : </label>
-                    <input type="email" class="form-control" name='newPassword' id="newPassword" aria-describedby="none"
-                        required />
+                    <input type="password" class="form-control"  value="" name='newPassword' id="newPassword" aria-describedby="none"
+                         />
                     <label for="passConfirm">Confirmez mot de passe:</label>
-                    <input type="email" class="form-control" name='passwordConfirm' id="passwordConfirm"
-                        aria-describedby="none" required />
+                    <input type="password" class="form-control"  value="" name='passwordConfirm' id="passwordConfirm"
+                        aria-describedby="none"  />
                 </div>
                 <div class="col-md-6">
                     <label for="image" class="pb-2">Séléctionnez une image de profil :</label>
                     <input type="file" name="image" id="">
-                    <img src="/assets/images/sylvie.jpg" class="rounded-pill" height="90px" alt="">
+                    <img src="{{ this.image }}" class="rounded-pill" height="90px" alt="">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 pt-3">
                     <button class="btn btn-primary" type="submit">Appliquer les modifications</button>
                 </div>
 
             </form>
         </div>
+        {{/each}}
         {{! MES COMMENTAIRES ET AVIS }}
         <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <h1 class="h5 text-center">Mes Commentaires & avis</h1>

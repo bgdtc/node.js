@@ -2,16 +2,13 @@
 
 <section class="pt-5 container-fluid bg-dark" style="height: 100vh;">
 
-  {{#if user }}
-  <h5>Bonjour {{ session.name }}, tu as {{ session.age }} quennels ! | email {{ session.email }}</h5>
-  {{/if }}
-
   {{! TABS AUTH }}
   <ul class="nav nav-tabs  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
     {{!-- BOUTON CONNEXION --}}
     <li class="nav-item ps-2 pe-2" role="presentation">
-      <button class="nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab" data-bs-toggle="tab"
-        data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Connexion</button>
+      <button class="nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab"
+        data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home"
+        aria-selected="true">Connexion</button>
     </li>
     {{!-- BOUTON INSCRIPTION --}}
     <li class="nav-item pe-2" role="presentation">
@@ -50,7 +47,7 @@
             <label class="form-check-label pe-3" for="check">J'accepte les CGU</label>
           </div>
           <div class="col-12 pb-4 text-center">
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <button type="submit" class="button btn btn-primary">Se connecter</button>
           </div>
         </div>
 
@@ -58,7 +55,7 @@
     </div>
     {{! FORMULAIRE D'INSCRIPTION }}
     <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <form class="container"  action='/auth/register' method="POST">
+      <form class="container" action='/auth/register' method="POST">
         <h1 class="text-white text-center pt-4">Inscription</h1>
         <div class="row">
           {{!-- INPUT NOM --}}
@@ -70,7 +67,8 @@
           {{!-- INPUT PSEUDO --}}
           <div class="col-md-6">
             <label for="nickname" class="form-label">Pseudo:</label>
-            <input type="text" class="form-control" id="nickname" name='nickname' aria-describedby="emailHelp" required />
+            <input type="text" class="form-control" id="nickname" name='nickname' aria-describedby="emailHelp"
+              required />
             <div id="emailHelp" class="form-text"></div>
           </div>
         </div>
@@ -94,7 +92,7 @@
         </div>
         <div class="row">
           <div class="mb-3 col-12 form-check">
-            <input type="checkbox" class="form-check-input" name='checked' id="check" required  />
+            <input type="checkbox" class="form-check-input" name='checked' id="check" required />
             <label class="form-check-label" for="check">J'accepte les CGU</label>
           </div>
           <div class="pb-4 col-12 text-center">
@@ -107,7 +105,7 @@
     </div>
     {{!-- MOT DE PASSE OUBLIE --}}
     <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-      <form class="container"  action='/auth/lost_pwd' method="POST">
+      <form class="container" action='/auth/lost_pwd' method="POST">
         <div class="mb-3">
           <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
           {{!-- INPUT EMAIL --}}
@@ -122,7 +120,6 @@
         <div class="pb-2">
           <button type="submit" class="btn btn-primary">Envoyer</button>
         </div>
-
       </form>
     </div>
   </div>
@@ -131,4 +128,5 @@
 <script>
   var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
     = new bootstrap.Tab(firstTabEl) firstTab.show()
+
 </script>

@@ -1,8 +1,11 @@
+const bcrypt = require('bcrypt')
 // CONTROLLEUR MON COMPTE
 module.exports = {
     get: async(req, res) => {
+        console.log(req.session.user.email);
         res.render('account', {
-           userComments: await query(`SELECT * FROM comments WHERE author_id = 22`)
+           userComments: await query(`SELECT * FROM comments WHERE author_id = ${req.session.user.id}`),
+           userID: await query(`SELECT * FROM user WHERE email = '${req.session.user.email}'`)
         })  
     },
     modifyComment: async(req, res) => {
@@ -24,6 +27,38 @@ module.exports = {
 
         res.redirect('/account')
 
+    },
+    modifyAccount: async(req, res) => {
+        console.log(req.body);
+        if (req.body.password !== '') {
+            const sql = `UPDATE user
+            SET 
+               full_name = '${req.body.full_name}',
+               nickname = '${req.body.nickname}',
+               email = '${req.body.email}',
+               password = '${ await bcrypt.hash(req.body.password, 16) }',
+               image = '${req.body.image}'
+           WHERE id = ${req.params.id}`
+
+       await query(sql)
+
+       res.redirect('/account')
+        } else {
+
+            const sql = `UPDATE user
+            SET 
+               full_name = '${req.body.full_name}',
+               nickname = '${req.body.nickname}',
+               email = '${req.body.email}',
+               image = '${req.body.image}'
+           WHERE id = ${req.params.id}`
+
+       await query(sql)
+
+       res.redirect('/account')
+
+        }
+       
     }
 
 }
