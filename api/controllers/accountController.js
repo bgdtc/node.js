@@ -2,11 +2,17 @@ const bcrypt = require('bcrypt')
 // CONTROLLEUR MON COMPTE
 module.exports = {
     get: async(req, res) => {
-        console.log(req.session.user.email);
-        res.render('account', {
-           userComments: await query(`SELECT * FROM comments WHERE author_id = ${req.session.user.id}`),
-           userID: await query(`SELECT * FROM user WHERE email = '${req.session.user.email}'`)
-        })  
+        if (req.session.user) {
+            res.render('account', {
+                userComments: await query(`SELECT * FROM comments WHERE author_id = ${req.session.user.id}`),
+                userID: await query(`SELECT * FROM user WHERE email = '${req.session.user.email}'`)
+             })  
+        } else {
+            res.render('home', {
+                error: 'non connecté'
+            })
+        }
+       
     },
     modifyComment: async(req, res) => {
         const sql = `UPDATE comments

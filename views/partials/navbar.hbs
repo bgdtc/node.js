@@ -1,5 +1,5 @@
 {{!-- NAVBAR --}}
-<nav class="navbar bg-dark navbar-light navbar-expand-md border-bottom border-primary border-2 fixed-top  pb-1">
+<nav class="navbar  bg-dark navbar-light navbar-expand-md border-bottom border-primary border-2 fixed-top  pb-1">
   <div class=" container-fluid">
     {{!-- ICONE DE SITE HREF HOME --}}
     <a href="/" >
@@ -71,21 +71,17 @@
       {{#if user }}
       <a class="logout btn text-white rounded-pill fw-bolder border-2 border-primary" href="/logout">Se déconnecter</a>
       {{else }}
-      <div class="pe-2 pb-1">
+      <div class="pe-2 ">
         <a
-          class="pe-3 ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary"
+          class="pe-2 ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary"
           href="/auth"
-        >S'inscrire   </a>
+        >Se connecter   </a>
       </div>
       {{/if}}
     </div>
   </div>
 </nav>
-
-<script>
-  import { mdiAbacus } from '@mdi/js';
-</script>
-
+  
 
 <style>
   a:hover {

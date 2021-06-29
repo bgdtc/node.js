@@ -46,6 +46,13 @@ module.exports = {
             })
         }
         
+    },
+    addComment: async (req, res) => {
+        console.log('ARTICLE controller add comment', req.body)
+
+        if (req.body.checked === 'on') {
+            const sql = `INSERT INTO comments`
+        }
     }   
 
 }

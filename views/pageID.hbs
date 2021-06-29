@@ -14,8 +14,9 @@
       </div>
     </div>
     {{!-- AFFICHAGE DES COMMENTAIRES --}}
+
     <div class="card text-white bg-primary mb-3">
-      <div class="card-header">Michel72</div>
+      <div class="card-header"></div>
       <div class="card-body">
         <h5 class="card-title">Un super article !</h5>
         <p class="card-text">contenu du super commentaire sur le super
@@ -25,7 +26,7 @@
     </div>
     {{!-- ZONE POUR POSTER UN COMMENTAIRE --}}
     <div>
-      <form action="" class=" pt-3  row  border-3 ">
+      <form action="/article/{{id}}" method="POST" class=" pt-3  row  border-3 ">
         <div class="col-12">
           <label for="comment" class="form-label text-white">Votre Commentaire:</label>
           <textarea name="" class="form-control bg-gradient text-primary" id="comment" cols="30" rows="10"
@@ -39,13 +40,15 @@
             </label>
           </div>
         </div>
-
+       {{#if user}}
         <div class="col-6 d-flex justify-content-end pt-2 pb-4">
           <button type="submit" class="btn bg-gradient  fw-bolder text-white">Envoyer</button>
         </div>
+      {{else}}
         <div class="alert alert-danger" role="alert">
           Seuls les <a href="/auth" class="alert-link">utilisateurs connectés</a> peuvent poster un commentaire.
         </div>
+        {{/if}}
       </form>
     </div>
   </div>

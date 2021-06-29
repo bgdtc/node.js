@@ -22,5 +22,9 @@ module.exports = {
               await query(sql)
 
               res.redirect('/admin#comments')     
+    },
+    getComment: async (req, res) => {
+        const sql = `SELECT * FROM comments`
+        await query(sql)
     }     
 }

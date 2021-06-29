@@ -16,7 +16,8 @@ const express = require('express'),
     idController = require('./controllers/idController'),
     mentionLegalesController = require('./controllers/mentionLegales'),
     commentController = require('./controllers/commentController'),
-    articleController = require('./controllers/articleController')
+    articleController = require('./controllers/articleController'),
+    errorController = require('./controllers/404Controller')
 
 
 //?????? -----------------------------------------------------------
@@ -26,6 +27,10 @@ const userController = require('./controllers/userController')
 const nmap = require('./middleware/nmapIpVisitor')
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
+
+//404 
+router.route('/404')
+    .get(errorController.get)
 
 //MENTIONS LEGALES -------------------------------------------------
 router.route('/mentions_legales')
@@ -60,9 +65,10 @@ router.route('/article')
 
 //ARTICLE ID -------------------------------------------------------
 router.route('/article/:id')
-    .get(blogController.getID)
+    .get(blogController.getID, commentController.getComment)
     .delete(articleController.deleteArticleById)
     .put(articleController.modifyArticle)
+    .post(articleController.addComment)
 
 //CONTACT ----------------------------------------------------------
 

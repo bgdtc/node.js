@@ -47,7 +47,11 @@
             <label class="form-check-label pe-3" for="check">J'accepte les CGU</label>
           </div>
           <div class="col-12 pb-4 text-center">
-            <button type="submit" class="button btn btn-primary">Se connecter</button>
+            <button type="submit" id="oui" class="button btn btn-primary">Se connecter</button>
+
+          </div>
+          <div id="non" style="display: none;" class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
         </div>
 
@@ -126,7 +130,22 @@
 </section>
 
 <script>
-  var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
-    = new bootstrap.Tab(firstTabEl) firstTab.show()
+
+  const test = document.getElementById('oui')
+
+  test.addEventListener('click', () => {
+    document.getElementById('non').style.display='block'
+  })
+
+  //test.addEventListener("click", function () {
+  //  console.log('test')
+  //  document.getElementById('non').style.display = 'block'
+  //})
+
+
+//  var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
+  //  = new bootstrap.Tab(firstTabEl) firstTab.show()
+
+
 
 </script>

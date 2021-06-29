@@ -8,29 +8,25 @@ const rSimulate = simulater.reverse()
 //AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT ---------------------
 exports.get =  (req, res) => {
 
-  
-    const sql = `SELECT user.is_verified FROM user WHERE id = 22;`;
+   if (!req.session.user) {
+     res.render('blog', {
+       error: 'Vous devez être connecté pour voir les articles'
+     })
+   } else {
+    const sql = `SELECT user.is_verified FROM user WHERE id = ${req.session.user.id};`;
     
-     query(sql, (error, data) => {
-        if (error) throw error;
-      if (data[0].is_verified === 0) {
-
-        res.render('blog', {
-            
-        })
-
-      }  else {
-          res.render('blog', {
-            dbArticle: rSimulate  
-          })
-      }
-    })
-}
-
+    query(sql, (error, data) => {
+       if (error) throw error;
+         res.render('blog', {
+           dbArticle: rSimulate  
+         })
+     });
+   }
+   }
+   
 //AFFICHAGE DE LA PAGE ID SELON LE STATUT -----------------------------
 exports.getID = async (req, res) => {
-  const sql = `SELECT user.is_verified FROM user WHERE id = 22;`;
-
+  const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
   db.query(sql, (error, data) => {
     if (error) throw error;
   if (data[0].is_verified === 0) {

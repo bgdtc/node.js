@@ -9,47 +9,57 @@
     <div class="row">
       {{#if home }}
       {{#each ( limitArray dbArticle 3 )}}
-                 <div class="col-md-4 pt-3 pb-2">
+
+      <div class="col-md-4 pt-3 pb-2">
         {{!-- IMAGE DB --}}
-        <div class="card bg-dark tist" >
-          <img src="{{ img }}" class="card-img-top" alt=""
-            />
+        <div class="card bg-dark tist">
+          <img src="{{ img }}" class="card-img-top" alt="" />
+
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
-          <div class="card-body text-center" >
+          <div class="card-body text-center">
+
+
             <h2 class="card-title text-center mb-4">{{ upcase title}}</h2>
             <p class="card-text"> {{description}} {{id}} </p>
-            {{#if user}}
-            <a href="/article/{{id}}" class="tes btn bg-primary text-white"><i class="fas fa-ankh me-2"></i>Lire la
-              suite...</a>
-              {{else}}
-            <a href="/article/{{id}}" class="disabled tes btn bg-primary text-white"><i class="fas fa-ankh me-2"></i>Lire la
-              suite...</a>
-              <div class="alert alert-danger" role="alert">
-                     Seuls les utilisateurs <span><a href="/auth">connectés</a> </span> peuvent lire les articles !
-              </div>
-              {{/if}}
+            {{#if ../user}}
+            <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
+            {{else}}
+            <div class="alert alert-danger" role="alert">
+              Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+            </div>
+            {{/if}}
           </div>
+
         </div>
       </div>
       {{/each}}
-      {{else }}
+      {{else}}
+           <form class="d-flex pt-5 ">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
       {{#each dbArticle}}
-      <div class="col-md-4 pb-2">
+      <div class="col-md-4 pt-5 pb-2">
         {{!-- IMAGE DB --}}
-        <div class="card bg-gradient tist" style="width: auto;">
+        <div class="card bg-dark tist" style="width: auto;">
           <img src="{{ img }}" class="card-img-top" alt=""
             style="max-height: 120px; min-height: 120px; min-width:150px;" />
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{title}}</h2>
             <p class="card-text"> {{description}} {{id}} </p>
-            <a href="/article/{{id}}" class="tes btn bg-primary text-muted"><i class="fas fa-ankh me-2"></i>Lire la
-              suite...</a>
+             {{#if ../user}}
+                        <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
+                  {{else}}
+                  <div class="alert alert-danger" role="alert">
+                   Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+                  </div>
+{{/if}}
           </div>
         </div>
       </div>
       {{/each}}
-      {{/if }}
+      {{/if}}
     </div>
   </div>
 </section>
@@ -61,7 +71,7 @@
 </script>
 
 <style>
-.tes:hover {
+  .tes:hover {
     background-color: white !important;
   }
 </style>

@@ -1,50 +1,61 @@
-
-// CONTROLLEUR ADMIN PANEL
 module.exports = {
     get: async (req, res) => {
+        console.log('dsqfsdsd: sgdg')
+        if (req.session.user) {
+            // const sql = `SELECT user.is_admin FROM user WHERE id = ${req.session.user.id}`
+            const isAdmin = await query(`SELECT user.is_admin FROM user WHERE id = ${req.session.user.id}`)
+            console.log('dfgdwsg: ', isAdmin)
+            if (isAdmin[0].is_admin === 1) {
+                res.render('admin', {
+                    dbuser: await query(`SELECT * FROM user;`),
+                    dbComments: await query(`SELECT * FROM comments;`),
+                    dbArticles: await query(`SELECT * FROM articles;`)
+                })
+            } else {
+                res.render('home', {
+                    error: 'pas admin'
+                })
 
-            res.render('admin', {
-                dbuser: await query(`SELECT * FROM user;`),
-                dbComments: await query(`SELECT * FROM comments;`),
-                dbArticles: await query(`SELECT * FROM articles;`)
+
+            }
+        } else {
+            res.render('home', {
+                error: 'pas admin'
             })
-        // const sql = `SELECT user.is_admin FROM user WHERE id = 1;`
-
-        // db.query(sql, (error, data) => {
-            
-        //     if (error) console.log(error);
-
-        //     if (data[0].is_admin === 1) {
-
-        //         res.render('admin', {
-
-        //             layout: 'secondary.hbs',
-        //             error: 'vous netes pas admin'
-
-        //         })
-
-        //     } else {
-
-        //         const sql2 = `SELECT * FROM user;`
-
-        //         db.query(sql2, (error, data1) => {
-
-        //             if (error) console.log(error)
-
-        //             res.render('admin', {
-
-        //                 admin: 'admin',
-        //                 layout: 'secondary.hbs',
-        //                 id: data1[0].id,
-        //                 full_name: data1[0].full_name,
-        //                 email: data1[0].email,
-        //                 is_verified: data1[0].is_verified
-                        
-        //             })
-        //         })
-
-        //     }
-        // })
-
+        }
     }
+
+
+
+
+    // // CONTROLLEUR ADMIN PANEL
+    // module.exports = {
+    //         get: async (req, res) => {
+
+    //                 if (!req.session.user) {
+    //                     res.render('home', {
+    //                         error: 'vous nêtes pas admin'
+    //                     })
+    //                 } else {
+    //                     const sql = `SELECT user.is_admin FROM user WHERE id = ${req.session.user.id}`
+
+    //                     await query(sql, (err, data) => {
+
+    //                         if (err) throw err;
+
+    //                         if (data[0].is_admin === 1) {
+    //                             res.render('admin', {
+    //                                 dbuser: query(`SELECT * FROM user;`),
+    //                                 dbComments: query(`SELECT * FROM comments;`),
+    //                                 dbArticles: query(`SELECT * FROM articles;`)
+    //                             })
+
+
+    //                         } else {
+    //                             res.render('home', {
+    //                                 error: 'pas admin'
+    //                             })
+    //                         }
+    //                 }
+    //             }
 }

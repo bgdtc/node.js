@@ -1,8 +1,8 @@
 {{!-- FORMULAIRE POST AVIS --}}
 <section class="bg-gradient container-fluid">
-    <div class="container">
+    <div class="container pb-5">
         <form action="/avis" method="POST" class=" pt-3  row  border-3 ">
-            <div class="col-12">
+            <div class="col-12 pb-5">
                 <label for="avis" class="form-label text-dark">Votre Avis:</label>
                 <textarea name="content" class="form-control bg-dark text-primary" id="avis" cols="30" rows="10"
                     required></textarea>
@@ -15,13 +15,15 @@
                     </label>
                 </div>
             </div>
-
+            {{#if user}}
             <div class="col-6 d-flex justify-content-end pt-2 pb-4">
                 <button type="submit" class="btn bg-dark  fw-bolder text-white">Envoyer</button>
             </div>
+            {{else}}
             <div class="alert alert-danger" role="alert">
                 Seuls les <a href="/auth" class="alert-link">utilisateurs connectés</a> peuvent poster un avis.
             </div>
+            {{/if}}
 
         </form>
 
