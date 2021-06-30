@@ -1,3 +1,5 @@
+
+require('dotenv').config()
 //import modules
 const
     express = require('express'),
@@ -9,7 +11,7 @@ const
     bodyParser = require('body-parser'),
     mysql = require('mysql2'),
     util = require('util'),
-    port = process.env.PORT || 4000;
+    port = process.env.PORT;
 
 
 // Network interfaces
@@ -21,6 +23,8 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
         return result.concat(details.family === 'IPv4');
     }, []));
 });
+
+
 
 app.use(methodOverride('_method'))
 
@@ -40,10 +44,10 @@ app.use(cors({
 
 // 
 db = mysql.createConnection({
-    host: 'localhost',
-    user: 'theo',
-    password: 'toor',
-    database: 'inf0_sec'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
 db.connect((err) => {

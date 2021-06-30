@@ -1,8 +1,6 @@
 //MODULES ---------------------------------------------------------
 const express = require('express'),
-
-    router = express.Router(),
-
+       router = express.Router(),
 
 //CONTROLLEURS ----------------------------------------------------
     homeController = require('./controllers/homeController'),
@@ -13,11 +11,11 @@ const express = require('express'),
     avisController = require('./controllers/avisController'),
     feedController = require('./controllers/feedController'),
     accountController = require('./controllers/accountController'),
-    idController = require('./controllers/idController'),
     mentionLegalesController = require('./controllers/mentionLegales'),
     commentController = require('./controllers/commentController'),
     articleController = require('./controllers/articleController'),
-    errorController = require('./controllers/404Controller')
+    errorController = require('./controllers/404Controller'),
+    nodeMailerController = require('./controllers/nodemailerController')
 
 
 //?????? -----------------------------------------------------------
@@ -27,6 +25,9 @@ const userController = require('./controllers/userController')
 const nmap = require('./middleware/nmapIpVisitor')
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
+
+
+
 
 //404 
 router.route('/404')
@@ -55,7 +56,7 @@ router.route('/')
 
 //ARTICLE ----------------------------------------------------------
 router.route('/blog')
-    .get(blogController.get)
+    .get(blogController.getBlog)
     
 
 //ARTICLE ADMIN ----------------------------------------------------
@@ -70,27 +71,36 @@ router.route('/article/:id')
     .put(articleController.modifyArticle)
     .post(articleController.addComment)
 
+
 //CONTACT ----------------------------------------------------------
 
 router.route('/contact')
     .get(contactController.get)
 
 
-//AUTH LOGIN -------------------------------------------------------
-
+// //AUTH LOGIN -------------------------------------------------------
 router.route('/auth')
     .get(authController.get)
     .post(authController.auth)
 
 
-//AUTH REGISTER ----------------------------------------------------
+// //AUTH REGISTER ----------------------------------------------------
 router.route('/auth/register')
     .post(authController.register)
 
 
-//AUTH LOST PASSWORD -----------------------------------------------
+// //AUTH LOST PASSWORD -----------------------------------------------
 router.route('/auth/lost_pwd')
-    .post(authController.lostPassword)
+    .post(nodeMailerController.lostPassword)
+
+// //AUTH LOST PWD 2 
+router.route('/auth/lost_pwd/:id')
+    .get(nodeMailerController.editPassword)
+
+
+//EDIT PASSWORD ROUTE
+router.route('/editPassword/:id')
+    .post(authController.editPasswordPost)
 
 
 //AVIS -------------------------------------------------------------
@@ -134,7 +144,9 @@ router.route('/admin')
 //LOGOUT
 router.route('/logout')
     .get(authController.logout)
-
+    
 //EXPORT SERVER.JS -------------------------------------------------
-
 module.exports = router;
+
+
+

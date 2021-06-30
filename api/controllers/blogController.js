@@ -6,7 +6,7 @@ const rSimulate = simulater.reverse()
 
 
 //AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT ---------------------
-exports.get =  (req, res) => {
+exports.getBlog =  (req, res) => {
 
    if (!req.session.user) {
      res.render('blog', {

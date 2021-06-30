@@ -1,7 +1,45 @@
 // CONTROLLEUR D'IDENTIFICATION ---------------------
-
 //IMPORT BCRYPT -------------------------------------
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+
+
+//IMPORT NODEMAILER ---------------------------------
+
+exports.editPasswordPost = async (req, res) => {
+    console.log(req.body)
+    const user = await query(`SELECT * FROM user WHERE email = '${req.body.email}'`)
+    if (!user) {
+        console.log('utilisateur inexistant')
+        res.redirect('/')
+    } else {
+        console.log('working')
+        console.log(req.body.email)
+        
+        await query(`UPDATE user SET password = '${await bcrypt.hash(req.body.password, 16)}' WHERE email = '${req.body.email}'`)
+        res.render('auth', {
+            success: 'mot de passe modifié avec succès'
+        })
+    }
+
+}
+// // //LOST PASSWORD -------------------------------------
+// module.exports = {
+              
+//     editPasswordPost: async (req, res) => {
+//         const user = await query(`SELECT * FROM user WHERE email = '${req.body.email}'`)
+
+//         if (!user) {
+//             console.log('utilisateur inexistant')
+//             res.redirect('/')
+//         } else {
+//             bcrypt.hash(req.body.password, 16, (error, encrypted) => {
+//                 if (error) console.log(error)
+//                 console.log(encrypted)
+//             })
+//         }
+//     }
+// }
+
 
 //GET ----------------------------------------------
 exports.get = (req, res) => {
@@ -38,34 +76,6 @@ exports.register = async (req, res) => {
 
 }
 
-//LOST PASSWORD -------------------------------------
-exports.lostPassword = (req, res) => {
-    console.log('AUTH controller lost_password ', req.body)
-
-    let sqlUser = ` SELECT user.password, user.email, user.nickname
-                    FROM user
-                    WHERE email = "${ req.body.email }"`
-
-    db.query(sqlUser, async (err, data) => {
-        if (err) console.log(err)
-
-        console.log('data1: ', data)
-
-        const passwordMatch = await bcrypt.compare('de', data[0].password);
-
-        console.log(passwordMatch)
-
-        if (!passwordMatch) console.log('pas match')
-        else if (passwordMatch) {
-            res.render('auth', {
-                success: 'Welcome ' + data[0].nickname
-            })
-        } else console.log('erreur')
-
-        console.log('data2: ', data)
-    })
-
-}
 
 //LOGIN ---------------------------------------------
 exports.auth = (req, res) => {
@@ -132,7 +142,7 @@ exports.auth = (req, res) => {
 
 
 }
-
+//LOGOUT
 exports.logout = (req, res) => {
     req.session.destroy(() => {
         res.clearCookie('ptiBiscuit')
