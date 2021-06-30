@@ -39,8 +39,12 @@
         {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
           <label for="password" class="form-label">Mot de passe:</label>
-          <input type="password" class="form-control" name='password' id="password" required />
+          <input type="password" class=" form-control" name='password' id="password" required />
         </div>
+        <div class="pb-4 text-muted">
+            <input type="checkbox" class="" onclick="showPass()">Afficher MDP
+        </div>
+        
         <div>
           <div class="col-12 pb-3 form-check">
             <input type="checkbox" class="form-check-input justify-content-end" name='checked' id="check" required />
@@ -137,15 +141,13 @@
     document.getElementById('non').style.display='block'
   })
 
-  //test.addEventListener("click", function () {
-  //  console.log('test')
-  //  document.getElementById('non').style.display = 'block'
-  //})
-
-
-//  var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
-  //  = new bootstrap.Tab(firstTabEl) firstTab.show()
-
-
+function showPass() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
 
 </script>
