@@ -1,10 +1,10 @@
-// CONTROLLEUR HOME --------------------------------
+// CONTROLLEUR HOME 
 
-// IMPORT DB SIMULÉE -------------------------------
+// IMPORT DB SIMULÉE 
 const simulate = require('../simulate.json')
 const rSSimulate = simulate
 
-// CONTROLLEUR HOME --------------------------------
+// CONTROLLEUR HOME 
 module.exports = {
     get: (req, res) => {
 

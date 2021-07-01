@@ -1,7 +1,11 @@
 // // CONTROLLEUR COMMENTS ADMIN 
+
+
+
 module.exports = {
     // DELETE COMMENT BY ID ADMIN
     deleteArticleById: async (req, res) => {
+        console.log('ARTICLE controller delete article:', req.body)
       
         let sql = `DELETE FROM articles  WHERE id = ?`;
         let values = [req.params.id];
@@ -10,7 +14,9 @@ module.exports = {
 
         res.redirect('/admin')
     },
+    //MODIFY ARTICLE BY ID ADMIN
     modifyArticle: async (req, res) => {
+        console.log('ARTICLE controller modify article:', req.body)
         let sql = `UPDATE articles 
                       SET
                          author_id = '22',
@@ -25,6 +31,7 @@ module.exports = {
 
         res.redirect('/admin')     
     },
+    //ADD ARTICLE ADMIN
     addArticle: async (req, res) => {
         console.log('ARTICLES controller add article: ', req.body)
 
@@ -41,17 +48,16 @@ module.exports = {
 
            res.redirect('/admin')
         } else {
-            res.render('admin', {
-                error: 'pas coché'
-            })
+            res.redirect('/admin')
         }
         
     },
+    //ADD COMMENT ARTICLE
     addComment: async (req, res) => {
         console.log('ARTICLE controller add comment', req.body)
 
         if (req.body.checked === 'on') {
-            const sql = `INSERT INTO comments`
+            const sql = `INSERT INTO comments ${req.body.content}`
         }
     }   
 

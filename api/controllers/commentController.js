@@ -1,5 +1,8 @@
 // // CONTROLLEUR COMMENTS ADMIN 
+
+
 module.exports = {
+
     // DELETE COMMENT BY ID ADMIN
     deleteCommentById: async (req, res) => {
       
@@ -10,6 +13,7 @@ module.exports = {
 
         res.redirect('/admin')
     },
+    //MODIFY COMMENT BY ID ADMIN 
     modifyComment: async (req, res) => {
 
         const sql = `UPDATE comments 

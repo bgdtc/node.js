@@ -1,6 +1,9 @@
+//CONTROLLEUR USER
+
+//IMPORT DE BCRYPT POUR LES PASSWORD HASH
 const bcrypt = require('bcrypt');
 
-// // CONTROLLEUR USER ADMIN 
+
 module.exports = {
     // DELETE USER BY ID ADMIN
     deleteUserById: async (req, res) => {
@@ -22,6 +25,7 @@ module.exports = {
         res.redirect('/admin')
 
     },
+    // MODIFY USER ADMIN
     modifyUser: async (req, res) => {
         console.log('USER controller modifyUser: ', req.body, req.params.id);
         if (req.body.password === '') {

@@ -1,6 +1,12 @@
+//CONTROLLEUR NODEMAILER
+
+//IMPORT DOTENV POUR LA CONFIG DE NODEMAILER
 require('dotenv').config()
+
+//IMPORT DE NODEMAILER
 const nodemailer = require('nodemailer')
 
+//CONFIGURATION DE NODEMAILER
 transporter = nodemailer.createTransport({
     host: process.env.MAILER_HOST,
     service: process.env.MAILER_SERVICE,
@@ -11,11 +17,12 @@ transporter = nodemailer.createTransport({
     }
 })
 
+//DÉCLARATION DES VARIABLES QUI SERONT UTILISÉS
 let rand, mailOptions, host, link
 
 
 module.exports = {
-              
+    //ENVOI DE MAIL AU SUBMIT DU FORM LOST PASSWORD
     lostPassword: async (req, res) => {
       const sql = `SELECT * FROM user WHERE email = '${req.body.email}'`
       await query(sql, (err, data) => {
@@ -66,6 +73,7 @@ module.exports = {
          
       }) 
     },
+    //ENVOI DE LA REQUETE SQL DE MODIFICATION DU PASSWORD
     editPassword: (req, res) => {
         console.log(req.protocol + "://" + req.get('host'))
         console.log('Page verify:')

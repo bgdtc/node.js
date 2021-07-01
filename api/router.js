@@ -17,11 +17,7 @@ const express = require('express'),
     errorController = require('./controllers/404Controller'),
     nodeMailerController = require('./controllers/nodemailerController')
 
-
-//?????? -----------------------------------------------------------
 const userController = require('./controllers/userController')
-
-//MIDDLEWARE NMAP TROP PUISSANNNNNT --------------------------------
 const nmap = require('./middleware/nmapIpVisitor')
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//

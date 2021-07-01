@@ -1,17 +1,18 @@
-// CONTROLLEUR BLOG ---------------------------------------------------
+// CONTROLLEUR BLOG 
 
-// IMPORT DB SIMULÉE ET REVERSE ---------------------------------------
+// IMPORT DB SIMULÉE ET REVERSE 
 const simulater = require('../simulate.json')
 const rSimulate = simulater.reverse()
 
 
-//AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT ---------------------
+//AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT 
 exports.getBlog =  (req, res) => {
-
+   //si utilisateur pas connecté
    if (!req.session.user) {
      res.render('blog', {
        error: 'Vous devez être connecté pour voir les articles'
      })
+    //si utilisateur connecté
    } else {
     const sql = `SELECT user.is_verified FROM user WHERE id = ${req.session.user.id};`;
     
@@ -24,7 +25,7 @@ exports.getBlog =  (req, res) => {
    }
    }
    
-//AFFICHAGE DE LA PAGE ID SELON LE STATUT -----------------------------
+//AFFICHAGE DE LA PAGE ID SELON LE STATUT 
 exports.getID = async (req, res) => {
   const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
   db.query(sql, (error, data) => {

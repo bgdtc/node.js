@@ -1,15 +1,14 @@
 # node.js
-suite projet site , handlebars nodejs etcccc
 
-fezefezfezf
-SUCCESS !
+PROJET EXAMEN NODE.JS MYSQL HANDLEBARS BOOTSTRAP 
 
 
 ### 
-id's :
-         -mail : email
-         -password : password
-         -confirm password : passwordConfirm
-         -checkbox : check
-         -name : name
-         -nickname : nickname
+
+LOGIN
+REGISTER
+LOST PASSWORD
+
+VERIF USER EMAIL 
+
+ADMIN PANEL
