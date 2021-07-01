@@ -11,7 +11,7 @@ transporter = nodemailer.createTransport({
     }
 })
 
-let rand, mailOptions, host, link;
+let rand, mailOptions, host, link
 
 
 module.exports = {
@@ -93,6 +93,6 @@ module.exports = {
                 error: 'requete provenant dune source incconue'
             })
         }
-    }
-
+    },
+  
 }

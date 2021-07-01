@@ -36,17 +36,6 @@ router.route('/404')
 //MENTIONS LEGALES -------------------------------------------------
 router.route('/mentions_legales')
     .get(mentionLegalesController.get)
-
-
-//USER ??? ---------------------------------------------------------
-router.route('/user/:id')
-    .delete(userController.deleteUserById)
-    .put(userController.modifyUser)
-  
-
-//USER  ------------------------------------------------------------
-router.route('/user/add')
-    .post(userController.addUser)
     
     
 //HOME -------------------------------------------------------------
@@ -59,12 +48,8 @@ router.route('/blog')
     .get(blogController.getBlog)
     
 
-//ARTICLE ADMIN ----------------------------------------------------
-router.route('/article')
-    .post(articleController.addArticle)
 
-
-//ARTICLE ID -------------------------------------------------------
+//ARTICLE ID CRUD GET COMMENT ADD COMMENT DELETE ARTICLE AND MODIFY ARTICLE -------------------------------------------------------
 router.route('/article/:id')
     .get(blogController.getID, commentController.getComment)
     .delete(articleController.deleteArticleById)
@@ -78,6 +63,74 @@ router.route('/contact')
     .get(contactController.get)
 
 
+//EDIT PASSWORD POST MODIF PASSWORD
+router.route('/editPassword/:id')
+    .post(authController.editPasswordPost)
+
+//VERIFYID VERIF EMAIL BTN ET POST
+router.route('/verify/:id')
+    .get(authController.verifAccount)
+    .post(authController.verifAccountPost)
+
+//AVIS & POSTER UN AVIS -------------------------------------------------------------
+router.route('/avis')
+    .get(avisController.get)
+    .post(avisController.postAvis)
+
+
+//COMMENTS DELETE COMMENT ET MODIFY COMMENT ---------------------------------------------------------
+router.route('/comment/:id')
+    .delete(commentController.deleteCommentById)
+    .put(commentController.modifyComment)
+
+//MON COMPTE -------------------------------------------------------
+router.route('/account')
+   .get(accountController.get)
+
+
+//MON COMPTE ID USER MODIFY ACCOUNT -------------------------------------------------
+router.route('/account/user/:id')
+   .get(accountController.get)
+   .put(accountController.modifyAccount)
+
+   
+//MON COMPTE ID COMMENTS& AVIS MODIFY AND DELETE
+router.route('/account/:id')
+    .put(accountController.modifyComment)
+    .delete(accountController.deleteCommentById)
+
+
+//FLUX RSS ---------------------------------------------------------
+router.route('/feed')
+   .get(feedController.get)
+
+//ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN
+
+
+//ADMIN PANEL ------------------------------------------------------   
+router.route('/admin')
+    .get(adminController.get)
+
+
+//ARTICLE ADMIN ADD ARTICLE ----------------------------------------------------
+router.route('/article')
+    .post(articleController.addArticle)
+
+
+//USER ID MODIFY ET DELETE ---------------------------------------------------------
+router.route('/user/:id')
+    .delete(userController.deleteUserById)
+    .put(userController.modifyUser)
+  
+
+//USER ADD USER  ------------------------------------------------------------
+router.route('/user/add')
+    .post(userController.addUser)
+
+
+
+//AUTH AUTH AUTH AUTH AUTH AUTH AUTH
+
 // //AUTH LOGIN -------------------------------------------------------
 router.route('/auth')
     .get(authController.get)
@@ -89,57 +142,13 @@ router.route('/auth/register')
     .post(authController.register)
 
 
-// //AUTH LOST PASSWORD -----------------------------------------------
+// //AUTH LOST PASSWORD SEND MAIL -----------------------------------------------
 router.route('/auth/lost_pwd')
     .post(nodeMailerController.lostPassword)
 
-// //AUTH LOST PWD 2 
+// //AUTH LOST PWD PAGE MODIFY PASSWORD 
 router.route('/auth/lost_pwd/:id')
     .get(nodeMailerController.editPassword)
-
-
-//EDIT PASSWORD ROUTE
-router.route('/editPassword/:id')
-    .post(authController.editPasswordPost)
-
-
-//AVIS -------------------------------------------------------------
-router.route('/avis')
-    .get(avisController.get)
-    .post(avisController.postAvis)
-
-
-//COMMENTS ---------------------------------------------------------
-router.route('/comment/:id')
-    .delete(commentController.deleteCommentById)
-    .put(commentController.modifyComment)
-
-//MON COMPTE -------------------------------------------------------
-router.route('/account')
-   .get(accountController.get)
-
-
-//MON COMPTE ID USER -------------------------------------------------
-router.route('/account/user/:id')
-   .get(accountController.get)
-   .put(accountController.modifyAccount)
-
-   
-//MON COMPTE ID
-router.route('/account/:id')
-    .put(accountController.modifyComment)
-    .delete(accountController.deleteCommentById)
-
-
-//FLUX RSS ---------------------------------------------------------
-router.route('/feed')
-   .get(feedController.get)
-
-
-//ADMIN PANEL ------------------------------------------------------   
-router.route('/admin')
-    .get(adminController.get)
-
 
 //LOGOUT
 router.route('/logout')

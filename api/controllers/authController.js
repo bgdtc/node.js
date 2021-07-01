@@ -1,8 +1,19 @@
 // CONTROLLEUR D'IDENTIFICATION ---------------------
 //IMPORT BCRYPT -------------------------------------
 const bcrypt = require('bcrypt');
+require('dotenv').config()
+const nodemailer = require('nodemailer')
 
-
+transporter = nodemailer.createTransport({
+    host: process.env.MAILER_HOST,
+    service: process.env.MAILER_SERVICE,
+    port: process.env.MAILER_PORT,
+    auth: {
+        user: process.env.MAILER_EMAIL,
+        pass: process.env.MAILER_PASS
+    }
+})
+let rand, mailOptions, host, link;
 //IMPORT NODEMAILER ---------------------------------
 
 exports.editPasswordPost = async (req, res) => {
@@ -14,7 +25,7 @@ exports.editPasswordPost = async (req, res) => {
     } else {
         console.log('working')
         console.log(req.body.email)
-        
+
         await query(`UPDATE user SET password = '${await bcrypt.hash(req.body.password, 16)}' WHERE email = '${req.body.email}'`)
         res.render('auth', {
             success: 'mot de passe modifié avec succès'
@@ -22,24 +33,6 @@ exports.editPasswordPost = async (req, res) => {
     }
 
 }
-// // //LOST PASSWORD -------------------------------------
-// module.exports = {
-              
-//     editPasswordPost: async (req, res) => {
-//         const user = await query(`SELECT * FROM user WHERE email = '${req.body.email}'`)
-
-//         if (!user) {
-//             console.log('utilisateur inexistant')
-//             res.redirect('/')
-//         } else {
-//             bcrypt.hash(req.body.password, 16, (error, encrypted) => {
-//                 if (error) console.log(error)
-//                 console.log(encrypted)
-//             })
-//         }
-//     }
-// }
-
 
 //GET ----------------------------------------------
 exports.get = (req, res) => {
@@ -54,6 +47,34 @@ exports.register = async (req, res) => {
     if (req.body.checked !== 'on' || req.body.password !== req.body.passwordConfirm) {
         console.log('pas checké ou password pas égal')
     } else {
+
+        rand = Math.floor((Math.random() * 100) + 54)
+
+        host = req.get('host')
+
+        link = "http://" + req.get('host') + "/verify/" + rand
+
+        mailOptions = {
+            from: 'isec237@gmail.com',
+            to: req.body.email,
+            subject: "confirmez votre adresse mail",
+            rand: rand,
+            html: `<h2>Vérification de votre adresse mail</h2>
+                   <h5>Cliquez sur le lien ci-dessous pour vérifier votre compte</h5><br>
+                   <a href=" ` + link + `">Cliquez ici pour vérifier</a>`
+        }
+        console.log(mailOptions)
+
+        transporter.sendMail(mailOptions, (err, res, next) => {
+            if (err) {
+                console.log(err)
+                res.end("error")
+
+            } else {
+                console.log("message envoyé")
+                next()
+            }
+        })
         const sql = `INSERT INTO user (full_name, nickname, email, password)
                      VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 16) }');`
 
@@ -65,6 +86,7 @@ exports.register = async (req, res) => {
 
             console.log(data)
             res.render('auth', {
+
                 success: 'bien joué tu est inscrit maintenant vérifie tes mails'
             })
         })
@@ -75,7 +97,55 @@ exports.register = async (req, res) => {
 
 
 }
+//VERIF ACCOUNT -------------------------------------
 
+exports.verifAccount = async (req, res) => {
+    console.log('test: ', mailOptions.to)
+    let mail = mailOptions.to
+    const user = await query(`SELECT * FROM user WHERE email = '${mail}'`)
+    console.log(req.protocol + "://" + req.get('host'))
+    console.log('Page verify: ')
+    console.log(user)
+    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+        console.log("Domain is matched. Information is from Authentic email")
+
+        // Ici on tcheck notre id du mail avec la variable enregistrer en cache (rand)
+        if (req.params.id == mailOptions.rand) {
+            console.log("email is verified")
+            console.log(user)
+            res.render('verifId', {
+                user: user[0],
+                email: mailOptions.to
+
+            })
+
+        } else {
+            console.log("email is not verified")
+            res.render('verifId', {
+                message: "Bad Request !"
+            })
+
+        }
+    } else {
+        res.render('verifId', {
+            message: "Request is from unknown source !"
+        })
+
+    }
+
+}
+//VERIF ACCOUNT POST --------------------------------
+exports.verifAccountPost = async (req, res) => {
+    const user = await query(`SELECT * FROM user WHERE id = ${req.params.id}`)
+    console.log('Verified post controller')
+
+    if (user) {
+        await query(`UPDATE user SET is_verified = 1 WHERE id = ${req.params.id}`)
+        req.session.is_verified = true
+        res.redirect('/')
+
+    } else res.redirect('/')
+}
 
 //LOGIN ---------------------------------------------
 exports.auth = (req, res) => {

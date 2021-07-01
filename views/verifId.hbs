@@ -1,0 +1,17 @@
+<div class="pt-5 container">
+    <div class="pt-5">
+        {{ message }}
+
+        {{#if user }}
+
+        <form action="/verify/{{ user.id }}" method="POST">
+            <div class="row">
+                <input type="hidden" name="email" value="{{ email }}" required>
+            </div>
+            <button type="submit">Valider Mon Email</button>
+        </form>
+
+        {{/if }}
+    </div>
+
+</div>

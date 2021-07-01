@@ -3,11 +3,11 @@ route: /admin
 Partial: table User
 --}}
 {{!-- BOUTON AJOUTER UN UTILISATEUR --}}
-<div>
+<div class="pb-5">
     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAddUser">Ajouter un Utilisateur</button>
     {{> modal/addUser }}
 </div>
-<table class="table table-sm table-bordered ">
+<table class="pb-5 table table-sm table-bordered ">
     {{!-- LEGENDE TABLEAU --}}
     <thead>
         {{!-- TITRES ELEMENTS TABLEAU --}}
@@ -23,7 +23,7 @@ Partial: table User
         </tr>
     </thead>
     {{!-- CONTENU TABLEAU --}}
-    <tbody>
+    <tbody class="pb-5">
         {{#each dbuser}}
         <tr>
 

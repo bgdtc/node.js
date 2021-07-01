@@ -42,9 +42,9 @@
           <input type="password" class=" form-control" name='password' id="password" required />
         </div>
         <div class="pb-4 text-muted">
-            <input type="checkbox" class="" onclick="showPass()">Afficher MDP
+          <input type="checkbox" class="" onclick="showPass()">Afficher MDP
         </div>
-        
+
         <div>
           <div class="col-12 pb-3 form-check">
             <input type="checkbox" class="form-check-input justify-content-end" name='checked' id="check" required />
@@ -63,7 +63,7 @@
     </div>
     {{! FORMULAIRE D'INSCRIPTION }}
     <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <form class="container" action='/auth/register' method="POST">
+      <form id="form" onsubmit="checkForm(event)" class="container" action='/auth/register' method="POST">
         <h1 class="text-white text-center pt-4">Inscription</h1>
         <div class="row">
           {{!-- INPUT NOM --}}
@@ -90,7 +90,7 @@
         {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
           <label for="password" class="form-label">Mot de passe:</label>
-          <input type="password" class="form-control" name='password' id="password" required />
+          <input type="password" class="form-control" name='password' id="passwordd" required />
         </div>
         {{!-- INPUT PASSWORD CONFIRM --}}
         <div class="mb-3">
@@ -100,11 +100,11 @@
         </div>
         <div class="row">
           <div class="mb-3 col-12 form-check">
-            <input type="checkbox" class="form-check-input" name='checked' id="check" required />
+            <input type="checkbox" class="form-check-input" name='checked' id="checkRegister" required />
             <label class="form-check-label" for="check">J'accepte les CGU</label>
           </div>
           <div class="pb-4 col-12 text-center">
-            <button type="submit" class="btn btn-primary text-center">S'inscrire</button>
+            <button class="btn btn-primary text-center">S'inscrire</button>
           </div>
         </div>
 
@@ -118,11 +118,11 @@
           <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
           {{!-- INPUT EMAIL --}}
           <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control"  name="email" aria-describedby="emailHelp" required />
+          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" required id="check" />
+          <input type="checkbox" class="form-check-input" required id="checkLostPassword" />
           <label class="form-check-label" for="check">J'accepte les CGU</label>
         </div>
         <div class="pb-2">
@@ -132,22 +132,62 @@
     </div>
   </div>
 </section>
-
+{{!-- //AFFICHAGE DU MOT DE PASSE EN CLAIR --}}
 <script>
-
   const test = document.getElementById('oui')
-
   test.addEventListener('click', () => {
-    document.getElementById('non').style.display='block'
+    document.getElementById('non').style.display = 'block'
   })
-
-function showPass() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
+  function showPass() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
   }
-}
+</script>
+{{!-- REGEX FORMULAIRE --}}
+<script>
+   //RECUPERATION INPUT ET FORMULAIRE
+  const form = document.getElementById('form');
+  const input = document.getElementsByTagName('input');
 
+   //FONCTION VERIFICATION DU FORMULAIRE
+  function checkForm(event) {
+    event.preventDefault()
+    //RECUPÉRATION DU MOT DE PASSE, DE LA CHECKBOX ET DE LA REGEX ET DU FLASH 
+    const pass = document.getElementById('passwordd').value;
+    const accept = document.getElementById('checkRegister').checked;
+    const passConfirm = document.getElementById('passwordConfirm').value;
+    const flash = document.getElementById('flash');
+    const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+
+//SI LE PASSWORD NE CORRESPOND PAS A LA REGEX
+    if (!pass.match(regex)) {
+      // Gestion du flash (error)
+      flash.style.color = 'red';
+      flash.innerText = 'Le mot de passe ne respect pas la chartes !';
+      // Condition pour checker si password est bien égale avec passwordConfim
+//SI LES MOTS DE PASSES NE SONT PAS IDENTIQUES      
+    } else if (pass !== passConfirm) {
+      // Gestion du flash (error)
+      flash.style.color = 'red';
+      flash.innerText = 'Les mots de passe ne sont pas identique !';
+      // Condition pour checker si les conditions on été acceptez
+//SI LA CHECKBOX N'EST PAS CHECKÉE      
+    } else if (!accept) {
+      // Gestion du flash (error)
+      flash.style.color = 'red';
+      flash.innerText = 'Vous devez acceptez les conditions !';
+      // Et si toute les conditions son respecter alors on envoit le formulaire
+//SI TOUT EST OK ON ENVOIE LE FORMULAIRE      
+    } else if (pass.match(regex) && pass === passConfirm && accept === true) {
+      alert("Confirmer l'envoie du formulaire");
+      // C'est ici que le formulaire s'envoie
+      form.submit();
+    }
+
+
+  }
 </script>
