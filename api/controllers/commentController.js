@@ -5,10 +5,10 @@ module.exports = {
 
     // DELETE COMMENT BY ID ADMIN
     deleteCommentById: async (req, res) => {
-      
+
         let sql = `DELETE FROM comments  WHERE id = ?`;
         let values = [req.params.id];
-      
+
         await query(sql, [values])
 
         res.redirect('/admin')
@@ -23,12 +23,12 @@ module.exports = {
                          is_banned     = '${req.body.is_banned}',
                          update_date = CURRENT_TIMESTAMP
                       WHERE id = ${req.params.id};`
-              await query(sql)
+        await query(sql)
 
-              res.redirect('/admin#comments')     
+        res.redirect('/admin#comments')
     },
     getComment: async (req, res) => {
         const sql = `SELECT * FROM comments`
         await query(sql)
-    }     
+    }
 }

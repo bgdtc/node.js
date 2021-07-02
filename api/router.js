@@ -23,6 +23,7 @@ const nmap = require('./middleware/nmapIpVisitor')
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
 
+ 
 
 
 //404 
@@ -57,6 +58,7 @@ router.route('/article/:id')
 
 router.route('/contact')
     .get(contactController.get)
+    .post(contactController.sendContact)
 
 
 //EDIT PASSWORD POST MODIF PASSWORD
@@ -149,6 +151,16 @@ router.route('/auth/lost_pwd/:id')
 //LOGOUT
 router.route('/logout')
     .get(authController.logout)
+
+
+
+//MESSAGES
+router.route('/messages/:id')
+   .delete(adminController.deleteMessage)
+
+//MESSAGE ID
+router.route('/messages')
+   .post(adminController.sendMessage)     
     
 //EXPORT SERVER.JS -------------------------------------------------
 module.exports = router;

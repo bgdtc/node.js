@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 //import modules
 const
@@ -6,7 +5,7 @@ const
     app = express(),
     cors = require('cors'),
     methodOverride = require('method-override')
-    expressSession = require('express-session'),
+expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     mysql = require('mysql2'),
@@ -67,8 +66,10 @@ app.use(expressSession({
     name: 'ptiBiscuit',
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 300000 }
-    
+    cookie: {
+        maxAge: 3000000
+    }
+
 }));
 
 
@@ -83,7 +84,7 @@ app.use(bodyParser.urlencoded({
 app.use('*', (req, res, next) => {
     res.locals.user = req.session.user
 
-    if (req.session.is_admin === true)  res.locals.admin = req.session.is_admin
+    if (req.session.is_admin === true) res.locals.admin = req.session.is_admin
 
     next()
 })

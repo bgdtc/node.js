@@ -1,21 +1,21 @@
 {{!-- SECTION AVIS --}}
-<div class=" pt-5">
-<div class=" pt-5 pb-3 d-flex row justify-content-around">
-  {{!-- TITRE PAGE AVIS --}}
-  <h1 class="text-center">Avis</h1>
-  {{!-- AVIS --}}
-  {{#each dbAvis}}
-  <div class="row d-flex justify-content-center">
-        <div class="card  text-white bg-primary mb-3" style="max-width: 43rem;">
-    <div class="card-header">{{ this.author_id }} <span class=" d-flex justify-content-end">publié le {{
-        this.update_date }}</span></div>
-    <div class="card-body">
-      <h2 class="h5 card-title">{{ this.title }}</h2>
-      <p class="card-text">{{ this.content }}</p>
+<div class="container  pt-5">
+  <div class=" pt-5 pb-3 d-flex row justify-content-around">
+    {{!-- TITRE PAGE AVIS --}}
+    <h1 class="text-center">Avis</h1>
+    {{!-- AVIS --}}
+    {{#each dbAvis}}
+    <div class="row d-flex justify-content-center">
+      <div class="card  text-white bg-primary mb-3" style="max-width: 43rem;">
+        <div class="card-header">{{ this.author_id }} <span class=" d-flex justify-content-end">publié le {{
+            this.update_date }}</span></div>
+        <div class="card-body">
+          <h2 class="h5 card-title">{{ this.title }}</h2>
+          <p class="card-text">{{ this.content }}</p>
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
 
-  {{/each}}
-</div>
+    {{/each}}
+  </div>
 </div>

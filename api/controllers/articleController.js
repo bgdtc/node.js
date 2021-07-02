@@ -6,10 +6,10 @@ module.exports = {
     // DELETE COMMENT BY ID ADMIN
     deleteArticleById: async (req, res) => {
         console.log('ARTICLE controller delete article:', req.body)
-      
+
         let sql = `DELETE FROM articles  WHERE id = ?`;
         let values = [req.params.id];
-      
+
         await query(sql, [values])
 
         res.redirect('/admin')
@@ -29,7 +29,7 @@ module.exports = {
 
         await query(sql)
 
-        res.redirect('/admin')     
+        res.redirect('/admin')
     },
     //ADD ARTICLE ADMIN
     addArticle: async (req, res) => {
@@ -44,13 +44,13 @@ module.exports = {
                 '${req.body.content}');
            `
 
-           await query(sql)
+            await query(sql)
 
-           res.redirect('/admin')
+            res.redirect('/admin')
         } else {
             res.redirect('/admin')
         }
-        
+
     },
     //ADD COMMENT ARTICLE
     addComment: async (req, res) => {
@@ -59,6 +59,6 @@ module.exports = {
         if (req.body.checked === 'on') {
             const sql = `INSERT INTO comments ${req.body.content}`
         }
-    }   
+    }
 
 }

@@ -34,7 +34,7 @@ exports.editPasswordPost = async (req, res) => {
     if (!user) {
         console.log('utilisateur inexistant')
         res.redirect('/')
-    //si l'adresse mail existe dans la db
+        //si l'adresse mail existe dans la db
     } else {
         console.log('working')
         console.log(req.body.email)
@@ -61,7 +61,7 @@ exports.register = async (req, res) => {
     //si la case cgu n'est pas cochée ou que les mots de passent de correspondent pas 
     if (req.body.checked !== 'on' || req.body.password !== req.body.passwordConfirm) {
         console.log('pas checké ou password pas égal')
-    //si tout est ok
+        //si tout est ok
     } else {
         //génération de l'id aléatoire
         rand = Math.floor((Math.random() * 100) + 54)
@@ -79,7 +79,7 @@ exports.register = async (req, res) => {
                    <h5>Cliquez sur le lien ci-dessous pour vérifier votre compte</h5><br>
                    <a href=" ` + link + `">Cliquez ici pour vérifier</a>`
         }
-        
+
         //envoi du mail 
         transporter.sendMail(mailOptions, (err, res, next) => {
             if (err) {
@@ -135,7 +135,7 @@ exports.verifAccount = async (req, res) => {
                 email: mailOptions.to
 
             })
-        //si l'id correspond pas 
+            //si l'id correspond pas 
         } else {
             console.log("email is not verified")
             res.render('verifId', {
@@ -143,7 +143,7 @@ exports.verifAccount = async (req, res) => {
             })
 
         }
-    //si l'utilisateur est un petit malin 
+        //si l'utilisateur est un petit malin 
     } else {
         res.render('verifId', {
             message: "Request is from unknown source !"
@@ -162,7 +162,7 @@ exports.verifAccountPost = async (req, res) => {
         await query(`UPDATE user SET is_verified = 1 WHERE id = ${req.params.id}`)
         req.session.is_verified = true
         res.redirect('/')
-    //sinon ça renvoie sur home
+        //sinon ça renvoie sur home
     } else res.redirect('/')
 }
 
@@ -176,10 +176,10 @@ exports.auth = (req, res) => {
         res.render('auth', {
             error: 'Pas de bd !'
         })
-    //si elles sont cochées
+        //si elles sont cochées
     } else {
         const sql = `SELECT * FROM user WHERE email = '${req.body.email}';`
-          query(sql, (err, data) => {
+        query(sql, (err, data) => {
             if (err) console.log(err)
             //si l'email existe pas dans la db
             if (!data[0]) res.render('auth', {
@@ -191,7 +191,7 @@ exports.auth = (req, res) => {
                 let uat = data[0].is_verified
                 //si l'email correspond a l'email de la db et que l'user est vérifié 
                 if (dat === req.body.email && uat === 1) {
-            
+
                     bcrypt.compare(req.body.password, data[0].password, function (err, result) {
                         if (err) console.log(err)
 

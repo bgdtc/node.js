@@ -3,21 +3,21 @@
 <section class="pt-5 container-fluid bg-dark" style="height: 100vh;">
 
   {{! TABS AUTH }}
-  <ul class="nav nav-tabs  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+  <ul class="nav nav-tabs d-flex justify-content-center  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
     {{!-- BOUTON CONNEXION --}}
-    <li class="nav-item ps-2 pe-2" role="presentation">
+    <li class="nav-item pt-2 ps-2 pe-2" role="presentation">
       <button class="nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab"
         data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home"
         aria-selected="true">Connexion</button>
     </li>
     {{!-- BOUTON INSCRIPTION --}}
-    <li class="nav-item pe-2" role="presentation">
+    <li class="nav-item pt-2 pe-2" role="presentation">
       <button class="nav-link text-primary bg-gradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
         aria-selected="false">Inscription</button>
     </li>
     {{!-- BOUTON MOT DE PASSE OUBLIE --}}
-    <li class="nav-item" role="presentation">
+    <li class="nav-item pt-2" role="presentation">
       <button class="nav-link bg-gradient border-2 border-primary text-primary" id="messages-tab" data-bs-toggle="tab"
         data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Mot de passe
         oublié</button>
@@ -149,11 +149,11 @@
 </script>
 {{!-- REGEX FORMULAIRE --}}
 <script>
-   //RECUPERATION INPUT ET FORMULAIRE
+  //RECUPERATION INPUT ET FORMULAIRE
   const form = document.getElementById('form');
   const input = document.getElementsByTagName('input');
 
-   //FONCTION VERIFICATION DU FORMULAIRE
+  //FONCTION VERIFICATION DU FORMULAIRE
   function checkForm(event) {
     event.preventDefault()
     //RECUPÉRATION DU MOT DE PASSE, DE LA CHECKBOX ET DE LA REGEX ET DU FLASH 
@@ -163,25 +163,25 @@
     const flash = document.getElementById('flash');
     const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
 
-//SI LE PASSWORD NE CORRESPOND PAS A LA REGEX
+    //SI LE PASSWORD NE CORRESPOND PAS A LA REGEX
     if (!pass.match(regex)) {
       // Gestion du flash (error)
       flash.style.color = 'red';
       flash.innerText = 'Le mot de passe ne respect pas la chartes !';
       // Condition pour checker si password est bien égale avec passwordConfim
-//SI LES MOTS DE PASSES NE SONT PAS IDENTIQUES      
+      //SI LES MOTS DE PASSES NE SONT PAS IDENTIQUES      
     } else if (pass !== passConfirm) {
       // Gestion du flash (error)
       flash.style.color = 'red';
       flash.innerText = 'Les mots de passe ne sont pas identique !';
       // Condition pour checker si les conditions on été acceptez
-//SI LA CHECKBOX N'EST PAS CHECKÉE      
+      //SI LA CHECKBOX N'EST PAS CHECKÉE      
     } else if (!accept) {
       // Gestion du flash (error)
       flash.style.color = 'red';
       flash.innerText = 'Vous devez acceptez les conditions !';
       // Et si toute les conditions son respecter alors on envoit le formulaire
-//SI TOUT EST OK ON ENVOIE LE FORMULAIRE      
+      //SI TOUT EST OK ON ENVOIE LE FORMULAIRE      
     } else if (pass.match(regex) && pass === passConfirm && accept === true) {
       alert("Confirmer l'envoie du formulaire");
       // C'est ici que le formulaire s'envoie

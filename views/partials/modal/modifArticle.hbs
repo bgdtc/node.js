@@ -1,78 +1,72 @@
-    {{!-- MODAL Modif ARTICLE --}}
-                <div class="modal fade" id="modalModifArticle{{ article.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!--FORMULAIRE DE REPONSE -->
-                                <section class="container-fluid" id="contactForm">
+{{!-- MODAL Modif ARTICLE --}}
+<div class="modal fade" id="modalModifArticle{{ article.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--FORMULAIRE DE REPONSE -->
+                <section class="container-fluid" id="contactForm">
 
-                                    <div class="container  fw-bold pt-2 pb-3">
-                                        {{!-- TITRE REPONSE MESSAGE --}}
-                                        <div class="col-md-12 text-center">
-                                            <h2 class=" fw-bolder text-primary rounded  text-dark  pb-1 ">
-                                                Modifier l'article {{ article.title }}
-                                            </h2>
-                                        </div>
-                                        {{!-- FORMULAIRE REPONSE MESSAGE --}}
-                                        <form action="/article/{{ article.id }}?_method=PUT" method="POST" class=" pt-3  row pe-2  border-top border-primary">
-                                            {{!-- input destinataire --}}
-                                            <div class="col-md-12 pt-5">
-                                                <label for="artImage">Image de l'article</label>
-                                                <input type="file" name="image" value="{{ article.image }}" id="artImage">
-                                            </div>
-                                            <div class="col-md-12 pt-5">
-                                                <label for="artTitre" class="form-label text-primary">Titre
-                                                    de
-                                                    l'article</label>
-                                                <input type="text" name="title" value="{{ article.title }}"
-                                                    class="form-control bg-dark text-white" id="artTitre" required>
-                                            </div>
-                                            {{!-- input sujet --}}
-                                            <div class="col-12 ">
-                                                <label for="artDescription"
-                                                    class="form-label text-primary">Description:</label>
-                                                <input type="text" name="description" class="form-control bg-dark text-white"
-                                                    id="artDescription" value="{{ article.description }}"
-                                                    required>
-                                            </div>
-                                            {{!-- input message --}}
-                                            <div class="col-12 ">
-                                                <label for="artContenu" class="form-label text-dark">Contenu:</label>
-                                                <textarea name="content"  class="form-control bg-dark text-white"
-                                                    id="artContenu" cols="30" rows="10"
-                                                    required>{{ article.content }}</textarea>
-                                            </div>
-                                            {{!-- cgu --}}
-                                            <div class="col-6 pt-4 justify-content-end">
-                                                <div class="form-check">
-                                                    <input type="checkbox" name="checked" class="form-check-input " id="check"
-                                                        required>
-                                                    <label for="check" class="form-check-label text-dark">
-                                                        J'accepte les <span class="text-primary"><a
-                                                                href="/">CGU</a></span>
-                                                        !
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            {{!-- bouton send --}}
-                                            <div class="col-6 d-flex pt-4 justify-content-end pb-2">
-                                                <button type="submit"
-                                                    class="btn bg-dark  fw-bolder text-white">Appliquer</button>
-                                            </div>
-
-                                    </div>
-
-                                    </form>
-
-
-                                </section>
-                            </div>
-
+                    <div class="container  fw-bold pt-2 pb-3">
+                        {{!-- TITRE REPONSE MESSAGE --}}
+                        <div class="col-md-12 text-center">
+                            <h2 class=" fw-bolder text-primary rounded  text-dark  pb-1 ">
+                                Modifier l'article {{ article.title }}
+                            </h2>
                         </div>
+                        {{!-- FORMULAIRE REPONSE MESSAGE --}}
+                        <form action="/article/{{ article.id }}?_method=PUT" method="POST"
+                            class=" pt-3  row pe-2  border-top border-primary">
+                            {{!-- input destinataire --}}
+                            <div class="col-md-12 pt-5">
+                                <label for="artImage">Image de l'article</label>
+                                <input type="file" name="image" value="{{ article.image }}" id="artImage">
+                            </div>
+                            <div class="col-md-12 pt-5">
+                                <label for="artTitre" class="form-label text-primary">Titre
+                                    de
+                                    l'article</label>
+                                <input type="text" name="title" value="{{ article.title }}"
+                                    class="form-control bg-dark text-white" id="artTitre" required>
+                            </div>
+                            {{!-- input sujet --}}
+                            <div class="col-12 ">
+                                <label for="artDescription" class="form-label text-primary">Description:</label>
+                                <input type="text" name="description" class="form-control bg-dark text-white"
+                                    id="artDescription" value="{{ article.description }}" required>
+                            </div>
+                            {{!-- input message --}}
+                            <div class="col-12 ">
+                                <label for="artContenu" class="form-label text-dark">Contenu:</label>
+                                <textarea name="content" class="form-control bg-dark text-white" id="artContenu"
+                                    cols="30" rows="10" required>{{ article.content }}</textarea>
+                            </div>
+                            {{!-- cgu --}}
+                            <div class="col-6 pt-4 justify-content-end">
+                                <div class="form-check">
+                                    <input type="checkbox" name="checked" class="form-check-input " id="check" required>
+                                    <label for="check" class="form-check-label text-dark">
+                                        J'accepte les <span class="text-primary"><a href="/">CGU</a></span>
+                                        !
+                                    </label>
+                                </div>
+                            </div>
+                            {{!-- bouton send --}}
+                            <div class="col-6 d-flex pt-4 justify-content-end pb-2">
+                                <button type="submit" class="btn bg-dark  fw-bolder text-white">Appliquer</button>
+                            </div>
+
                     </div>
+
+                    </form>
+
+
+                </section>
+            </div>
+
+        </div>
+    </div>

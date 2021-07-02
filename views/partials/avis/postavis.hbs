@@ -1,8 +1,11 @@
 {{!-- FORMULAIRE POST AVIS --}}
-<section class="bg-gradient container-fluid">
+<section class="bg-gradient pb-5 container-fluid">
     <div class="container pb-5">
         <form action="/avis" method="POST" class=" pt-3  row  border-3 ">
             <div class="col-12 pb-5">
+                <label for="title" class="form-label text-dark">Le titre de votre avis:</label>
+                <input type="text" class="form-control bg-dark text-primary" style="width: 250px;" name="title"
+                    id="title">
                 <label for="avis" class="form-label text-dark">Votre Avis:</label>
                 <textarea name="content" class="form-control bg-dark text-primary" id="avis" cols="30" rows="10"
                     required></textarea>

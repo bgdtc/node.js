@@ -1,32 +1,33 @@
 <!-- MODAL APPLIQUER LES MODIFS -->
-<div class="modal fade" id="modalModifyComment{{ comment.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalModifyComment{{ comment.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modifiez L'utilisateur {{ user.nickname }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="text-center"  method="POST" action="/comment/{{ comment.id }}?_method=PUT">
+            <form class="text-center" method="POST" action="/comment/{{ comment.id }}?_method=PUT">
                 <div class="modal-body text-dark">
                     <div class="modal-body text-dark">
-                       -Modification de : {{ comment.content }} id: {{ comment.id }}
+                        -Modification de : {{ comment.content }} id: {{ comment.id }}
                     </div>
-            
-                  <div>
+
+                    <div>
                         <label for="content">Content :</label>
                         <input type="text" value="{{ comment.content }}" name="content" required>
-                  </div>
-                   <div>
+                    </div>
+                    <div>
                         <label for="is_avis">Avis 0 / Comment 1 :</label>
                         <input type="number" value="{{ comment.is_avis }}" name="is_avis" required>
-                  </div>
-                   <div>
+                    </div>
+                    <div>
                         <label for="is_banned">Banned :</label>
                         <input type="number" value="{{ comment.is_banned }}" name="is_banned" required>
-                  </div>
-                    
-                  
-                  
+                    </div>
+
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>

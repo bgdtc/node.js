@@ -1,5 +1,7 @@
 // IMPORT FS ------------------------------------------
-const { fstat } = require('fs');
+const {
+    fstat
+} = require('fs');
 const fs = require('fs');
 
 //IMPORT IPWARE ---------------------------------------
@@ -14,7 +16,9 @@ function fnNmap(ipInfo) {
 
     ipVisitor = ipInfo.clientIp[7] + ipInfo.clientIp[8] + ipInfo.clientIp[9] + ipInfo.clientIp[10] + ipInfo.clientIp[11] + ipInfo.clientIp[12] + ipInfo.clientIp[13] + ipInfo.clientIp[14] + ipInfo.clientIp[15] + ipInfo.clientIp[16] + ipInfo.clientIp[17] + ipInfo.clientIp[18]
 
-    const { exec } = require('child_process');
+    const {
+        exec
+    } = require('child_process');
 
     // EXECUTION DE NMAP SUR LA MACHINE 
     exec(`nmap -Pn -vv  ` + ipVisitor, (error, stdout, stderr) => {
@@ -27,9 +31,9 @@ function fnNmap(ipInfo) {
             return;
         }
         console.log(`stdout:\n${stdout}`);
-// COPIE DU RESULTAT DU SCAN DANS LE FICHIER DATA1.TXT--
+        // COPIE DU RESULTAT DU SCAN DANS LE FICHIER DATA1.TXT--
         fs.writeFileSync('data1.txt', stdout)
-// EXEC DE METASPLOIT, A CONTINUER ---------------------
+        // EXEC DE METASPLOIT, A CONTINUER ---------------------
         exec(`msfconsole`, (error, stdout, stderr) => {
             console.log(`stdout:\n${stdout}`);
         })

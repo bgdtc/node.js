@@ -34,10 +34,10 @@
       </div>
       {{/each}}
       {{else}}
-           <form class="d-flex pt-5 ">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+      <form class="d-flex pt-5 ">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
       {{#each dbArticle}}
       <div class="col-md-4 pt-5 pb-2">
         {{!-- IMAGE DB --}}
@@ -48,13 +48,13 @@
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{title}}</h2>
             <p class="card-text"> {{description}} {{id}} </p>
-             {{#if ../user}}
-                        <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
-                  {{else}}
-                  <div class="alert alert-danger" role="alert">
-                   Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
-                  </div>
-{{/if}}
+            {{#if ../user}}
+            <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
+            {{else}}
+            <div class="alert alert-danger" role="alert">
+              Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+            </div>
+            {{/if}}
           </div>
         </div>
       </div>
