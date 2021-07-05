@@ -1,6 +1,10 @@
 //CONTROLLEUR GESTION DU COMPTE
 
 
+// IMPORT PATH ET FS POUR CHEMIN D'IMAGE SUPPRESSION
+const path = require('path'),
+    fs = require('fs')
+
 //IMPORT BCRYPT POUR HASHER LE NOUVEAU MDP
 const bcrypt = require('bcrypt')
 // CONTROLLEUR MON COMPTE
@@ -47,30 +51,45 @@ module.exports = {
     modifyAccount: async (req, res) => {
         //si le champ nouveau mot de passe n'est pas vide
         if (req.body.NewPassword !== '') {
+            console.log('req file', req.file)
+            const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
             const sql = `UPDATE user
             SET 
                full_name = '${req.body.full_name}',
                email = '${req.body.email}',
                password = '${ await bcrypt.hash(req.body.NewPassword, 16) }',
-               image = '${req.body.image}'
+               image = '/assets/images/${req.file.completed}',
+               name = '${req.file.completed}'
            WHERE id = '${req.params.id}'`
 
             await query(sql)
-
+            //chemin vers l'image actuelle qui seras supprimée
+            pathImg = path.resolve("public/images/" + dbUser[0].name)
+            //fs de suppression de l'image en question
+            fs.unlink(pathImg, (err) => {
+                if (err) console.log(err)
+            })
             res.redirect('/account')
             res.end()
             //si le champ nouveau mot de passe est vide 
         } else {
-
+            //meme chose qu'au dessus
+            console.log('req file', req.file)
+            const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
             const sql = `UPDATE user
             SET 
                full_name = '${req.body.full_name}',
                nickname = '${req.body.nickname}',
                email = '${req.body.email}',
-               image = '${req.body.image}'
+               image = '/assets/images/${req.file.completed}',
+               name = '${req.file.completed}'
            WHERE id = ${req.params.id}`
 
             await query(sql)
+            pathImg = path.resolve("public/images/" + dbUser[0].name)
+            fs.unlink(pathImg, (err) => {
+                if (err) console.log(err)
+            })
 
             res.redirect('/account')
 

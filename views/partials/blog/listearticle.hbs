@@ -1,6 +1,6 @@
 {{! LISTE DES ARTICLES }}
-<section class=" container-fluid ">
-  <div class=" container ">
+<section class=" container ">
+  <div class=" pb-5 ">
     {{!-- TITRES PAGE --}}
     <div class=" pt-3 border-bottom border-1 border-primary">
       <h3 class="tist text-center bg-gradient fw-bold rounded">Articles récents</h3>
@@ -13,7 +13,7 @@
       <div class="col-md-4 pt-3 pb-2">
         {{!-- IMAGE DB --}}
         <div class="card bg-dark tist">
-          <img src="{{ img }}" class="card-img-top" alt="" />
+          <img src="{{ image }}" class="card-img-top" style="height: 400px;" alt="" />
 
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
@@ -39,11 +39,11 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       {{#each dbArticle}}
-      <div class="col-md-4 pt-5 pb-2">
+      <div class="col-md-4 pt-5 pb-5">
         {{!-- IMAGE DB --}}
         <div class="card bg-dark tist" style="width: auto;">
-          <img src="{{ img }}" class="card-img-top" alt=""
-            style="max-height: 120px; min-height: 120px; min-width:150px;" />
+          <img src="{{ image }}" class="card-img-top" alt=""
+            style="height: 400px;" />
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{title}}</h2>

@@ -6,10 +6,10 @@ const rSSimulate = simulate
 
 // CONTROLLEUR HOME 
 module.exports = {
-    get: (req, res) => {
-
+    get: async (req, res) => {
+        const dbArticle =  await query(`SELECT * FROM articles`)
         res.render('home', {
-            dbArticle: rSSimulate,
+            dbArticle,
             home: 'home'
         })
 

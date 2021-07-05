@@ -1,6 +1,7 @@
 //MODULES ---------------------------------------------------------
 const express = require('express'),
        router = express.Router(),
+       upload = require('./middleware/multer')
 
 //CONTROLLEURS ----------------------------------------------------
     homeController = require('./controllers/homeController'),
@@ -50,7 +51,7 @@ router.route('/blog')
 router.route('/article/:id')
     .get(blogController.getID, commentController.getComment)
     .delete(articleController.deleteArticleById)
-    .put(articleController.modifyArticle)
+    .put(upload.single('image'),articleController.modifyArticle)
     .post(articleController.addComment)
 
 
@@ -89,7 +90,7 @@ router.route('/account')
 //MON COMPTE ID USER MODIFY ACCOUNT -------------------------------------------------
 router.route('/account/user/:id')
    .get(accountController.get)
-   .put(accountController.modifyAccount)
+   .put(upload.single('image'), accountController.modifyAccount)
 
    
 //MON COMPTE ID COMMENTS& AVIS MODIFY AND DELETE
@@ -112,7 +113,7 @@ router.route('/admin')
 
 //ARTICLE ADMIN ADD ARTICLE ----------------------------------------------------
 router.route('/article')
-    .post(articleController.addArticle)
+    .post(upload.single('image'), articleController.addArticle)
 
 
 //USER ID MODIFY ET DELETE ---------------------------------------------------------

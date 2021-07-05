@@ -1,9 +1,5 @@
 // CONTROLLEUR BLOG 
 
-const {
-  query
-} = require("express");
-
 // IMPORT DB SIMULÉE ET REVERSE 
 
 const simulater = require('../simulate.json')
@@ -18,11 +14,12 @@ exports.getBlog = async (req, res) => {
     })
     //si utilisateur connecté
   } else {
+    const dbArticle =  await query(`SELECT * FROM articles`)
     const sql = `SELECT user.is_verified FROM user WHERE id = ${req.session.user.id};`;
     await query(sql, (error, data) => {
       if (error) throw error
       res.render('blog', {
-        dbArticle: query(`SELECT * FROM articles`)
+        dbArticle 
       })
     })
 
@@ -32,8 +29,9 @@ exports.getBlog = async (req, res) => {
 
 //AFFICHAGE DE LA PAGE ID SELON LE STATUT 
 exports.getID = async (req, res) => {
+  let artIDd =  await query(`SELECT * FROM articles WHERE id = ${req.params.id}`)
   const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
-  db.query(sql, (error, data) => {
+ await query(sql, (error, data) => {
     if (error) throw error;
     if (data[0].is_verified === 0) {
 
@@ -42,18 +40,25 @@ exports.getID = async (req, res) => {
       })
 
     } else {
+     
+      let artID = artIDd[0]
       res.render('pageID', {
         artID
       })
     }
   })
+  
+
+  // await artID.forEach(art => {
+  //   if (art.id === req.params.id) artID = art
+  // })
+
 
   // Je definit un objet vide qui va stocker ma data
-  let artID = {}
+  // let artID = {}
+
+  console.log('ràepfjzeofijzeofizjfeoiz', req.params.id)
   // Je creer une boucle pour extraire l'ojet ayant l'id passer en parametre de l'url
-  await simulater.forEach(art => {
-    if (art.id === req.params.id) artID = art
-  })
 
 
 }

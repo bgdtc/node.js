@@ -6,7 +6,10 @@
       <i class=" pe-2  ps-2"><img style="height: 40px;" src="assets/images/ankh.svg" alt=""></i>
     </a>
     {{!-- TITRE NAVBAR --}}
-    <h6 class="pe-5 fw-bold text-center text-white">Inf0 Sec</h6>
+    <h6 class="pe-5 fw-bold text-center text-white">Inf0 Sec {{#if admin}} <span class="text-danger"> ADMIN </span> {{/if}} </h6>
+   
+   
+ 
     {{!-- BOUTON COLLAPSE --}}
     <button class="fs-6 navbar-toggler bg-primary rounded" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

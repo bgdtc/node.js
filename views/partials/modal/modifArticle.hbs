@@ -19,12 +19,12 @@
                             </h2>
                         </div>
                         {{!-- FORMULAIRE REPONSE MESSAGE --}}
-                        <form action="/article/{{ article.id }}?_method=PUT" method="POST"
+                        <form enctype="multipart/form-data" action="/article/{{ article.id }}?_method=PUT" method="POST"
                             class=" pt-3  row pe-2  border-top border-primary">
                             {{!-- input destinataire --}}
                             <div class="col-md-12 pt-5">
                                 <label for="artImage">Image de l'article</label>
-                                <input type="file" name="image" value="{{ article.image }}" id="artImage">
+                                <input type="file" name="image" id="artImage">
                             </div>
                             <div class="col-md-12 pt-5">
                                 <label for="artTitre" class="form-label text-primary">Titre

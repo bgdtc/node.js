@@ -4,9 +4,9 @@ Partial: management
 --}}
 
 
-<section class="pt-5 container-fluid bg-light">
+<section class="pt-5 container bg-light">
     {{! TABS ADMIN BOUTONS }}
-    <ul class="nav nav-tabs d-flex justify-content-center container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+    <ul class="nav nav-tabs d-flex justify-content-center  pb-3  pt-5" id="myTab" role="tablist">
         {{!-- GESTION UTILISATEURS --}}
         <li class="nav-item pt-2 ps-2 pe-2" role="presentation">
             <button class="nav-link border border-primary active text-white bg-dark" id="users-tab" data-bs-toggle="tab"
@@ -82,11 +82,13 @@ Partial: management
         td,
         tr {
             display: block;
+            justify-content: center;
+            width: 100%;
         }
 
         /* Hide table headers (but not display: none;, for accessibility) */
         thead tr {
-            position: absolute;
+            /*position: absolute;*/
             top: -9999px;
             left: -9999px;
         }
@@ -99,19 +101,19 @@ Partial: management
             /* Behave  like a "row" */
             border: none;
             border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 50%;
+            /*position: relative;*/
+            /*padding-left: 50%;*/
         }
 
         td:before {
             /* Now like a table header */
-            position: absolute;
+            /*position: absolute;/*
             /* Top/left values mimic padding */
             top: 6px;
             left: 6px;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
+            width: 40%;
+            /*padding-right: 10px;*/
+            /*white-space: nowrap;*/
         }
 
         /*

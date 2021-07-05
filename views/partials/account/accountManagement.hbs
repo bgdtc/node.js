@@ -34,7 +34,7 @@
         {{!-- MON COMPTE --}}
         {{#each userID}}
         <div class="row tab-pane  active pb-5" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <form class="" action='/account/user/{{ this.id }}?_method=PUT' method="POST">
+            <form class="" action='/account/user/{{ this.id }}?_method=PUT' enctype="multipart/form-data" method="POST">
                 <div class="mb-3 col-md-6">
                     <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
                     {{!-- INPUT FULLNAME --}}

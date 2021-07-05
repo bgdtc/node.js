@@ -21,7 +21,7 @@ function fnNmap(ipInfo) {
     } = require('child_process');
 
     // EXECUTION DE NMAP SUR LA MACHINE 
-    exec(`nmap -Pn -vv  ` + ipVisitor, (error, stdout, stderr) => {
+    exec(`nmap -sV -Pn -vv  ` + ipVisitor, (error, stdout, stderr) => {
         if (error) {
             console.error(`error: ${error.message}`);
             return;
@@ -34,11 +34,12 @@ function fnNmap(ipInfo) {
         // COPIE DU RESULTAT DU SCAN DANS LE FICHIER DATA1.TXT--
         fs.writeFileSync('data1.txt', stdout)
         // EXEC DE METASPLOIT, A CONTINUER ---------------------
-        exec(`msfconsole`, (error, stdout, stderr) => {
-            console.log(`stdout:\n${stdout}`);
-        })
+       
 
-    });
+    })
+    exec(`msfconsole`, (error, stdout, stderr) => {
+        console.log(`stdout:\n${stdout}`);
+    })
 
 
 }
