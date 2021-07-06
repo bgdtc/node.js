@@ -33,7 +33,7 @@ module.exports = {
                              title  = "${req.body.title}",
                              description     = "${req.body.description}",
                              content = "${req.body.content}"
-                          WHERE id = "${req.params.id}";`
+                          WHERE id = '${req.params.id}';`
 
             await query(sql)
             res.redirect('/admin')
@@ -44,13 +44,13 @@ module.exports = {
             const dbArticle = await query(`SELECT * FROM articles where id = '${req.params.id}'`)
             const sql = `UPDATE articles 
                           SET
-                             author_id = "${req.session.id}",
+                             author_id = "22",
                              name = "${req.file.completed}",
                              image  = "/assets/images/${req.file.completed}",
                              title  = "${req.body.title}",
                              description  = "${req.body.description}",
                              content = "${req.body.content}"
-                          WHERE id = "${req.params.id}";
+                          WHERE id = '${req.params.id}';
                         `
 
             console.log('GRGERGERG:', dbArticle[0].name)

@@ -16,7 +16,8 @@ const express = require('express'),
     commentController = require('./controllers/commentController'),
     articleController = require('./controllers/articleController'),
     errorController = require('./controllers/404Controller'),
-    nodeMailerController = require('./controllers/nodemailerController')
+    nodeMailerController = require('./controllers/nodemailerController'),
+    cguController = require('./controllers/cgu')
 
 const userController = require('./controllers/userController')
 const nmap = require('./middleware/nmapIpVisitor')
@@ -25,7 +26,9 @@ const nmap = require('./middleware/nmapIpVisitor')
 
 
  
-
+//CGU
+router.route('/CGU')
+    .get(cguController.get)
 
 //404 
 router.route('/404')

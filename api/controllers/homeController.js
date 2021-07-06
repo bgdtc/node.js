@@ -8,8 +8,9 @@ const rSSimulate = simulate
 module.exports = {
     get: async (req, res) => {
         const dbArticle =  await query(`SELECT * FROM articles`)
+        const reverse = dbArticle.reverse()
         res.render('home', {
-            dbArticle,
+            dbArticle: reverse,
             home: 'home'
         })
 

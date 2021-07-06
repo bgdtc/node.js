@@ -1,8 +1,8 @@
 {{! LISTE DES ARTICLES }}
-<section class=" container ">
+<section class=" container  pt-5">
   <div class=" pb-5 ">
     {{!-- TITRES PAGE --}}
-    <div class=" pt-3 border-bottom border-1 border-primary">
+    <div class=" pt-5 border-bottom border-1 border-primary">
       <h3 class="tist text-center bg-gradient fw-bold rounded">Articles récents</h3>
     </div>
     <!-- AFFICHAGE CARDS DB -->
@@ -12,8 +12,8 @@
 
       <div class="col-md-4 pt-3 pb-2">
         {{!-- IMAGE DB --}}
-        <div style="max-width: 400px; height: 800px;" class="card bg-dark tist">
-          <img src="{{ image }}" class="card-img-top" style="height: 400px;" alt="" />
+        <div class="card bg-dark tist border-3 border-primary">
+          <img src="{{ image }}" class="card-img-top" height="400px"  alt="" />
 
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
@@ -41,9 +41,9 @@
       {{#each dbArticle}}
       <div class="col-md-4 pt-5 pb-5">
         {{!-- IMAGE DB --}}
-        <div class="card bg-dark tist" style="width: auto;">
+        <div class="card bg-dark tist border-3 border-primary" style="width: auto;">
           <img src="{{ image }}" class="card-img-top" alt=""
-            style="height: 400px;" />
+            height="400px"  />
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{title}}</h2>

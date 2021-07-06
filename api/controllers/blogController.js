@@ -10,11 +10,12 @@ exports.getBlog = async (req, res) => {
     //si utilisateur connecté
   } else {
     const dbArticle =  await query(`SELECT * FROM articles`)
+    const reverse = dbArticle.reverse()
     const sql = `SELECT user.is_verified FROM user WHERE id = ${req.session.user.id};`;
     await query(sql, (error, data) => {
       if (error) throw error
       res.render('blog', {
-        dbArticle 
+        dbArticle: reverse
       })
     })
 

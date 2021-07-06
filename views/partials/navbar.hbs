@@ -3,7 +3,7 @@
   <div class=" container-fluid">
     {{!-- ICONE DE SITE HREF HOME --}}
     <a href="/" class="pb-2">
-      <i class=" pe-2  ps-2"><img style="height: 40px;" src="assets/images/ankh.svg" alt=""></i>
+      <i class=" pe-2  ps-2"><img height="40px" src="assets/images/ankh.svg" alt=""></img></i>
     </a>
     {{!-- TITRE NAVBAR --}}
     <h6 class="pe-5 fw-bold text-center text-white">Inf0 Sec {{#if admin}} <span class="text-danger"> ADMIN </span> {{/if}} </h6>
@@ -17,32 +17,32 @@
       <span class="navbar-toggler-icon rounded btn-sm"></span>
     </button>
     {{!-- BOUTONS DE LA NAVBAR --}}
-    <div class="collapse navbar-collapse pe-2" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse pe-2 rounded-pill" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {{!-- BOUTON ACCUEIL --}}
         <li class="nav-item border-2 border-primary pe-2">
-          <a class="nav-link active  border-2 ps-1  text-white" aria-current="page" href="/">Accueil</a>
+          <a class="a nav-link active  border-2 ps-1  text-white" aria-current="page" href="/">Accueil</a>
         </li>
         {{!-- BOUTON CONTACT --}}
         <li class="nav-item pe-2 pb-1">
-          <a class="nav-link   text-white ps-1" href="/contact">Contact</a>
+          <a class="a nav-link   text-white ps-1" href="/contact">Contact</a>
         </li>
         {{!-- BOUTON AVIS --}}
         <li class="nav-item pe-2 pb-1">
-          <a class="nav-link text-white ps-1" href="/avis">Avis</a>
+          <a class="a nav-link text-white ps-1" href="/avis">Avis</a>
         </li>
         {{!-- BOUTON BLOG --}}
         <li class="nav-item pe-2 pb-1">
-          <a class="nav-link text-white ps-1" href="/blog">Blog</a>
+          <a class="a nav-link text-white ps-1" href="/blog">Blog</a>
         </li>
         {{#if admin}}
         <li class="nav-item pe-2 pb-1">
-          <a class="nav-link text-danger ps-1" href="/admin">Admin</a>
+          <a class="a nav-link text-danger ps-1" href="/admin">Admin</a>
         </li>
         {{/if}}
         {{#if user}}
         <li class="nav-item pe-2 pb-1">
-          <a class="nav-link text-primary ps-1" href="/account">Mon Compte</a>
+          <a class="a nav-link text-primary ps-1" href="/account">Mon Compte</a>
         </li>
         {{/if}}
       </ul>
@@ -61,7 +61,7 @@
       <a class="logout btn text-white rounded-pill fw-bolder border-2 border-primary" href="/logout">Se déconnecter</a>
       {{else }}
       <div class="pe-2 ">
-        <a class="pe-2 ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary" href="/auth">Se connecter
+        <a class="pe-2 a ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary" href="/auth">Se connecter
         </a>
       </div>
       {{/if}}
@@ -71,11 +71,15 @@
 
 
 <style>
-  a:hover {
+  .a:hover {
     color: #0275d8 !important;
+    background-color: white;
+    border-radius: 5px 5px 5px;
+    box-shadow: white;
   }
 
   .logout:hover {
     color: rgb(150, 27, 27) !important;
+    background-color: white;
   }
 </style>

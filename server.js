@@ -17,8 +17,36 @@ expressSession = require('express-session'),
 let ifaces = require('os').networkInterfaces();
 let helmet = require('helmet');
 
+
 app.use(helmet());
 app.disable('x-powered-by');
+
+
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
+app.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF],
+        'script-src': [SELF, INLINE,'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'],
+        'style-src': [SELF, INLINE, 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'],
+        'worker-src': [NONE],
+        'img-src': ['data:', 'localhost:4000'],
+        'block-all-mixed-content': true
+    }
+}));
+
+// const { expressCspHeader, NONCE } = require('express-csp-header');
+
+// app.use(expressCspHeader({
+//     directives: {
+//         'script-src': [NONCE]
+//     }
+// }));
+// express will send header with a random nonce key "Content-Security-Policy: script-src 'nonce-pSQ9TwXOMI+HezKshnuRaw==';"
+
+// app.use((req, res) => {
+//     console.log(req.nonce); // 'pSQ9TwXOMI+HezKshnuRaw=='
+// })
 
 // Iterate over interfaces ...
 let adresses = Object.keys(ifaces).reduce(function (result, dev) {
