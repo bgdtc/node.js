@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `inf0_sec`.`user` (
   `is_banned` TINYINT NOT NULL DEFAULT 0,
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -49,11 +50,12 @@ CREATE TABLE IF NOT EXISTS `inf0_sec`.`articles` (
   `image` VARCHAR(255) NULL,
   `title` VARCHAR(100) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
-  `content` VARCHAR(255) NOT NULL,
+  `content` TEXT NOT NULL,
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `is_published` TINYINT NOT NULL DEFAULT 0,
   `is_banned` TINYINT NOT NULL DEFAULT 0,
+  `name` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_articles_user1_idx` (`author_id` ASC) VISIBLE,
   CONSTRAINT `fk_articles_user1`
@@ -76,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `inf0_sec`.`comments` (
   `is_banned` TINYINT NOT NULL DEFAULT 0,
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `title` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comments_user_idx` (`author_id` ASC) VISIBLE,
   CONSTRAINT `fk_comments_user`
@@ -98,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `inf0_sec`.`messages` (
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_read` TINYINT NOT NULL DEFAULT 0,
   `is_banned` TINYINT NOT NULL DEFAULT 0,
+  `full_name` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

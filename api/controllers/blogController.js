@@ -1,10 +1,5 @@
 // CONTROLLEUR BLOG 
 
-// IMPORT DB SIMULÉE ET REVERSE 
-
-const simulater = require('../simulate.json')
-const rSimulate = simulater.reverse()
-
 //AFFICHAGE DE LA PAGE BLOG EN FONCTION DU STATUT 
 exports.getBlog = async (req, res) => {
   //si utilisateur pas connecté

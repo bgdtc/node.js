@@ -15,6 +15,10 @@ expressSession = require('express-session'),
 
 // Network interfaces
 let ifaces = require('os').networkInterfaces();
+let helmet = require('helmet');
+
+app.use(helmet());
+app.disable('x-powered-by');
 
 // Iterate over interfaces ...
 let adresses = Object.keys(ifaces).reduce(function (result, dev) {

@@ -23,17 +23,17 @@ module.exports = {
     },
     //MODIFY ARTICLE BY ID ADMIN
     modifyArticle: async (req, res) => {
-      
+
         if (!req.file) {
 
             console.log('ARTICLE controller modify article:', req.body)
             const sql = `UPDATE articles 
                           SET
-                             author_id = '22',
-                             title  = '${req.body.title}',
-                             description     = '${req.body.description}',
-                             content = '${req.body.content}'
-                          WHERE id = ${req.params.id}`;
+                             author_id = "22",
+                             title  = "${req.body.title}",
+                             description     = "${req.body.description}",
+                             content = "${req.body.content}"
+                          WHERE id = "${req.params.id}";`
 
             await query(sql)
             res.redirect('/admin')
@@ -41,15 +41,17 @@ module.exports = {
         } else {
             console.log('sofizefihjz: ', req.file)
             console.log('ARTICLE controller modify article:', req.body)
-            const dbArticle = await query(`SELECT * FROM articles where id = ${req.params.id}`)
+            const dbArticle = await query(`SELECT * FROM articles where id = '${req.params.id}'`)
             const sql = `UPDATE articles 
                           SET
-                             author_id = '22',
-                             image  = '/assets/images/${req.file.completed}',
-                             title  = '${req.body.title}',
-                             description     = '${req.body.description}',
-                             content = '${req.body.content}'
-                          WHERE id = ${req.params.id}`;
+                             author_id = "${req.session.id}",
+                             name = "${req.file.completed}",
+                             image  = "/assets/images/${req.file.completed}",
+                             title  = "${req.body.title}",
+                             description  = "${req.body.description}",
+                             content = "${req.body.content}"
+                          WHERE id = "${req.params.id}";
+                        `
 
             console.log('GRGERGERG:', dbArticle[0].name)
             await query(sql)
@@ -70,37 +72,35 @@ module.exports = {
         console.log('ARTICLES controller add article: ', req.body)
 
         if (req.body.checked === 'on') {
-            if(req.file) {
-                 
+            if (req.file) {
+
                 const sql = `INSERT INTO articles (author_id, image,name, title, description, content)
-                VALUES ('22',
-                 '/assets/images/${req.file.completed}',
-                 '${req.file.completed}', 
-                  '${req.body.title}',
-                   '${req.body.description}',
-                    '${req.body.content}');
+                VALUES ("22",
+                 "/assets/images/${req.file.completed}",
+                 "${req.file.completed}", 
+                  "${req.body.title}",
+                   "${req.body.description}",
+                    "${req.body.content}");
                `
-                image: `/assets/images/${req.file.completed}`
-                name: req.file.completed
                 await query(sql)
-    
+
                 res.redirect('/admin')
 
 
 
             } else {
                 const sql = `INSERT INTO articles (author_id, title, description, content)
-            VALUES ('22',
-              '${req.body.title}',
-               '${req.body.description}',
-                '${req.body.content}');
+            VALUES ("22",
+              "${req.body.title}",
+               "${req.body.description}",
+                "${req.body.content}");
            `
-            await query(sql)
+                await query(sql)
 
-            res.redirect('/admin')
+                res.redirect('/admin')
             }
 
-           
+
         } else {
             res.redirect('/admin')
         }
