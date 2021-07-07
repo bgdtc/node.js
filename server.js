@@ -3,6 +3,7 @@ require('dotenv').config()
 const
     express = require('express'),
     app = express(),
+    morgan = require('morgan'),
     cors = require('cors'),
     methodOverride = require('method-override')
 expressSession = require('express-session'),
@@ -21,6 +22,7 @@ let helmet = require('helmet');
 app.use(helmet());
 app.disable('x-powered-by');
 
+app.use(morgan('dev'))
 
 const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
@@ -146,7 +148,13 @@ app.engine('hbs', hbs({
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
+//Router dirige chemins sur les controllers
+const ROUTER_API = require('./api/router_api')
+app.use('/api/v1', ROUTER_API)
+
 //Run express notre projet
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });
+
+module.exports = app
