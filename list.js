@@ -12,4 +12,4 @@ exec('nmap localhost', (error, stdout, stderr) => {
   }
 
   console.log(`stdout:\n${stdout}`);
-});
+})
