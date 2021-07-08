@@ -8,12 +8,12 @@ module.exports = {
     // DELETE USER BY ID ADMIN
     deleteUserById: async (req, res) => {
 
-        let sql = `DELETE FROM user  WHERE id = ?`;
-        let values = [req.params.id];
+        let sql = `DELETE FROM user  WHERE id = ${req.params.id}`;
+        await query(sql)
 
-        await query(sql, [values])
-
-        res.redirect('/admin')
+        res.json({
+            message: await  query(`SELECT * FROM user`)
+        })
     },
     // ADD USER ADMIN
     addUser: async (req, res) => {

@@ -15,6 +15,20 @@ expressSession = require('express-session'),
 
 
 // Network interfaces
+
+// const expressOasGenerator = require('express-oas-generator');
+// expressOasGenerator.init(app, {});
+
+// Swagger
+const swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./api/swagger.json')
+
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
+
 let ifaces = require('os').networkInterfaces();
 let helmet = require('helmet');
 
@@ -157,4 +171,4 @@ app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });
 
-module.exports = app
+module.exports = { app, db, query }

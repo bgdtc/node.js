@@ -1,0 +1,442 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "INF0_SEC API REST DOC",
+      "version": "1.0.1",
+      "license": {
+        "name": "INFO_SEC API ROUTER"
+      },
+      "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3).\n\ninf0_sec"
+    },
+    "paths": {
+      "/api/v1/CGU": {
+        "get": {
+          "summary": "/api/v1/CGU",
+          "responses": {},
+          "tags": ["CGU"]
+        }
+      },
+      "/api/v1/404": {
+        "get": {
+          "summary": "/api/v1/404",
+          "responses": {},
+          "tags": ["404"]
+        }
+      },
+      "/api/v1/mentions_legales": {
+        "get": {
+          "summary": "/api/v1/mentions_legales",
+          "responses": {},
+          "tags": ["MENTIONS LÉGALES"]
+        }
+      },
+      "/api/v1": {
+        "get": {
+          "summary": "/api/v1",
+          "responses": {},
+          "tags": ["HOME GET ARTICLE"]
+        }
+      },
+      "/api/v1/blog": {
+        "get": {
+          "summary": "/api/v1/blog",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/html": {
+                  "schema": {
+                    "type": "string",
+                    "example": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <!--ENCODAGE-->\n  <meta charset=\"utf-8\">\n  <!--RESPONSIVE-->\n\n\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <!--FONTS-->\n  <style>\n    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,700&display=swap');\n  </style>\n  <!--FAVICON -->\n  <link rel=\"shortcut icon\" href=\"/assets/images/download.png\" />\n  <!--STYLE-->\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\n    integrity=\"sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x\" crossorigin=\"anonymous\">\n\n\n\n  <style>\n    @charset \"UTF-8\";\n\n    @media screen and (max-width: 640px) {\n      .test {\n        font-size: 10px;\n\n      }\n\n      .test1 {\n        height: 100px;\n      }\n    }\n\n    /* width */\n    ::-webkit-scrollbar {\n      width: 13px;\n    }\n\n    /* Track */\n    ::-webkit-scrollbar-track {\n      box-shadow: inset 0 0 5px grey;\n      border-radius: 5px 5px 10px 10px;\n\n\n    }\n\n    /* Handle */\n    ::-webkit-scrollbar-thumb {\n      background: rgb(21, 108, 179);\n      border-radius: ;\n    }\n\n    ::-webkit-scrollbar-track-piece {\n      background: #212529;\n      border-width: 10px;\n    }\n\n    /* Handle on hover */\n    ::-webkit-scrollbar-thumb:hover {\n      background: #162633;\n    }\n  </style>\n\n  <!--TITRE BARRE DE NAVIGATION-->\n  <title>Inf0-sec</title>\n</head>\n<!--/HEAD-->\n\n<body class=\"text-primary\"><nav class=\"navbar  bg-dark navbar-light navbar-expand-md border-bottom border-primary border-2 fixed-top  pb-1\">\n  <div class=\" container-fluid\">\n    <a href=\"/\" class=\"pb-2\">\n      <i class=\" pe-2  ps-2\"><img height=\"40px\" src=\"assets/images/ankh.svg\" alt=\"\"></img></i>\n    </a>\n    <h6 class=\"pe-5 fw-bold text-center text-white\">Inf0 Sec  </h6>\n   \n   \n \n    <button class=\"fs-6 navbar-toggler bg-primary rounded\" type=\"button\" data-bs-toggle=\"collapse\"\n      data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"\n      aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon rounded btn-sm\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse pe-2 rounded-pill\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n        <li class=\"nav-item border-2 border-primary pe-2\">\n          <a class=\"a nav-link active  border-2 ps-1  text-white\" aria-current=\"page\" href=\"/\">Accueil</a>\n        </li>\n        <li class=\"nav-item pe-2 pb-1\">\n          <a class=\"a nav-link   text-white ps-1\" href=\"/contact\">Contact</a>\n        </li>\n        <li class=\"nav-item pe-2 pb-1\">\n          <a class=\"a nav-link text-white ps-1\" href=\"/avis\">Avis</a>\n        </li>\n        <li class=\"nav-item pe-2 pb-1\">\n          <a class=\"a nav-link text-white ps-1\" href=\"/blog\">Blog</a>\n        </li>\n      </ul>\n      <div class=\"pe-2 pt-2 pb-2 \">\n        <select\n          class=\"pe-2 nav-item bg-transparent nav-link border-primary border-2 text-white pe-2 rounded-pill fw-bolder\">\n          <option class=\"text-primary\">Français</option>\n          <option class=\"text-primary\">русский</option>\n          <option class=\"text-primary\">Portuguese</option>\n        </select>\n\n      </div>\n      <div class=\"pe-2 \">\n        <a class=\"pe-2 a ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary\" href=\"/auth\">Se connecter\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n\n<style>\n  .a:hover {\n    color: #0275d8 !important;\n    background-color: white;\n    border-radius: 5px 5px 5px;\n    box-shadow: white;\n  }\n\n  .logout:hover {\n    color: rgb(150, 27, 27) !important;\n    background-color: white;\n  }\n</style>\n\n<div style=\"margin-top: 10vh\" class=\"w-100 text-center\"> Vous devez être connecté pour voir les articles </div>\n\n<section class=\" container  pt-5\">\n  <div class=\" pb-5 \">\n    <div class=\" pt-5 border-bottom border-1 border-primary\">\n      <h3 class=\"tist text-center bg-gradient fw-bold rounded\">Articles récents</h3>\n    </div>\n    <!-- AFFICHAGE CARDS DB -->\n    <div class=\"row\">\n      <form class=\"d-flex pt-5 \">\n        <input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\n        <button class=\"btn btn-outline-success\" type=\"submit\">Search</button>\n      </form>\n    </div>\n  </div>\n</section>\n<script>\n  function checkID() {\n    console.log(document.getElementById('id').innerText)\n    console.log('bonjour')\n  }\n</script>\n\n<style>\n  .tes:hover {\n    background-color: white !important;\n  }\n</style>\n</div>\n\n<div class=\"modal fade\" id=\"cookieModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\n    aria-hidden=\"true\">\n    <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"modal-body\">\n                <div class=\"notice d-flex justify-content-between align-items-center\">\n                    <div class=\"cookie-text\">This website uses cookies to personalize content and analyse traffic in\n                        order to offer you a better experience.</div>\n                    <div class=\"buttons d-flex flex-column flex-lg-row\">\n                        <a href=\"#a\" class=\"btn btn-success btn-sm\" data-dismiss=\"modal\">I accept</a>\n                        <a href=\"#a\" class=\"btn btn-secondary btn-sm\" data-dismiss=\"modal\">Learn More</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div><!--FOOTER-->\n<footer class=\" bg-dark border-2 border-top border-primary fixed-bottom\">\n   <!--CONTENU FOOTER-->\n   <div class=\"\">\n      <div  class=\"row pe-5 pb-2  text-center\">\n\n         <div class=\" text-start pt-2 border-primary\">\n            <a href=\"https://fb.com\"><i class=\"h4   ps-3 pe-2 bg-blue\"><img height=\"30px\"\n                     src=\"assets/images/facebook.png\" alt=\"\"></i></a>\n            <a href=\"https://instagram.com\"><i class=\"h4  pe-2  bg-blue\"><img height=\"30px\"\n                     src=\"assets/images/instagram.png\" alt=\"\"></i></a>\n            <a href=\"https://twitter.com/\"><i class=\"h4  pe-2 bg-blue\"><img height=\"30px\"\n                     src=\"assets/images/twitter.png\" alt=\"\"></i></a>\n            <a class=\" pe-2\" href=\"/feed\"><i class=\"text-white pe-2\"> <img height=\"30px\"\n                     src=\"assets/images/rss.png\" alt=\"\"></i></a>\n            <a class=\"text-white\" href=\"/mentions_legales\"><i class=\"fas fa-xss\">Mentions légales</i> </a>\n         </div>\n\n      </div>\n\n   </div>\n\n\n</footer>\n\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js\"\n  integrity=\"sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4\" crossorigin=\"anonymous\"></script>\n</body>\n\n</html>"
+                  }
+                }
+              }
+            }
+          },
+          "tags": ["GET ARTICLES"]
+        }
+      },
+      "/api/v1/article/{id}": {
+        "get": {
+          "summary": "/api/v1/article/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["GET ARTICLE ID"]
+        },
+        "delete": {
+          "summary": "/api/v1/article/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["DELETE ARTICLE ID"]
+        },
+        "put": {
+          "summary": "/api/v1/article/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["MODIFY ARTICLE ID"]
+        },
+        "post": {
+          "summary": "/api/v1/article/{id}",
+          "responses": {},
+          "tags": ["POST COMMENT ARTICLE"]
+        }
+      },
+      "/api/v1/contact": {
+        "get": {
+          "summary": "/api/v1/contact",
+          "responses": {},
+          "tags": ["GET PAGE CONTACT"]
+        },
+        "post": {
+          "summary": "/api/v1/contact",
+          "responses": {},
+          "tags": ["SEND CONTACT MAIL"]
+        }
+      },
+      "/api/v1/editPassword/{id}": {
+        "post": {
+          "summary": "/api/v1/editPassword/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["EDIT PASSWORD USER"]
+        }
+      },
+      "/api/v1/verify/{id}": {
+        "get": {
+          "summary": "/api/v1/verify/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["GET PAGE VERIFY USER"]
+        },
+        "post": {
+          "summary": "/api/v1/verify/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["POST VERIFY USER"]
+        }
+      },
+      "/api/v1/avis": {
+        "get": {
+          "summary": "/api/v1/avis",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/html": {
+                  "schema": {
+                    "type": "string",
+                    "example": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <!--ENCODAGE-->\n  <meta charset=\"utf-8\">\n  <!--RESPONSIVE-->\n\n\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <!--FONTS-->\n  <style>\n    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,700&display=swap');\n  </style>\n  <!--FAVICON -->\n  <link rel=\"shortcut icon\" href=\"/assets/images/download.png\" />\n  <!--STYLE-->\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\n    integrity=\"sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x\" crossorigin=\"anonymous\">\n\n\n\n  <style>\n    @charset \"UTF-8\";\n\n    @media screen and (max-width: 640px) {\n      .test {\n        font-size: 10px;\n\n      }\n\n      .test1 {\n        height: 100px;\n      }\n    }\n\n    /* width */\n    ::-webkit-scrollbar {\n      width: 13px;\n    }\n\n    /* Track */\n    ::-webkit-scrollbar-track {\n      box-shadow: inset 0 0 5px grey;\n      border-radius: 5px 5px 10px 10px;\n\n\n    }\n\n    /* Handle */\n    ::-webkit-scrollbar-thumb {\n      background: rgb(21, 108, 179);\n      border-radius: ;\n    }\n\n    ::-webkit-scrollbar-track-piece {\n      background: #212529;\n      border-width: 10px;\n    }\n\n    /* Handle on hover */\n    ::-webkit-scrollbar-thumb:hover {\n      background: #162633;\n    }\n  </style>\n\n  <!--TITRE BARRE DE NAVIGATION-->\n  <title>Inf0-sec</title>\n</head>\n<!--/HEAD-->\n\n<body class=\"text-primary\"><nav class=\"navbar  bg-dark navbar-light navbar-expand-md border-bottom border-primary border-2 fixed-top  pb-1\">\n  <div class=\" container-fluid\">\n    <a href=\"/\" class=\"pb-2\">\n      <i class=\" pe-2  ps-2\"><img height=\"40px\" src=\"assets/images/ankh.svg\" alt=\"\"></img></i>\n    </a>\n    <h6 class=\"pe-5 fw-bold text-center text-white\">Inf0 Sec  </h6>\n   \n   \n \n    <button class=\"fs-6 navbar-toggler bg-primary rounded\" type=\"button\" data-bs-toggle=\"collapse\"\n      data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"\n      aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon rounded btn-sm\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse pe-2 rounded-pill\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n        <li class=\"nav-item border-2 border-primary pe-2\">\n          <a class=\"a nav-link active  border-2 ps-1  text-white\" aria-current=\"page\" href=\"/\">Accueil</a>\n        </li>\n        <li class=\"nav-item pe-2 pb-1\">\n          <a class=\"a nav-link   text-white ps-1\" href=\"/contact\">Contact</a>\n        </li>\n        <li class=\"nav-item pe-2 pb-1\">\n          <a class=\"a nav-link text-white ps-1\" href=\"/avis\">Avis</a>\n        </li>\n        <li class=\"nav-item pe-2 pb-1\">\n          <a class=\"a nav-link text-white ps-1\" href=\"/blog\">Blog</a>\n        </li>\n      </ul>\n      <div class=\"pe-2 pt-2 pb-2 \">\n        <select\n          class=\"pe-2 nav-item bg-transparent nav-link border-primary border-2 text-white pe-2 rounded-pill fw-bolder\">\n          <option class=\"text-primary\">Français</option>\n          <option class=\"text-primary\">русский</option>\n          <option class=\"text-primary\">Portuguese</option>\n        </select>\n\n      </div>\n      <div class=\"pe-2 \">\n        <a class=\"pe-2 a ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary\" href=\"/auth\">Se connecter\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n\n<style>\n  .a:hover {\n    color: #0275d8 !important;\n    background-color: white;\n    border-radius: 5px 5px 5px;\n    box-shadow: white;\n  }\n\n  .logout:hover {\n    color: rgb(150, 27, 27) !important;\n    background-color: white;\n  }\n</style>\n\n\n<div class=\"container  pt-5\">\n  <div class=\" pt-5 pb-3 d-flex row justify-content-around\">\n    <h1 class=\"text-center\">Avis</h1>\n  </div>\n</div><section class=\"bg-gradient pb-5 container-fluid\">\n    <div class=\"container pb-5\">\n        <form action=\"/avis\" method=\"POST\" class=\" pt-3  row  border-3 \">\n            <div class=\"col-12 pb-5\">\n                <label for=\"title\" class=\"form-label text-dark\">Le titre de votre avis:</label>\n                <input type=\"text\" class=\"form-control bg-dark text-primary\" style=\"width: 250px;\" name=\"title\"\n                    id=\"title\">\n                <label for=\"avis\" class=\"form-label text-dark\">Votre Avis:</label>\n                <textarea name=\"content\" class=\"form-control bg-dark text-primary\" id=\"avis\" cols=\"30\" rows=\"10\"\n                    required></textarea>\n            </div>\n            <div class=\"col-6 pt-2\">\n                <div class=\"form-check\">\n                    <input type=\"checkbox\" class=\"form-check-input \" id=\"check\" required>\n                    <label for=\"check\" class=\"form-check-label text-dark\">\n                        J'accepte les <span class=\"text-primary\"><a href=\"/\">CGU</a></span> !\n                    </label>\n                </div>\n            </div>\n            <div class=\"alert alert-danger\" role=\"alert\">\n                Seuls les <a href=\"/auth\" class=\"alert-link\">utilisateurs connectés</a> peuvent poster un avis.\n            </div>\n\n        </form>\n\n    </div>\n\n\n\n\n</section>\n</div>\n\n<div class=\"modal fade\" id=\"cookieModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\n    aria-hidden=\"true\">\n    <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"modal-body\">\n                <div class=\"notice d-flex justify-content-between align-items-center\">\n                    <div class=\"cookie-text\">This website uses cookies to personalize content and analyse traffic in\n                        order to offer you a better experience.</div>\n                    <div class=\"buttons d-flex flex-column flex-lg-row\">\n                        <a href=\"#a\" class=\"btn btn-success btn-sm\" data-dismiss=\"modal\">I accept</a>\n                        <a href=\"#a\" class=\"btn btn-secondary btn-sm\" data-dismiss=\"modal\">Learn More</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div><!--FOOTER-->\n<footer class=\" bg-dark border-2 border-top border-primary fixed-bottom\">\n   <!--CONTENU FOOTER-->\n   <div class=\"\">\n      <div  class=\"row pe-5 pb-2  text-center\">\n\n         <div class=\" text-start pt-2 border-primary\">\n            <a href=\"https://fb.com\"><i class=\"h4   ps-3 pe-2 bg-blue\"><img height=\"30px\"\n                     src=\"assets/images/facebook.png\" alt=\"\"></i></a>\n            <a href=\"https://instagram.com\"><i class=\"h4  pe-2  bg-blue\"><img height=\"30px\"\n                     src=\"assets/images/instagram.png\" alt=\"\"></i></a>\n            <a href=\"https://twitter.com/\"><i class=\"h4  pe-2 bg-blue\"><img height=\"30px\"\n                     src=\"assets/images/twitter.png\" alt=\"\"></i></a>\n            <a class=\" pe-2\" href=\"/feed\"><i class=\"text-white pe-2\"> <img height=\"30px\"\n                     src=\"assets/images/rss.png\" alt=\"\"></i></a>\n            <a class=\"text-white\" href=\"/mentions_legales\"><i class=\"fas fa-xss\">Mentions légales</i> </a>\n         </div>\n\n      </div>\n\n   </div>\n\n\n</footer>\n\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js\"\n  integrity=\"sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4\" crossorigin=\"anonymous\"></script>\n</body>\n\n</html>"
+                  }
+                }
+              }
+            },
+            "304": {
+              "description": ""
+            }
+          },
+          "tags": ["GET AVIS"]
+        },
+        "post": {
+          "summary": "/api/v1/avis",
+          "responses": {},
+          "tags": ["POST AVIS"]
+        }
+      },
+      "/api/v1/comment/{id}": {
+        "delete": {
+          "summary": "/api/v1/comment/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["DELETE AVIS/COMMENTS"]
+        },
+        "put": {
+          "summary": "/api/v1/comment/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["MODIFY AVIS/COMMENT"]
+        }
+      },
+      "/api/v1/account": {
+        "get": {
+          "summary": "/api/v1/account",
+          "responses": {
+            "304": {
+              "description": ""
+            }
+          },
+          "tags": ["GET PAGE ACCOUNT"]
+        }
+      },
+      "/api/v1/account/user/{id}": {
+        "get": {
+          "summary": "/api/v1/account/user/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["GET PAGE ACCOUNT USER"]
+        },
+        "put": {
+          "summary": "/api/v1/account/user/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["MODIFY USER ACCOUNT"]
+        }
+      },
+      "/api/v1/account/{id}": {
+        "put": {
+          "summary": "/api/v1/account/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["MODIFY ACCOUNT"]
+        },
+        "delete": {
+          "summary": "/api/v1/account/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["DELETE COMMENT"]
+        }
+      },
+      "/api/v1/feed": {
+        "get": {
+          "summary": "/api/v1/feed",
+          "responses": {},
+          "tags": ["GET PAGE FEED RSS"]
+        }
+      },
+      "/api/v1/admin": {
+        "get": {
+          "summary": "/api/v1/admin",
+          "responses": {},
+          "tags": ["GET PAGE ADMIN"]
+        }
+      },
+      "/api/v1/article": {
+        "post": {
+          "summary": "/api/v1/article",
+          "responses": {},
+          "tags": ["POST ARTICLE"]
+        }
+      },
+      "/api/v1/user/{id}": {
+        "delete": {
+          "summary": "/api/v1/user/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["DELETE USER"]
+        },
+        "put": {
+          "summary": "/api/v1/user/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["MODIFY USER"]
+        }
+      },
+      "/api/v1/user/add": {
+        "post": {
+          "summary": "/api/v1/user/add",
+          "responses": {},
+          "tags": ["ADD USER"]
+        }
+      },
+      "/api/v1/auth": {
+        "get": {
+          "summary": "/api/v1/auth",
+          "responses": {},
+          "tags": ["GET LOGIN PAGE"]
+        },
+        "post": {
+          "summary": "/api/v1/auth",
+          "responses": {},
+          "tags": ["LOGIN"]
+        }
+      },
+      "/api/v1/auth/register": {
+        "post": {
+          "summary": "/api/v1/auth/register",
+          "responses": {},
+          "tags": ["REGISTER"]
+        }
+      },
+      "/api/v1/auth/lost_pwd": {
+        "post": {
+          "summary": "/api/v1/auth/lost_pwd",
+          "responses": {},
+          "tags": ["LOST PASSWORD"]
+        }
+      },
+      "/api/v1/auth/lost_pwd/{id}": {
+        "get": {
+          "summary": "/api/v1/auth/lost_pwd/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["LOST PASSWORD GET MODIF"]
+        }
+      },
+      "/api/v1/logout": {
+        "get": {
+          "summary": "/api/v1/logout",
+          "responses": {},
+          "tags": ["LOGOUT"]
+        }
+      },
+      "/api/v1/messages/{id}": {
+        "delete": {
+          "summary": "/api/v1/messages/{id}",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {},
+          "tags": ["DELETE MESSAGE "]
+        }
+      },
+      "/api/v1/messages": {
+        "post": {
+          "summary": "/api/v1/messages",
+          "responses": {},
+          "tags": ["POST MESSAGE"]
+        }
+      }
+    },
+    "tags": []
+  }

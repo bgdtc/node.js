@@ -9,23 +9,27 @@ module.exports = {
         let sql = `DELETE FROM comments  WHERE id = ?`;
         let values = [req.params.id];
 
-        await query(sql, [values])
+        
 
-        res.redirect('/admin')
+        res.json({
+            message: await query(sql, [values]) 
+        })
     },
     //MODIFY COMMENT BY ID ADMIN 
     modifyComment: async (req, res) => {
 
         const sql = `UPDATE comments 
                       SET
-                         content  = '${req.body.content}',
-                         is_avis  = '${req.body.is_avis}',
-                         is_banned     = '${req.body.is_banned}',
+                         content  = 'update test comment',
+                         is_avis  = '1',
+                         is_banned     = '0',
                          update_date = CURRENT_TIMESTAMP
                       WHERE id = ${req.params.id};`
-        await query(sql)
+       
 
-        res.redirect('/admin#comments')
+        res.json({
+            message: await query(sql) 
+        })
     },
     getComment: async (req, res) => {
         const sql = `SELECT * FROM comments`

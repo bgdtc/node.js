@@ -24,30 +24,30 @@ let mailOptions
 
 module.exports = {
     get: async (req, res) => {
-        res.render('contact')
+        res.json('contact')
     },
     sendContact: async (req, res) => {
-
-        console.log('CONTROLLER sendContact:', req.body)
 
         const mailOptions = {
             from: 'isec237@gmail.com',
             to: 'isec237@gmail.com',
-            subject: req.body.subject,
-            html: `<h3>${req.body.content}</h3>`
+            subject: 'sujettest',
+            html: `<h3>htmltest</h3>`
         }
+        
+       
 
-        transporter.sendMail(mailOptions, (err, info) => {
+        transporter.sendMail(mailOptions, async (err, info) => {
             if (err) console.log(err)
-            else {
-                console.log(info)
-                res.render('contact', {
-                    success: 'votre message à bien été transmit'
-                })
-            }
+            console.log(info)
+           
+            res.json({
+                message: await query(`SELECT * FROM comments`)
+            })
+
         })
 
-        const sql = `INSERT INTO messages (subject, content, email, full_name) VALUES ('${req.body.subject}', '${req.body.content}', '${req.body.email}', '${req.body.full_name}')`
-        await query(sql)
+        const sql = `INSERT INTO messages (subject, content, email, full_name) VALUES ('test', 'tessst', 'ttteest', 'ttttestt')`
+        await query(sql) 
     }
 }
