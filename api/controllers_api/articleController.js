@@ -25,14 +25,14 @@ module.exports = {
     },
     //MODIFY ARTICLE BY ID ADMIN
     modifyArticle: async (req, res) => {
+            let rand = Math.floor(Math.random() * 100 )
             console.log('ARTICLE controller modify article:', req.body)
             const sql = `UPDATE articles 
                           SET
-                             author_id = "26",
-                             title  = "modified",
-                             description     = "modified",
-                             content = "modified"
-                          WHERE id = '${req.params.id}';`
+                             title  = "titre${rand}",
+                             description     = "description${rand}",
+                             content = "contenu${rand}"
+                          WHERE id = '${req.body.id}';`
 
            
             res.status(200).json({
@@ -45,7 +45,7 @@ module.exports = {
     addArticle: async (req, res) => {
         res.json({
             message: await query(`INSERT INTO articles (author_id, title, description, content)
-                    VALUES ("26",
+                    VALUES ("1",
                       "titre",
                        "description",
                         "content");

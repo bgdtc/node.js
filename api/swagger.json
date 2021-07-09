@@ -72,20 +72,17 @@
           "responses": {},
           "tags": ["GET ARTICLE ID"]
         },
-        "delete": {
-          "summary": "/api/v1/article/{id}",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {},
-          "tags": ["DELETE ARTICLE ID"]
+        "/api/v1/contact": {
+          "get": {
+            "summary": "/api/v1/contact",
+            "responses": {},
+            "tags": ["GET PAGE CONTACT"]
+          },
+          "post": {
+            "summary": "/api/v1/contact",
+            "responses": {},
+            "tags": ["SEND CONTACT MAIL"]
+          }
         },
         "put": {
           "summary": "/api/v1/article/{id}",
@@ -108,17 +105,20 @@
           "tags": ["POST COMMENT ARTICLE"]
         }
       },
-      "/api/v1/contact": {
-        "get": {
-          "summary": "/api/v1/contact",
-          "responses": {},
-          "tags": ["GET PAGE CONTACT"]
-        },
-        "post": {
-          "summary": "/api/v1/contact",
-          "responses": {},
-          "tags": ["SEND CONTACT MAIL"]
-        }
+      "delete": {
+        "summary": "/api/v1/article/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": ["DELETE ARTICLE ID"]
       },
       "/api/v1/editPassword/{id}": {
         "post": {

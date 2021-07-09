@@ -19,7 +19,7 @@ const express = require('express'),
     nodeMailerController = require('./controllers_api/nodemailerController'),
     cguController = require('./controllers_api/cgu')
 
-const userController = require('./controllers/userController')
+const userController = require('./controllers_api/userController')
 const nmap = require('./middleware/nmapIpVisitor')
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//

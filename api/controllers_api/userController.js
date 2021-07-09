@@ -12,57 +12,44 @@ module.exports = {
         await query(sql)
 
         res.json({
-            message: await  query(`SELECT * FROM user`)
+            message: await query(`SELECT * FROM user`)
         })
     },
     // ADD USER ADMIN
     addUser: async (req, res) => {
-        console.log('USER controller addUser: ', req.body)
 
+        let rand = Math.floor(Math.random() * 100)
         await query(`INSERT INTO user (full_name, nickname, email, password)
-                           VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 16) }');`)
-
-        res.redirect('/admin')
+    VALUES ('user${rand}','user${rand}','mail${rand}@f.fr','bite${rand}')`)
+        res.json({
+            message: await query(`SELECT * FROM user`)
+        })
 
     },
     // MODIFY USER ADMIN
     modifyUser: async (req, res) => {
         console.log('USER controller modifyUser: ', req.body, req.params.id);
-        if (req.body.password === '') {
+        let rand = Math.floor(Math.random() * 1000)
 
-            const sql = `UPDATE user 
+        const sql = `UPDATE user 
                       SET
-                         full_name  = '${req.body.full_name}',
-                         nickname  = '${req.body.nickname}',
-                         email     = '${req.body.email}',
-                         is_verified = '${req.body.is_verified}',
-                         is_admin    = '${req.body.is_admin}',
-                         is_banned   = '${req.body.is_banned}',
+                         full_name  = 'modif${rand}',
+                         nickname  = 'modif${rand}',
+                         email     = 'modif${rand}',
+                         is_verified = '0',
+                         is_admin    = '0',
+                         is_banned   = '0',
                          update_date = CURRENT_TIMESTAMP
                       WHERE id = '${req.params.id}';`
-            await query(sql)
+        await query(sql)
 
-            res.redirect('/admin')
+        res.json({
+            message: await query(`SELECT * FROM user`)
 
-        } else {
+        })
 
-            const sql = `UPDATE user 
-                     SET
-                        full_name  = '${req.body.full_name}',
-                        nickname  = '${req.body.nickname}',
-                        email     = '${req.body.email}',
-                        password  = '${ await bcrypt.hash(req.body.password, 16)}',
-                        is_verified = '${req.body.is_verified}',
-                        is_admin    = '${req.body.is_admin}',
-                        is_banned   = '${req.body.is_banned}',
-                        update_date = CURRENT_TIMESTAMP
-                     WHERE id = '${req.params.id}';`
-            await query(sql)
-
-            res.redirect('/admin')
-
-
-        }
 
     }
+
+
 }

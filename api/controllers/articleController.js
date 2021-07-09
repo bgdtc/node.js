@@ -75,7 +75,7 @@ module.exports = {
             if (req.file) {
 
                 const sql = `INSERT INTO articles (author_id, image,name, title, description, content)
-                VALUES ("22",
+                VALUES ("1",
                  "/assets/images/${req.file.completed}",
                  "${req.file.completed}", 
                   "${req.body.title}",

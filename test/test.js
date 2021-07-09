@@ -4,7 +4,7 @@ const chaiHttp = require("chai-http");
 const should = require("chai").should();
 const expect = chai.expect;
 const path = require("path");
-
+const { query } = require("../server.js");  
 
 
 
