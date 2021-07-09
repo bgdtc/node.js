@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nodemon --exec 'mocha ./test/test.js'",
     "async": "nodemon --exec 'mocha ./test/test_async.js'",
-    "chai": "nodemon --exec 'mocha ./test/*Chai*.js'",
+    "chai": "nodemon --exec 'mocha ./test/testChai.js'",
     "sass": "sass --watch ./public/css/sass/index.sass:./public/css/style.css",
     "start": "node server.js",
     "dev": "nodemon server.js"

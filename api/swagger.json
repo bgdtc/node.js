@@ -285,7 +285,7 @@
             }
           ],
           "responses": {},
-          "tags": ["MODIFY ACCOUNT"]
+          "tags": ["MODIFY COMMENT ACCOUNT PANEL"]
         },
         "delete": {
           "summary": "/api/v1/account/{id}",

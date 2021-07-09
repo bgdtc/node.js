@@ -1,9 +1,4 @@
 let assert = require('assert');
-const chai = require("chai");
-const chaiHttp = require("chai-http");
-const should = require("chai").should();
-const expect = chai.expect;
-const path = require("path");
 const { query } = require("../server.js");  
 
 

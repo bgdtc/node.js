@@ -29,13 +29,15 @@ module.exports = {
     modifyComment: async (req, res) => {
         const sql = `UPDATE comments
                      SET
-                        content = '${req.body.content}',
+                        content = 'modifCOmmentuser',
                         update_date = CURRENT_TIMESTAMP
-                     WHERE id = ${req.params.id};`
+                     WHERE author_id = ${req.params.id};`
 
         await query(sql)
 
-        res.json(sql)
+        res.json({
+            message: await query(`SELECT * FROM comments WHERE author_id = ${req.params.id}`)
+        })
     },
     //DELETE COMMENTS POSTÉS PAR L'USER
     deleteCommentById: async (req, res) => {
@@ -49,52 +51,17 @@ module.exports = {
     },
     //MODIFY INFORMATIONS DU COMPTE
     modifyAccount: async (req, res) => {
-        //si le champ nouveau mot de passe n'est pas vide
-        if (req.body.NewPassword !== '') {
-            console.log('req file', req.file)
-            const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
-            const sql = `UPDATE user
-            SET 
-               full_name = '${req.body.full_name}',
-               email = '${req.body.email}',
-               password = '${ await bcrypt.hash(req.body.NewPassword, 16) }',
-               image = '/assets/images/${req.file.completed}',
-               name = '${req.file.completed}'
-           WHERE id = '${req.params.id}'`
+      let r = Math.floor(Math.random() * 1000)
+        await query(`UPDATE user
+                     SET full_name = 'modifFN_${r}',
+                         nickname = 'modifNN_${r}',
+                         email = 'modifEM_${r}',
+                         password = 'modifPS_${r}'
+                     WHERE id = ${req.params.id}`)
 
-            await query(sql)
-            //chemin vers l'image actuelle qui seras supprimée
-            pathImg = path.resolve("public/images/" + dbUser[0].name)
-            //fs de suppression de l'image en question
-            fs.unlink(pathImg, (err) => {
-                if (err) console.log(err)
-            })
-            res.json('/account', dbUser)
-            res.end()
-            //si le champ nouveau mot de passe est vide 
-        } else {
-            //meme chose qu'au dessus
-            console.log('req file', req.file)
-            const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
-            const sql = `UPDATE user
-            SET 
-               full_name = '${req.body.full_name}',
-               nickname = '${req.body.nickname}',
-               email = '${req.body.email}',
-               image = '/assets/images/${req.file.completed}',
-               name = '${req.file.completed}'
-           WHERE id = ${req.params.id}`
-
-            await query(sql)
-            pathImg = path.resolve("public/images/" + dbUser[0].name)
-            fs.unlink(pathImg, (err) => {
-                if (err) console.log(err)
-            })
-
-            res.json('/account', dbUser)
-
-        }
-
+        res.json({
+            message: await query(`SELECT * FROM user WHERE id = ${req.params.id}`)
+        })             
     }
 
 }

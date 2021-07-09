@@ -6,7 +6,7 @@ const { query } = require("../server.js");
 
 describe("MOCHA // CRUD // ARTICLE", () => {
     let user = {};
-    let id = 0;
+  
    
     beforeEach(async()  => {
         let rand = Math.floor(Math.random() * 100);

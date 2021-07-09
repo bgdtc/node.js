@@ -1,5 +1,25 @@
 //CONTROLLEUR ADMIN GET PAGE ADMIN
 
+//IMPORT DOTENV POUR LA CONFIG DE NODEMAILER
+require('dotenv').config()
+
+//IMPORT DE NODEMAILER
+const nodemailer = require('nodemailer')
+
+//CONFIGURATION DE NODEMAILER
+transporter = nodemailer.createTransport({
+    host: process.env.MAILER_HOST,
+    service: process.env.MAILER_SERVICE,
+    port: process.env.MAILER_PORT,
+    auth: {
+        user: process.env.MAILER_EMAIL,
+        pass: process.env.MAILER_PASS
+    }
+})
+
+//DÉCLARATION DES VARIABLES QUI SERONT UTILISÉS
+
+
 module.exports = {
     //GET PAGE ADMIN
     get: async (req, res) => {
@@ -34,20 +54,24 @@ module.exports = {
 
         const mailOptions = {
             from: 'isec237@gmail.com',
-            to: req.body.email,
-            subject: req.body.subject,
-            html: `<h3>${req.body.content}</h3>`
+            to: 'isec237@gmail.com',
+            subject: 'test',
+            html: `<h3>test</h3>`
         }
+
 
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) console.log(err)
             else {
                 console.log(info)
-                res.json('/admin')
             }
 
         })
-        const sql = `INSERT INTO messages (subject, content, email, full_name) VALUES ('${req.body.subject}', '${req.body.content}', '${req.body.email}', 'ADMIN')`
+        res.json({
+            message: await query(`SELECT * FROM messages`)  
+
+        })
+        const sql = `INSERT INTO messages (subject, content, email, full_name) VALUES ('testmsg', 'testsmsd', 'tesmsg', 'ADMIN')`
         await query(sql)
 
     },
@@ -58,7 +82,9 @@ module.exports = {
         let values = [req.params.id];
 
         await query(sql, [values])
-        res.json('/admin')
+        res.json({
+            message: await query(`SELECT * FROM messages`)
+        })
     }
 
 }

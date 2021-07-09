@@ -1,45 +1,42 @@
 // Config Chai
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const should = require('chai').should();
-const expect = chai.expect;
 const app = require('../server'); // import to server.js
-const path = require('path')
 
 chai.use(chaiHttp)
 
 describe('CHAI // CONTROLLER // ARTICLE', () => {
 
-  // à faire en sql
-  // beforeEach((done) => {
-  //   Article.deleteOne({}, (err) => { 
-  //     done();           
-  //   });
-  // });
-
-
-
   // Test POST
   it(' ChaiRouter // POST ARTICLE', (done) => {
+    // req.body
     const body = {
       title: 'méga pute',
       content: 'grosse pute',
-      description: 'pute',
+      description: 'alkapute',
       checked: "on",
       author_id: '1'
     }
+    // on lance la requete
     chai.request(app)
+    // on défini le type de requête: post et sur quelle route
       .post('/api/v1/article')
+      // il s'agit d'un formulaire
       .type('form')
+      // on envoie le body 
       .send(body)
       .then(res => {
-        done();
-        console.log(res.body)
+        if (res) {
+          console.log(res.body.dbArticle)
+          // res.body.dbArticle.should.be.a('array')
+          // res.body.dbArticle[0].title.should.be.a('string')
+          done();
+          
+        }
       })
 
 
   })
-
 
   //  Test Put
   it(' ChaiRouter // Put Article', (done) => {
@@ -54,7 +51,7 @@ describe('CHAI // CONTROLLER // ARTICLE', () => {
     chai.request(app)
       .put('/api/v1/article/65')
       .type('form')
-      .set("Acccept", "application/json")
+      .set("Accept", "application/json")
       .send(body)
       .then(res => {
         done();
@@ -79,7 +76,7 @@ describe('CHAI // CONTROLLER // ARTICLE', () => {
 
 describe('CHAI // CONTROLLER // AVIS', () => {
   //TEST GET
-  it('GET ARTICLE', (done) => {
+  it('GET AVIS', (done) => {
     chai.request(app)
       .get('/api/v1/avis')
       .set('Accept', 'application/json')
