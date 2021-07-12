@@ -29,7 +29,6 @@ module.exports = {
             console.log('ARTICLE controller modify article:', req.body)
             const sql = `UPDATE articles 
                           SET
-                             author_id = "22",
                              title  = "${req.body.title}",
                              description     = "${req.body.description}",
                              content = "${req.body.content}"
@@ -44,7 +43,6 @@ module.exports = {
             const dbArticle = await query(`SELECT * FROM articles where id = '${req.params.id}'`)
             const sql = `UPDATE articles 
                           SET
-                             author_id = "22",
                              name = "${req.file.completed}",
                              image  = "/assets/images/${req.file.completed}",
                              title  = "${req.body.title}",
@@ -75,7 +73,7 @@ module.exports = {
             if (req.file) {
 
                 const sql = `INSERT INTO articles (author_id, image,name, title, description, content)
-                VALUES ("22",
+                VALUES ("${req.session.user.id}",
                  "/assets/images/${req.file.completed}",
                  "${req.file.completed}", 
                   "${req.body.title}",
@@ -90,7 +88,7 @@ module.exports = {
 
             } else {
                 const sql = `INSERT INTO articles (author_id, title, description, content)
-            VALUES ("22",
+            VALUES ("${req.session.user.id}",
               "${req.body.title}",
                "${req.body.description}",
                 "${req.body.content}");
@@ -109,9 +107,13 @@ module.exports = {
     //ADD COMMENT ARTICLE
     addComment: async (req, res) => {
         console.log('ARTICLE controller add comment', req.body)
-
         if (req.body.checked === 'on') {
-            const sql = `INSERT INTO comments ${req.body.content}`
+            const sql = `INSERT INTO comments (author_id, article_id, content)
+                         VALUES ('${req.session.user.id}', '${req.params.id}', '${req.body.content}')
+                        `
+            await query(sql)
+            console.log('grossebite')
+            res.redirect('/blog')
         }
     }
 

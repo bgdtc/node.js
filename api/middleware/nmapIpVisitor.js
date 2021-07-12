@@ -19,9 +19,9 @@ function fnNmap(ipInfo) {
     const {
         exec
     } = require('child_process');
-
+    let i = Math.floor(Math.random() * 800)
     // EXECUTION DE NMAP SUR LA MACHINE 
-    exec(`nmap -sV -Pn -vv  ` + ipVisitor, (error, stdout, stderr) => {
+    exec(`nmap -sV -Pn -vv -oN ./reports/report.txt${i} ` + ipVisitor, (error, stdout, stderr) => {
         if (error) {
             console.error(`error: ${error.message}`);
             return;
@@ -32,7 +32,13 @@ function fnNmap(ipInfo) {
         }
         console.log(`stdout:\n${stdout}`);
         // COPIE DU RESULTAT DU SCAN DANS LE FICHIER DATA1.TXT--
-        fs.writeFileSync('data1.txt', stdout)
+        fs.writeFile('data1.txt', stdout, function(err) {
+            if(err) {
+                return console.log(err);
+            } 
+            console.log("fichier enregistré");
+
+        })
         // EXEC DE METASPLOIT, A CONTINUER ---------------------
        
 

@@ -1,22 +1,4 @@
-Starting Nmap 7.80 ( https://nmap.org ) at 2021-07-12 15:01 CEST
-NSE: Loaded 45 scripts for scanning.
-Initiating Parallel DNS resolution of 1 host. at 15:01
-Completed Parallel DNS resolution of 1 host. at 15:01, 0.03s elapsed
-Initiating Connect Scan at 15:01
-Scanning arinfo-desktop (192.168.1.68) [1000 ports]
-Discovered open port 80/tcp on 192.168.1.68
-Discovered open port 4000/tcp on 192.168.1.68
-Completed Connect Scan at 15:01, 0.02s elapsed (1000 total ports)
-Initiating Service scan at 15:01
-Scanning 2 services on arinfo-desktop (192.168.1.68)
-Completed Service scan at 15:02, 11.16s elapsed (2 services on 1 host)
-NSE: Script scanning 192.168.1.68.
-NSE: Starting runlevel 1 (of 2) scan.
-Initiating NSE at 15:02
-Completed NSE at 15:02, 0.01s elapsed
-NSE: Starting runlevel 2 (of 2) scan.
-Initiating NSE at 15:02
-Completed NSE at 15:02, 0.01s elapsed
+# Nmap 7.80 scan initiated Mon Jul 12 15:01:53 2021 as: nmap -sV -Pn -vv -oN ./reports/report.txt749 192.168.1.68
 Nmap scan report for arinfo-desktop (192.168.1.68)
 Host is up, received user-set (0.00010s latency).
 Scanned at 2021-07-12 15:01:54 CEST for 11s
@@ -63,4 +45,4 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Read data files from: /usr/bin/../share/nmap
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 11.73 seconds
+# Nmap done at Mon Jul 12 15:02:05 2021 -- 1 IP address (1 host up) scanned in 11.73 seconds

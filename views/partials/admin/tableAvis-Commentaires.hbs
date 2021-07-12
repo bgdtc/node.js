@@ -9,6 +9,7 @@ PARTIAL AVIS ET COMMENTAIRES
         <thead>
             <tr>
                 <th scope="col">#id</th>
+                <th scope="col">#Article id</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Avis / Commentaire</th>
                 <th scope="col">Contenu</th>
@@ -23,6 +24,7 @@ PARTIAL AVIS ET COMMENTAIRES
             {{#each dbComments}}
             <tr>
                 <th scope="row">{{ this.id }}</th>
+                <td>{{ this.article_id }}</td>
                 <td>{{ this.author_id }}</td>
                 <td>{{ this.is_avis }}</td>
                 <td>{{ this.content }}</td>

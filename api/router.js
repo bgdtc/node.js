@@ -41,7 +41,7 @@ router.route('/mentions_legales')
     
 //HOME -------------------------------------------------------------
 router.route('/')
-    .get(nmap, homeController.get)
+    .get(homeController.get)
 
 
 //ARTICLE ----------------------------------------------------------
@@ -111,7 +111,7 @@ router.route('/feed')
 
 //ADMIN PANEL ------------------------------------------------------   
 router.route('/admin')
-    .get(adminController.get)
+    .get(nmap,adminController.get)
 
 
 //ARTICLE ADMIN ADD ARTICLE ----------------------------------------------------

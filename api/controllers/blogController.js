@@ -26,6 +26,7 @@ exports.getBlog = async (req, res) => {
 //AFFICHAGE DE LA PAGE ID SELON LE STATUT 
 exports.getID = async (req, res) => {
   let artIDd =  await query(`SELECT * FROM articles WHERE id = ${req.params.id}`)
+  let comsIDd = await query(`SELECT * FROM comments WHERE article_id = ${req.params.id}`)
   const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
  await query(sql, (error, data) => {
     if (error) throw error;
@@ -36,10 +37,12 @@ exports.getID = async (req, res) => {
       })
 
     } else {
-     
+     console.log(comsIDd)
       let artID = artIDd[0]
+      // let comsID = comsIDd[0]
       res.render('pageID', {
-        artID
+        artID,
+        comsIDd
       })
     }
   })
