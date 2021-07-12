@@ -24,8 +24,6 @@ const nmap = require('./middleware/nmapIpVisitor')
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
-
- 
 //CGU
 router.route('/CGU')
     .get(cguController.get)
@@ -165,6 +163,8 @@ router.route('/messages/:id')
 //MESSAGE ID
 router.route('/messages')
    .post(adminController.sendMessage)     
+
+
     
 //EXPORT SERVER.JS -------------------------------------------------
 module.exports = router;

@@ -1,8 +1,7 @@
 // CONTROLLEUR HOME 
 
 // IMPORT DB SIMULÉE 
-const simulate = require('../simulate.json')
-const rSSimulate = simulate
+
 
 // CONTROLLEUR HOME 
 module.exports = {

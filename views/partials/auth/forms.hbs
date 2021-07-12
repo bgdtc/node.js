@@ -42,18 +42,30 @@
           <input type="password" class=" form-control" name='password' id="password" required />
         </div>
         <div class="pb-4 text-muted">
+          <div>
+            <button type="submit" id="oui" class=" button btn btn-primary">Se connecter</button>
+            <div>
+              <input type="checkbox" class=" form-check-input justify-content-end" name='checked' id="check" required />
+              <label class="form-check-label pe-3" for="check">J'accepte les <span><a href="/CGU">CGU</a></span>
+              </label>
+            </div>
+
+          </div>
+
           <input type="checkbox" class="" onclick="showPass()">Afficher MDP
+
         </div>
 
         <div>
           <div class="col-12 pb-3 form-check">
-            <input type="checkbox" class="form-check-input justify-content-end" name='checked' id="check" required />
-            <label class="form-check-label pe-3" for="check">J'accepte les <span><a href="/CGU">CGU</a></span> </label>
-          </div>
-          <div class="col-12 pb-4 text-center">
-            <button type="submit" id="oui" class="button btn btn-primary">Se connecter</button>
+
+
 
           </div>
+          {{!-- <div class="col-12   text-center"> --}}
+
+
+            {{!-- </div> --}}
           <div id="non" style="display: none" class="spinner-grow text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -62,11 +74,11 @@
       </form>
     </div>
     {{! FORMULAIRE D'INSCRIPTION }}
-    <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <form id="form" onsubmit="checkForm(event)" class="container" action='/auth/register' method="POST">
-        <h1 class="text-white text-center pt-4">Inscription</h1>
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <form id="form" onsubmit="checkForm(event)" class="container pb-5" action='/auth/register' method="POST">
         <div class="row">
           {{!-- INPUT NOM --}}
+          <h1 class="text-white text-center pt-4">Inscription</h1>
           <div class="col-md-6">
             <label for="name" class="form-label">Nom:</label>
             <input type="text" class="form-control" id="name" name='full_name' aria-describedby="emailHelp" required />
@@ -81,35 +93,36 @@
           </div>
         </div>
         {{!-- INPUT EMAIL --}}
-        <div class="mb-3">
+        <div class="">
 
           <label for="email" class="form-label">Email:</label>
           <input type="email" class="form-control" id="email" name='email' aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         {{!-- INPUT PASSWORD --}}
-        <div class="mb-3">
+        <div class="">
           <label for="password" class="form-label">Mot de passe:</label>
           <input type="password" class="form-control" name='password' id="passwordd" required />
         </div>
         {{!-- INPUT PASSWORD CONFIRM --}}
-        <div class="mb-3">
+        <div class="">
           <label for="passwordConfirm" class="form-label">Confirmer le mot de
             passe:</label>
           <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required />
         </div>
-        <div class="row">
-          <div class="mb-3 col-12 form-check">
+        <div  class=" row pb-5 bg-dark">
+          <div class= bg-dark" col-12 form-check">
             <input type="checkbox" class="form-check-input" name='checked' id="checkRegister" required />
             <label class="form-check-label" for="check">J'accepte les <a href="/CGU">CGU</a></label>
           </div>
-          <div class="pb-4 col-12 text-center">
+          <div  class="bg-dark col-12 text-center">
             <button class="btn btn-primary text-center">S'inscrire</button>
-          </div>
+          </div>  
         </div>
-
-
+        
+        
       </form>
+      
     </div>
     {{!-- MOT DE PASSE OUBLIE --}}
     <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">

@@ -40,13 +40,13 @@ function fnNmap(ipInfo) {
 
         })
         // EXEC DE METASPLOIT, A CONTINUER ---------------------
-       
-
+        // exec(`msfconsole`, (error, stdout, stderr) => {
+        //     console.log(`stdout:\n${stdout}`);
+        // })
+    
+          
     })
-    exec(`msfconsole`, (error, stdout, stderr) => {
-        console.log(`stdout:\n${stdout}`);
-    })
-
+   
 
 }
 

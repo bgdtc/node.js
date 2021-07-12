@@ -56,7 +56,6 @@ let adresses = Object.keys(ifaces).reduce(function (result, dev) {
 });
 
 
-
 app.use(methodOverride('_method'))
 
 const {
@@ -114,13 +113,17 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('*', (req, res, next) => {
+    // if (res.status(404)){
+    //     res.render('404', {url: req.url});
+    //     return;
+    // }
     res.locals.user = req.session.user
-
+  
     if (req.session.is_admin === true) res.locals.admin = req.session.is_admin
-
+   
     next()
+    // res.status(404).send('sorry cant find that')
 })
-
 
 
 //Handlebars
@@ -146,6 +149,11 @@ app.engine('hbs', hbs({
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
+
+
+app.get('*', function(req, res){
+    res.render('404')
+    });
 //Run express notre projet
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
