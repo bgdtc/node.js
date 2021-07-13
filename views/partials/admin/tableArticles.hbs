@@ -5,8 +5,8 @@ PARTIAL ARTICLES
 
 {{!-- PARTIAL ARTICLES ADMIN --}}
 {{!-- TABLEAU --}}
-<div class="container pb-5">
-    <table class="table">
+<div class="pb-3 table-responsive-lg">
+    <table class="table" >
         {{!-- LEGENDE TABLEAU --}}
         <thead>
             <tr>
@@ -14,14 +14,14 @@ PARTIAL ARTICLES
                 <th scope="col">Auteur</th>
                 <th scope="col">Titre Article</th>
                 <th scope="col">Description</th>
-                <th scope="col">Image</th>
+                <th  scope="col">Image</th>
                 <th scope="col">Aperçu</th>
                 <th scope="col">Modifier</th>
                 <th scope="col">Supprimer</th>
             </tr>
         </thead>
         {{!-- CONTENU TABLEAU --}}
-        <tbody>
+        <tbody class="">
             {{#each dbArticles}}
             <tr>
                 <th scope="row">{{ this.id }}</th>

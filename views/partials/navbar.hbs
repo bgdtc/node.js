@@ -58,7 +58,10 @@
       </div>
       {{!-- BOUTON INSCRIPTION --}}
       {{#if user }}
-      <a class="logout btn text-white rounded-pill fw-bolder border-2 border-primary" href="/logout">Se déconnecter</a>
+      <div class="pe-2">
+        <a class="logout pe-2 a ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary" href="/logout">Déconnexion</a>
+      </div>
+      
       {{else }}
       <div class="pe-2 ">
         <a class="pe-2 a ps-2 btn text-white rounded-pill fw-bolder border-2 border-primary" href="/auth">Se connecter

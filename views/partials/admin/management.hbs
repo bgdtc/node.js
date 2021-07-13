@@ -3,8 +3,8 @@ Partial: management
 
 --}}
 
-
-<section class="pt-5 container bg-light">
+<div class="container">
+<section class="pt-5  bg-light">
     {{! TABS ADMIN BOUTONS }}
     <ul class="nav nav-tabs d-flex justify-content-center  pb-3  pt-5" id="myTab" role="tablist">
         {{!-- GESTION UTILISATEURS --}}
@@ -55,12 +55,14 @@ Partial: management
 
 
         {{!-- GESTION DES ARTICLES --}}
-        <div class=" tab-pane container" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+        <div class=" tab-pane "  id="articles" role="tabpanel" aria-labelledby="articles-tab">
             {{> admin/tableArticles }}
         </div>
     </div>
 
 </section>
+</div>
+
 
 
 

@@ -113,7 +113,7 @@ module.exports = {
                         `
             await query(sql)
             console.log('grossebite')
-            res.redirect('/blog')
+            res.redirect(`/article/${req.params.id}`)
         }
     }
 
