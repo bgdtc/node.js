@@ -51,47 +51,103 @@ module.exports = {
     modifyAccount: async (req, res) => {
         //si le champ nouveau mot de passe n'est pas vide
         if (req.body.NewPassword !== '') {
-            console.log('req file', req.file)
-            const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
-            const sql = `UPDATE user
-            SET 
-               full_name = '${req.body.full_name}',
-               email = '${req.body.email}',
-               password = '${ await bcrypt.hash(req.body.NewPassword, 16) }',
-               image = '/assets/images/${req.file.completed}',
-               name = '${req.file.completed}'
-           WHERE id = '${req.params.id}'`
 
-            await query(sql)
-            //chemin vers l'image actuelle qui seras supprimée
-            pathImg = path.resolve("public/images/" + dbUser[0].name)
-            //fs de suppression de l'image en question
-            fs.unlink(pathImg, (err) => {
-                if (err) console.log(err)
-            })
-            res.redirect('/account')
-            res.end()
-            //si le champ nouveau mot de passe est vide 
+
+
+            if (req.file) {
+
+                console.log('req file', req.file)
+                const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
+                const sql = `UPDATE user
+                   SET 
+                      full_name = '${req.body.full_name}',
+                      email = '${req.body.email}',
+                      password = '${ await bcrypt.hash(req.body.NewPassword, 16) }',
+                      image = '/assets/images/${req.file.completed}',
+                      name = '${req.file.completed}'
+                  WHERE id = '${req.params.id}'`
+
+                await query(sql)
+                //chemin vers l'image actuelle qui seras supprimée
+                pathImg = path.resolve("public/images/" + dbUser[0].name)
+                //fs de suppression de l'image en question
+                fs.unlink(pathImg, (err) => {
+                    if (err) console.log(err)
+                })
+                res.redirect('/account')
+                res.end()
+                //si le champ nouveau mot de passe est vide 
+
+            } else {
+                // const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
+                const sql = `UPDATE user
+                  SET 
+                     full_name = '${req.body.full_name}',
+                     email = '${req.body.email}',
+                     password = '${ await bcrypt.hash(req.body.NewPassword, 16) }'
+                 WHERE id = ${req.params.id}`
+
+                await query(sql)
+                //chemin vers l'image actuelle qui seras supprimée
+
+                //fs de suppression de l'image en question
+
+                res.redirect('/account')
+                res.end()
+                //si le champ nouveau mot de passe est vide 
+
+
+
+            }
+
         } else {
+
+            if (req.file) {
+
+                console.log('req file', req.file)
+                const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
+                const sql = `UPDATE user
+                SET 
+                   full_name = '${req.body.full_name}',
+                   nickname = '${req.body.nickname}',
+                   email = '${req.body.email}',
+                   image = '/assets/images/${req.file.completed}',
+                   name = '${req.file.completed}'
+               WHERE id = ${req.params.id}`
+
+                await query(sql)
+                pathImg = path.resolve("public/images/" + dbUser[0].name)
+                fs.unlink(pathImg, (err) => {
+                    if (err) console.log(err)
+                })
+
+                res.redirect('/account')
+
+
+
+            } else {
+
+
+
+                // const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
+                const sql = `UPDATE user
+                             SET 
+                                 full_name = '${req.body.full_name}',
+                                 nickname = '${req.body.nickname}',
+                                 email = '${req.body.email}'
+                             WHERE id = ${req.params.id}
+                             `
+
+                await query(sql)
+
+
+                res.redirect('/account')
+
+
+
+            }
             //meme chose qu'au dessus
-            console.log('req file', req.file)
-            const dbUser = await query(`SELECT * FROM user where id = ${req.params.id}`)
-            const sql = `UPDATE user
-            SET 
-               full_name = '${req.body.full_name}',
-               nickname = '${req.body.nickname}',
-               email = '${req.body.email}',
-               image = '/assets/images/${req.file.completed}',
-               name = '${req.file.completed}'
-           WHERE id = ${req.params.id}`
 
-            await query(sql)
-            pathImg = path.resolve("public/images/" + dbUser[0].name)
-            fs.unlink(pathImg, (err) => {
-                if (err) console.log(err)
-            })
-
-            res.redirect('/account')
 
         }
 

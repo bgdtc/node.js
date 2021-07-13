@@ -9,11 +9,18 @@ module.exports = {
     },
     //POST UN AVIS 
     postAvis: async (req, res) => {
-        const sql = `INSERT INTO comments
-                     (author_id,content,is_avis,title)
-                     VALUES ('${req.session.user.id}', '${req.body.content}','1', '${req.body.title}')`
+        if (req.session.user) {
+            const sql = `INSERT INTO comments
+            (author_id, author_name, content,is_avis,title)
+            VALUES ('${req.session.user.id}','${req.session.user.full_name}', '${req.body.content}','1', '${req.body.title}')`
 
-        await query(sql)
-        res.redirect('/avis')
+            await query(sql)
+            res.redirect('/avis')
+        } else {
+            res.json({
+                error: 'non'
+            })
+        }
+
     }
 }

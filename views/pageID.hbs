@@ -5,7 +5,7 @@
     <div class="card mb-3 bg-gradient border text-center border-primary">
       <img src="{{ artID.image }}" style="max-height:500px; max-width:100%;" class="card-img-top" alt="..." />
       <h1 class="text-dark">{{ artID.title }}</h1>
-      <h2 class="text-dark">écrit par : {{artID.author_id}}</h2>
+      <h2 class="text-dark">écrit par : {{artID.author_name}}</h2>
       <div class="card-body">
         <h5 class="card-title text-decoration-underline">{{ artID.description }}</h5>
         
@@ -21,7 +21,7 @@
     {{!-- AFFICHAGE DES COMMENTAIRES --}}
     {{#each comsIDd}}
     <div class="card text-white bg-primary mb-3">
-      <div class="card-header">Commentaire {{this.id}}</div>
+      <div class="card-header">Commentaire n°{{this.id}}, écrit par: {{this.author_name}}</div>
       <div class="card-body">
         <p class="card-text text-white">{{this.content}}</p>
       </div>

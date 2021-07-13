@@ -21,6 +21,7 @@ const express = require('express'),
 
 const userController = require('./controllers/userController')
 const nmap = require('./middleware/nmapIpVisitor')
+const is_admin = require('./middleware/is_admin')
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
@@ -51,8 +52,8 @@ router.route('/blog')
 //ARTICLE ID CRUD GET COMMENT ADD COMMENT DELETE ARTICLE AND MODIFY ARTICLE -------------------------------------------------------
 router.route('/article/:id')
     .get(blogController.getID, commentController.getComment)
-    .delete(articleController.deleteArticleById)
-    .put(upload.single('image'),articleController.modifyArticle)
+    .delete(is_admin, articleController.deleteArticleById)
+    .put(is_admin, upload.single('image'),articleController.modifyArticle)
     .post(articleController.addComment)
 
 
@@ -109,23 +110,23 @@ router.route('/feed')
 
 //ADMIN PANEL ------------------------------------------------------   
 router.route('/admin')
-    .get(nmap,adminController.get)
+    .get(nmap,is_admin, adminController.get)
 
 
 //ARTICLE ADMIN ADD ARTICLE ----------------------------------------------------
 router.route('/article')
-    .post(upload.single('image'), articleController.addArticle)
+    .post(is_admin, upload.single('image'), articleController.addArticle)
 
 
 //USER ID MODIFY ET DELETE ---------------------------------------------------------
 router.route('/user/:id')
-    .delete(userController.deleteUserById)
-    .put(userController.modifyUser)
+    .delete(is_admin, userController.deleteUserById)
+    .put(is_admin, userController.modifyUser)
   
 
 //USER ADD USER  ------------------------------------------------------------
 router.route('/user/add')
-    .post(userController.addUser)
+    .post(is_admin, userController.addUser)
 
 
 
@@ -162,7 +163,7 @@ router.route('/messages/:id')
 
 //MESSAGE ID
 router.route('/messages')
-   .post(adminController.sendMessage)     
+   .post(is_admin, adminController.sendMessage)     
 
 
     

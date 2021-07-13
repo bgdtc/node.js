@@ -72,8 +72,9 @@ module.exports = {
         if (req.body.checked === 'on') {
             if (req.file) {
 
-                const sql = `INSERT INTO articles (author_id, image,name, title, description, content)
+                const sql = `INSERT INTO articles (author_id, author_name, image,name, title, description, content)
                 VALUES ("${req.session.user.id}",
+                 "${req.session.user.full_name}",
                  "/assets/images/${req.file.completed}",
                  "${req.file.completed}", 
                   "${req.body.title}",
@@ -87,14 +88,15 @@ module.exports = {
 
 
             } else {
-                const sql = `INSERT INTO articles (author_id, title, description, content)
+                const sql = `INSERT INTO articles (author_id, author_name, title, description, content)
             VALUES ("${req.session.user.id}",
+            "${req.session.user.full_name}",
               "${req.body.title}",
                "${req.body.description}",
                 "${req.body.content}");
            `
                 await query(sql)
-
+                console.log(req.session.user)
                 res.redirect('/admin')
             }
 
@@ -108,11 +110,10 @@ module.exports = {
     addComment: async (req, res) => {
         console.log('ARTICLE controller add comment', req.body)
         if (req.body.checked === 'on') {
-            const sql = `INSERT INTO comments (author_id, article_id, content)
-                         VALUES ('${req.session.user.id}', '${req.params.id}', '${req.body.content}')
+            const sql = `INSERT INTO comments (author_id,author_name, article_id, content)
+                         VALUES ('${req.session.user.id}','${req.session.user.full_name}', '${req.params.id}', '${req.body.content}')
                         `
             await query(sql)
-            console.log('grossebite')
             res.redirect(`/article/${req.params.id}`)
         }
     }

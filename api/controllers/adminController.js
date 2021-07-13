@@ -30,35 +30,67 @@ module.exports = {
         }
     },
     sendMessage: async (req, res) => {
-        console.log('CONTROLLER sendMessage:', req.body)
+        if (req.session.user) {
+            const isAdmin = await query(`SELECT user.is_admin FROM user WHERE id = ${req.session.user.id}`)
+            if (isAdmin[0].is_admin === 1) {
 
-        const mailOptions = {
-            from: 'isec237@gmail.com',
-            to: req.body.email,
-            subject: req.body.subject,
-            html: `<h3>${req.body.content}</h3>`
-        }
+                console.log('CONTROLLER sendMessage:', req.body)
 
-        transporter.sendMail(mailOptions, (err, info) => {
-            if (err) console.log(err)
-            else {
-                console.log(info)
-                res.redirect('/admin')
+                const mailOptions = {
+                    from: 'isec237@gmail.com',
+                    to: req.body.email,
+                    subject: req.body.subject,
+                    html: `<h3>${req.body.content}</h3>`
+                }
+
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) console.log(err)
+                    else {
+                        console.log(info)
+                        res.redirect('/admin')
+                    }
+
+                })
+                const sql = `INSERT INTO messages (subject, content, email, full_name) VALUES ('${req.body.subject}', '${req.body.content}', '${req.body.email}', 'ADMIN')`
+                await query(sql)
+
+
+            } else {
+                res.json({
+                    error: 'non'
+                })
             }
-
-        })
-        const sql = `INSERT INTO messages (subject, content, email, full_name) VALUES ('${req.body.subject}', '${req.body.content}', '${req.body.email}', 'ADMIN')`
-        await query(sql)
+        } else {
+            res.json({
+                error: 'non'
+            })
+        }
 
     },
     deleteMessage: async (req, res) => {
-        console.log('CONTROLLEUR delete message:', req.body)
 
-        const sql = `DELETE FROM messages WHERE id = ?`;
-        let values = [req.params.id];
+        if (req.session.user) {
+            const isAdmin = await query(`SELECT user.is_admin FROM user WHERE id = ${req.session.user.id}`)
+            if (isAdmin[0].is_admin === 1) {
+                console.log('CONTROLLEUR delete message:', req.body)
 
-        await query(sql, [values])
-        res.redirect('/admin')
+                const sql = `DELETE FROM messages WHERE id = ?`;
+                let values = [req.params.id];
+
+                await query(sql, [values])
+                res.redirect('/admin')
+
+            } else {
+                res.json({
+                    error: 'non'
+                })
+            }
+        } else {
+            res.json({
+                error: 'non'
+            })
+        }
+
     }
 
 }
