@@ -21,13 +21,39 @@ let helmet = require('helmet');
 app.use(helmet());
 app.disable('x-powered-by');
 
+let MySQLStore = require('express-mysql-session')(expressSession);
 
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
+let options = {
+    host: process.env.DB_HOST,
+    port: 3306,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
+};
+
+let sessionStore = new MySQLStore(options);
+
+app.use(expressSession({
+    key: 'ptiBiscuit',
+    secret: 'lasecuavantout',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
+
+
+const {
+    expressCspHeader,
+    INLINE,
+    NONE,
+    SELF
+} = require('express-csp-header');
 
 app.use(expressCspHeader({
     directives: {
         'default-src': [SELF],
-        'script-src': [SELF, INLINE,'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'],
+        'script-src': [SELF, INLINE, 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'],
         'style-src': [SELF, INLINE, 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'],
         'worker-src': [NONE],
         'img-src': ['data:', 'localhost:4000'],
@@ -73,12 +99,7 @@ app.use(cors({
 }))
 
 // 
-db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
-});
+db = mysql.createConnection(options);
 
 db.connect((err) => {
     if (err) console.error('erreur de connection a la db: ' + err.stack);
@@ -98,7 +119,7 @@ app.use(expressSession({
     saveUninitialized: true,
     resave: false,
     cookie: {
-        maxAge: 8*60*60*1000
+        maxAge: 8 * 60 * 60 * 1000
     }
 
 }));
@@ -118,9 +139,9 @@ app.use('*', (req, res, next) => {
     //     return;
     // }
     res.locals.user = req.session.user
-  
+
     if (req.session.is_admin === true) res.locals.admin = req.session.is_admin
-   
+
     next()
     // res.status(404).send('sorry cant find that')
 })
@@ -146,14 +167,14 @@ app.engine('hbs', hbs({
 // } = require('http');
 
 //Router dirige chemins sur les controllers
-const ROUTER = require('./api/router')
+const ROUTER = require('./api/router');
 app.use('/', ROUTER)
 
 
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
     res.render('404')
-    });
+});
 //Run express notre projet
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);

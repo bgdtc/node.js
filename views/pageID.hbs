@@ -19,14 +19,18 @@
       </div>
     </div>
     {{!-- AFFICHAGE DES COMMENTAIRES --}}
-    {{#each comsIDd}}
+    {{#each comsIDd }}
     <div class="card text-white bg-primary mb-3">
       <div class="card-header">Commentaire n°{{this.id}}, écrit par: {{this.author_name}}</div>
       <div class="card-body">
         <p class="card-text text-white">{{this.content}}</p>
       </div>
+    
     </div>
     {{/each}}
+      {{#if userID}}
+        <h1>111</h1>
+      {{/if}}
     {{!-- ZONE POUR POSTER UN COMMENTAIRE --}}
     <div>
       <form action="/article/{{artID.id}}" method="POST" class=" pt-3  row  border-3 ">

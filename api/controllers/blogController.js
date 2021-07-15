@@ -28,6 +28,7 @@ exports.getID = async (req, res) => {
   let artIDd =  await query(`SELECT * FROM articles WHERE id = ${req.params.id}`)
   let comsIDd = await query(`SELECT * FROM comments WHERE article_id = ${req.params.id}`)
   const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
+
  await query(sql, (error, data) => {
     if (error) throw error;
     if (data[0].is_verified === 0) {
@@ -43,6 +44,7 @@ exports.getID = async (req, res) => {
       res.render('pageID', {
         artID,
         comsIDd
+
       })
     }
   })

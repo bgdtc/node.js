@@ -2,7 +2,7 @@
 {{> head }}
 {{!-- NAVBAR COMMUNE --}}
 {{> navbar }}
-
+{{> cookies/banner }}
 
 {{!-- Req.flash --}}
 {{#if error}}
@@ -11,10 +11,9 @@
 {{#if success}}
 <div style="margin-top: 10vh" class="w-100 text-center"> {{ success }} </div>
 {{/if}}
-
 {{!-- DEBUT DE BODY --}}
 {{{ body }}}
-{{> cookies/banner }}
+
 {{!-- FOOTER COMMUN --}}
 {{> Footer }}
 {{!-- FERMETURE DE BODY HTML ET SCRIPTS BAS DE PAGE --}}

@@ -25,8 +25,11 @@
             {{#if ../user}}
             <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
             {{else}}
-            <div class="alert  alert-danger" role="alert">
-              Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+            <div class="alert   alert-danger" role="alert">
+              <p>
+                    Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+              </p>
+             
             </div>
             {{/if}}
           </div>
