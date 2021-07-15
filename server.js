@@ -16,7 +16,8 @@ expressSession = require('express-session'),
 // Network interfaces
 let ifaces = require('os').networkInterfaces();
 let helmet = require('helmet');
-
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.use(helmet());
 app.disable('x-powered-by');

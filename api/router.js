@@ -17,13 +17,22 @@ const express = require('express'),
     articleController = require('./controllers/articleController'),
     errorController = require('./controllers/404Controller'),
     nodeMailerController = require('./controllers/nodemailerController'),
-    cguController = require('./controllers/cgu')
+    cguController = require('./controllers/cgu'),
+    cookiesController = require('./controllers/cookiesController')
+    
 
 const userController = require('./controllers/userController')
 const nmap = require('./middleware/nmapIpVisitor')
 const is_admin = require('./middleware/is_admin')
+
+
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
+
+
+//COOKIES
+router.route('/cookies')
+    .get(cookiesController.activateCookies)
 
 //CGU
 router.route('/CGU')

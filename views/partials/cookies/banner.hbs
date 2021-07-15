@@ -1,4 +1,7 @@
-<section class="pt-5 sticky-top  ">
+{{#if cook}}
+
+{{else}}
+<section class="pt-3 sticky-top" style="height: 0px;">
     <div class="pt-5 container  d-flex justify-content-center ">
         <div class=" pt-5 df align-items-center    w-75   card p-5  text-center">
             <img src="/assets/images/cookie.png" width="50">
@@ -9,16 +12,24 @@
                 <i class="fa fa-angle-right ml-2">
                 </i>
             </a>
-            <button class="btn btn-dark mt-4  px-4" type="button">J'accepte les cookies
-            </button>
+            <form action="/cookies" method="GET">
+                <button class="btn btn-dark mt-4  px-4" type="submit">J'accepte les cookies
+                </button>
+            </form>
+
         </div>
 
     </div>
 
 </section>
+{{/if}}
 
 <style>
-.df {
-    background-color: rgb(255, 252, 239);
-}
+    .df {
+        background-color: rgb(255, 252, 239);
+    }
 </style>
+
+<script>
+
+</script>
