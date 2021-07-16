@@ -1,5 +1,0 @@
-# Nmap 7.80 scan initiated Tue Jul 13 14:25:19 2021 as: nmap -sV -Pn -vv -oN ./reports/report.txt200 NaN
-Failed to resolve "NaN".
-Read data files from: /usr/bin/../share/nmap
-WARNING: No targets were specified, so 0 hosts scanned.
-# Nmap done at Tue Jul 13 14:25:19 2021 -- 0 IP addresses (0 hosts up) scanned in 0.42 seconds

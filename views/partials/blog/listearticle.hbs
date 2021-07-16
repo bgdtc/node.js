@@ -9,31 +9,24 @@
     <div class="row">
       {{#if home }}
       {{#each ( limitArray dbArticle 3 )}}
-
       <div class="col-md-4 pt-3 pb-2">
-        {{!-- IMAGE DB --}}
-        <div class="card bg-dark tist border-3 border-primary" style="max-height: 600px;">
-         
-          <img src="{{ image }}" class="card-img-top" height="400px"  alt="" / >
+        <div class="card bg-dark tist border-3 border-primary" style="height: 600px;">
+          <img src="{{ image }}" class="card-img-top" height="400px" alt="" />
 
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
-
-
-            <h2 class="card-title text-center mb-4">{{ upcase title}}</h2>
+            <h2 class="card-title text-center">{{ upcase title}}</h2>
             <p class="card-text"> {{description}} {{id}} </p>
             {{#if ../user}}
             <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
             {{else}}
-            <div class="alert   alert-danger" role="alert">
-              <p>
-                    Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
-              </p>
-             
+            <div class="">
+              <div style="height: 90px;" class="alert   alert-danger" role="alert">
+                  il faut <span><a href="/auth">être connecté</a></span> pour lire les articles !
+              </div>
             </div>
             {{/if}}
           </div>
-
         </div>
       </div>
       {{/each}}
@@ -43,11 +36,10 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       {{#each dbArticle}}
-      <div class="col-md-4 pt-5 pb-5 "  style="max-height: 600px;">
+      <div class="col-md-4 pt-5 pb-5 " style="height: 600px;">
         {{!-- IMAGE DB --}}
-        <div class="card bg-dark tist border-3 border-primary pt-3 " style="width: auto;">
-          <img src="{{ image }}" class="card-img-top" alt=""
-            height="400px"  />
+        <div class="card bg-dark tist border-3 border-primary pt-3 pb-3  " style="width: auto;">
+          <img src="{{ image }}" class="card-img-top" alt="" height="400px" />
           {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{title}}</h2>
