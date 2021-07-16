@@ -3,7 +3,8 @@ module.exports = {
     get: async (req, res) => {
         if (!req.session.user) {
             res.render('home', {
-                error: 'pas connecté'
+                error: 'pas connecté',
+                cook: (req.cookies.Cookie) ? true : false
             })
         } else {
             res.json({

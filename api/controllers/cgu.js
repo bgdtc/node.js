@@ -2,6 +2,7 @@
 module.exports = {
     get: async (req, res) => {
         res.render('CGU', {
+            cook: (req.cookies.Cookie) ? true : false
         })
     }
 }

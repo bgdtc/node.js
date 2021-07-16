@@ -24,7 +24,9 @@ let mailOptions
 
 module.exports = {
     get: async (req, res) => {
-        res.render('contact')
+        res.render('contact',{
+            cook: (req.cookies.Cookie) ? true : false
+        })
     },
     sendContact: async (req, res) => {
 
@@ -42,7 +44,8 @@ module.exports = {
             else {
                 console.log(info)
                 res.render('contact', {
-                    success: 'votre message à bien été transmit'
+                    success: 'votre message à bien été transmit',
+                    cook: (req.cookies.Cookie) ? true : false
                 })
             }
         })

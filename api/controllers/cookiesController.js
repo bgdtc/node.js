@@ -9,3 +9,11 @@ exports.activateCookies = async (req, res, next) => {
          })
     res.redirect('/')
 }
+
+// exports.getCookies = async (req,res) => {
+//     const CCookie = req.cookies.Cookie
+//     console.log(req.path);
+//     res.render(`${req.path.slice(1)}`, {
+//         cook: CCookie
+//     })
+// }

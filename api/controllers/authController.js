@@ -41,7 +41,8 @@ exports.editPasswordPost = async (req, res) => {
 
         await query(`UPDATE user SET password = '${await bcrypt.hash(req.body.password, 16)}' WHERE email = '${req.body.email}'`)
         res.render('auth', {
-            success: 'mot de passe modifié avec succès'
+            success: 'mot de passe modifié avec succès',
+            cook: (req.cookies.Cookie) ? true : false
         })
     }
 
@@ -49,7 +50,9 @@ exports.editPasswordPost = async (req, res) => {
 
 //GET PAGE AUTH COMPORTANT LES FORMULAIRES 
 exports.get = (req, res) => {
-    res.render('auth');
+    res.render('auth',{
+        cook: (req.cookies.Cookie) ? true : false
+    });
 }
 
 //REGISTER 
@@ -99,13 +102,15 @@ exports.register = async (req, res) => {
             if (err) console.log(err)
             //si y'a une erreur , shit happened
             if (err) res.render('auth', {
-                error: 'shit happened !'
+                error: 'shit happened !',
+                cook: (req.cookies.Cookie) ? true : false
             })
             //si y'a pas d'erreur
             console.log(data)
             res.render('auth', {
 
-                success: 'bien joué tu est inscrit maintenant vérifie tes mails'
+                success: 'bien joué tu est inscrit maintenant vérifie tes mails',
+                cook: (req.cookies.Cookie) ? true : false
             })
         })
 
@@ -129,24 +134,26 @@ exports.verifAccount = async (req, res) => {
         // Ici on tcheck notre id du mail avec la variable enregistrer en cache (rand)
         if (req.params.id == mailOptions.rand) {
             console.log("email is verified")
-            console.log(user)
-            res.render('verifId', {
+            consol('verifId', {
                 user: user[0],
-                email: mailOptions.to
+                email: mailOptions.to,
+                cook: (req.cookies.Cookie) ? true : false
 
             })
             //si l'id correspond pas 
         } else {
             console.log("email is not verified")
             res.render('verifId', {
-                message: "Bad Request !"
+                message: "Bad Request !",
+                cook: (req.cookies.Cookie) ? true : false
             })
 
         }
         //si l'utilisateur est un petit malin 
     } else {
         res.render('verifId', {
-            message: "Request is from unknown source !"
+            message: "Request is from unknown source !",
+            cook: (req.cookies.Cookie) ? true : false
         })
 
     }
@@ -174,7 +181,8 @@ exports.auth = (req, res) => {
     if (req.body.checked !== 'on') {
         console.log('Not Checked form !')
         res.render('auth', {
-            error: 'Pas de bd !'
+            error: 'Pas de bd !',
+            cook: (req.cookies.Cookie) ? true : false
         })
         //si elles sont cochées
     } else {
@@ -225,7 +233,8 @@ exports.auth = (req, res) => {
                     // })
                 } else {
                     res.render('home', {
-                        error: 'Veuillez consulter vos mails vous n\'êtes pas vérifiés'
+                        error: 'Veuillez consulter vos mails vous n\'êtes pas vérifiés',
+                        cook: (req.cookies.Cookie) ? true : false
                     })
                 }
 

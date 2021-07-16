@@ -5,7 +5,8 @@ exports.getBlog = async (req, res) => {
   //si utilisateur pas connecté
   if (!req.session.user) {
     res.render('blog', {
-      error: 'Vous devez être connecté pour voir les articles'
+      error: 'Vous devez être connecté pour voir les articles',
+      cook: (req.cookies.Cookie) ? true : false
     })
     //si utilisateur connecté
   } else {
@@ -15,7 +16,8 @@ exports.getBlog = async (req, res) => {
     await query(sql, (error, data) => {
       if (error) throw error
       res.render('blog', {
-        dbArticle: reverse
+        dbArticle: reverse,
+        cook: (req.cookies.Cookie) ? true : false
       })
     })
 
@@ -34,7 +36,8 @@ exports.getID = async (req, res) => {
     if (data[0].is_verified === 0) {
 
       res.render('auth', {
-        error: 'pour lire les articles connecté être tu doit'
+        error: 'pour lire les articles connecté être tu doit',
+        cook: (req.cookies.Cookie) ? true : false
       })
 
     } else {
@@ -43,7 +46,8 @@ exports.getID = async (req, res) => {
       // let comsID = comsIDd[0]
       res.render('pageID', {
         artID,
-        comsIDd
+        comsIDd,
+        cook: (req.cookies.Cookie) ? true : false
 
       })
     }
@@ -58,7 +62,7 @@ exports.getID = async (req, res) => {
   // Je definit un objet vide qui va stocker ma data
   // let artID = {}
 
-  console.log('ràepfjzeofijzeofizjfeoiz', req.params.id)
+
   // Je creer une boucle pour extraire l'ojet ayant l'id passer en parametre de l'url
 
 

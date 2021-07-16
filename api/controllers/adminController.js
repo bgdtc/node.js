@@ -12,12 +12,14 @@ module.exports = {
                     dbuser: await query(`SELECT * FROM user;`),
                     dbComments: await query(`SELECT * FROM comments;`),
                     dbArticles: await query(`SELECT * FROM articles;`),
-                    dbMessage: await query(`SELECT * FROM messages;`)
+                    dbMessage: await query(`SELECT * FROM messages;`),
+                    cook: (req.cookies.Cookie) ? true : false
                 })
                 //si l'utilisateur connecté n'est pas administrateur
             } else {
                 res.render('home', {
-                    error: 'pas admin'
+                    error: 'pas admin',
+                    cook: (req.cookies.Cookie) ? true : false
                 })
 
 
@@ -25,7 +27,8 @@ module.exports = {
             //si l'utilisateur n'est pas connecté
         } else {
             res.render('home', {
-                error: 'pas admin'
+                error: 'pas admin',
+                cook: (req.cookies.Cookie) ? true : false
             })
         }
     },

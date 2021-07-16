@@ -36,7 +36,7 @@ router.route('/cookies')
 
 //CGU
 router.route('/CGU')
-    .get(cguController.get)
+    .get( cguController.get)
 
 //404 
 router.route('/404')

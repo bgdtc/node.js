@@ -8,15 +8,15 @@ module.exports = {
     get: async (req, res) => {
 
          console.log(req.cookies);
-        const CCookie = req.cookies.Cookie
         const dbArticle = await query(`SELECT * FROM articles`)
         const reverse = dbArticle.reverse()
 
+        console.log('Cookie: ', req.cookies.Cookie)
 
         res.render('home', {
             dbArticle: reverse,
             home: 'home',
-            cook: CCookie
+            cook: (req.cookies.Cookie) ? true : false
         })
     }
 

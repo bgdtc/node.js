@@ -15,12 +15,14 @@ module.exports = {
         if (req.session.user) {
             res.render('account', {
                 userComments: await query(`SELECT * FROM comments WHERE author_id = ${req.session.user.id}`),
-                userID: await query(`SELECT * FROM user WHERE email = '${req.session.user.email}'`)
+                userID: await query(`SELECT * FROM user WHERE email = '${req.session.user.email}'`),
+                cook: (req.cookies.Cookie) ? true : false
             })
             //si un utilisateur n'est pas connecté
         } else {
             res.render('home', {
-                error: 'non connecté'
+                error: 'non connecté',
+                cook: (req.cookies.Cookie) ? true : false
             })
         }
 

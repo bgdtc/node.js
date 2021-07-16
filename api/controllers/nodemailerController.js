@@ -29,7 +29,8 @@ module.exports = {
             if (!data[0]) {
                 console.log('Une erreur est survenue')
                 res.render('auth', {
-                    error: 'Une erreur est survenue'
+                    error: 'Une erreur est survenue',
+                    cook: (req.cookies.Cookie) ? true : false
                 })
             } else {
                 if (req.body.email === data[0].email) {
@@ -60,12 +61,14 @@ module.exports = {
                     })
 
                     res.render('home', {
-                        success: 'Un mail à bien été envoyé à ' + req.body.email
+                        success: 'Un mail à bien été envoyé à ' + req.body.email,
+                        cook: (req.cookies.Cookie) ? true : false
                     })
                 } else {
                     console.log('Une erreur est survenue')
                     res.render('home ', {
-                        error: 'Une erreur est survenue'
+                        error: 'Une erreur est survenue',
+                        cook: (req.cookies.Cookie) ? true : false
                     })
                 }
             }
@@ -78,7 +81,8 @@ module.exports = {
         console.log('Page verify:')
         console.log(req.params.id)
         if (Number(req.params.id) !== rand) res.render('auth', {
-            error: 'Une erreur est survenu !'
+            error: 'Une erreur est survenu !',
+            cook: (req.cookies.Cookie) ? true : false
         })
 
         if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
@@ -88,18 +92,21 @@ module.exports = {
                 console.log('lemail est vérifié')
 
                 res.render('editPassword', {
-                    mailOptions
+                    mailOptions,
+                    cook: (req.cookies.Cookie) ? true : false
                 })
 
             } else {
                 console.log('email non vérifié')
                 res.render('editPassword', {
-                    error: 'bad request !'
+                    error: 'bad request !',
+                    cook: (req.cookies.Cookie) ? true : false
                 })
             }
         } else {
             res.render('editPassword', {
-                error: 'requete provenant dune source incconue'
+                error: 'requete provenant dune source incconue',
+                cook: (req.cookies.Cookie) ? true : false
             })
         }
     },
