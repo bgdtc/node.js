@@ -22,7 +22,7 @@
             {{else}}
             <div class="">
               <div style="height: 90px;" class="alert   alert-danger" role="alert">
-                  il faut <span><a href="/auth">être connecté</a></span> pour lire les articles !
+                il faut <span><a href="/auth">être connecté</a></span> pour lire les articles !
               </div>
             </div>
             {{/if}}
@@ -31,32 +31,34 @@
       </div>
       {{/each}}
       {{else}}
-      <form class="d-flex pt-5 ">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      {{#each dbArticle}}
-      <div class="col-md-4 pt-5 pb-5 " style="height: 600px;">
-        {{!-- IMAGE DB --}}
-        <div class="card bg-dark tist border-3 border-primary pt-3 pb-3  " style="width: auto;">
-          <img src="{{ image }}" class="card-img-top" alt="" height="400px" />
-          {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
-          <div class="card-body text-center">
-            <h2 class="card-title text-center mb-4">{{title}}</h2>
-            <p class="card-text"> {{description}} {{id}} </p>
-            {{#if ../user}}
-            <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
-            {{else}}
-            <div class="alert alert-danger" role="alert">
-              Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+      <div class="pt-2">
+        <input type="text" class="w-100" id="myInput" onkeyup="filtrage()" placeholder="Rechercher dans les articles">
+      </div>
+      <div id="myCard" class="row">
+        {{#each dbArticle}}
+        <div class="col-md-4 pt-5 pb-5 " id="myCard" style="height: 600px;">
+          {{!-- IMAGE DB --}}
+          <div class="card bg-dark tist border-3 border-primary pt-3 pb-3  " style="width: auto;">
+            <img src="{{ image }}" class="card-img-top" alt="" height="400px" />
+            {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
+            <div class="card-body text-center">
+              <h2 class="card-title text-center mb-4">{{title}}</h2>
+              <p class="card-text"> {{description}} écrit par: {{author_name}} </p>
+              {{#if ../user}}
+              <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
+              {{else}}
+              <div class="alert alert-danger" role="alert">
+                Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+              </div>
+              {{/if}}
             </div>
-            {{/if}}
           </div>
         </div>
+        {{/each}}
+        {{/if}}
       </div>
-      {{/each}}
-      {{/if}}
     </div>
+
   </div>
 </section>
 <script>
@@ -64,6 +66,52 @@
     console.log(document.getElementById('id').innerText)
     console.log('bonjour')
   }
+  function filtrage() {
+
+    let input, filter, ul, div, p, h2, i, txtValue, txtValue2;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    card = document.getElementById("myCard");
+    div = card.getElementsByTagName('div');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < div.length; i++) {
+      h2 = div[i].getElementsByTagName("h2")[0];
+      p  = div[i].getElementsByTagName("p")[0];
+      txtValue = h2.textContent || h2.innerText;
+      txtValue2 = p.textContent || p.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+        div[i].style.display = "";
+      } else {
+        div[i].style.display = "none";
+      }
+      console.log('test', document.getElementsByTagName("h2"))
+    }
+  }
+  function filtrageDescr() {
+
+    let input, filter, ul, div, p, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    card = document.getElementById("myCard");
+    div = card.getElementsByTagName('div');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < div.length; i++) {
+      p = div[i].getElementsByTagName("p")[0];
+      txtValue = p.textContent || p.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        div[i].style.display = "";
+      } else {
+        div[i].style.display = "none";
+      }
+      console.log('test', document.getElementsByTagName("p"))
+    }
+  }
+
+
+
+
 </script>
 
 <style>
