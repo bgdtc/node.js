@@ -79,6 +79,8 @@ CREATE TABLE IF NOT EXISTS `inf0_sec`.`comments` (
   `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `title` VARCHAR(255) NULL,
+  `article_id` VARCHAR(255),
+  `author_name` VARCHAR(255),
   PRIMARY KEY (`id`),
   INDEX `fk_comments_user_idx` (`author_id` ASC) VISIBLE,
   CONSTRAINT `fk_comments_user`
