@@ -4,8 +4,8 @@ const
     express = require('express'),
     app = express(),
     cors = require('cors'),
-    methodOverride = require('method-override')
-expressSession = require('express-session'),
+    methodOverride = require('method-override'),
+    expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     mysql = require('mysql2'),
@@ -180,3 +180,18 @@ app.get('*', function (req, res) {
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });
+
+
+
+
+// //
+//     $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
+//     $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
+//     $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
+//     $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
+//     $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
+//     $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
+//     $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
+//     \_______/  \______/ \_______/   \__|    \______/ 
+                                                  
+        

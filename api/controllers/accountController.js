@@ -15,7 +15,7 @@ module.exports = {
         if (req.session.user) {
             res.render('account', {
                 userComments: await query(`SELECT * FROM comments WHERE author_id = ${req.session.user.id}`),
-                userID: await query(`SELECT * FROM user WHERE email = '${req.session.user.email}'`),
+                userID: await query(`SELECT id,full_name,email,image,nickname FROM user WHERE email = '${req.session.user.email}'`),
                 cook: (req.cookies.Cookie) ? true : false
             })
             //si un utilisateur n'est pas connecté
@@ -156,3 +156,15 @@ module.exports = {
     }
 
 }
+
+
+// $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
+// $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
+// $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
+// $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
+// $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
+// $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
+// $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
+// \_______/  \______/ \_______/   \__|    \______/ 
+                                                 
+             

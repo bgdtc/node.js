@@ -1,64 +1,66 @@
 {{! LISTE DES ARTICLES }}
-<section class=" container  pt-5">
-  <div class=" pb-5 ">
-    {{!-- TITRES PAGE --}}
-    <div class=" pt-5 border-bottom border-1 border-primary">
-      <h3 class="tist text-center bg-gradient fw-bold rounded">Articles récents</h3>
-    </div>
-    <!-- AFFICHAGE CARDS DB -->
-    <div class="row">
-      {{#if home }}
-      {{#each ( limitArray dbArticle 3 )}}
-      <div class="col-md-4 pt-3 pb-2">
-        <div class="card bg-dark tist border-3 border-primary" style="height: 600px;">
-          <img src="{{ image }}" class="card-img-top" height="400px" alt="" />
+<section class="container  pb-5 pt-5">
 
-          {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
-          <div class="card-body text-center">
-            <h2 class="card-title text-center">{{ upcase title}}</h2>
-            <p class="card-text"> {{description}} {{id}} </p>
-            {{#if ../user}}
-            <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
-            {{else}}
-            <div class="">
-              <div style="height: 90px;" class="alert   alert-danger" role="alert">
-                il faut <span><a href="/auth">être connecté</a></span> pour lire les articles !
-              </div>
+  {{!-- TITRES PAGE --}}
+  <div class=" pt-5 border-bottom border-1 border-primary">
+    <h3 class="tist text-center bg-gradient fw-bold rounded">Articles récents</h3>
+  </div>
+  <!-- AFFICHAGE CARDS DB -->
+
+  {{#if home }}
+  <div class="row">
+    {{#each ( limitArray dbArticle 3 )}}
+    <div class="col-md-4 pt-3 pb-2">
+      <div class="card bg-dark tist border-3 border-primary">
+        <img src="{{ image }}" class="card-img-top" height="400px" alt="" />
+
+        {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
+        <div class="card-body text-center">
+          <h2 class="card-title text-center">{{ upcase title}}</h2>
+          <p class="card-text"> {{description}} {{id}} </p>
+          {{#if ../user}}
+          <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
+          {{else}}
+          <div class="">
+            <div style="height: 90px;" class="alert   alert-danger" role="alert">
+              il faut <span><a href="/auth">être connecté</a></span> pour lire les articles !
             </div>
-            {{/if}}
           </div>
+          {{/if}}
         </div>
       </div>
-      {{/each}}
-      {{else}}
-      <div class="pt-2">
-        <input type="text" class="w-100" id="myInput" onkeyup="filtrage()" placeholder="Rechercher dans les articles">
-      </div>
-      <div id="myCard" class="row">
-        {{#each dbArticle}}
-        <div class="col-md-4 pt-5 pb-5 " id="myCard" style="height: 600px;">
-          {{!-- IMAGE DB --}}
-          <div class="card bg-dark tist border-3 border-primary pt-3 pb-3  " style="width: auto;">
-            <img src="{{ image }}" class="card-img-top" alt="" height="400px" />
-            {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
-            <div class="card-body text-center">
-              <h2 class="card-title text-center mb-4">{{title}}</h2>
-              <p class="card-text"> {{description}} écrit par: {{author_name}} </p>
-              {{#if ../user}}
+    </div>
+    {{/each}}
+  </div>
+
+  {{else}}
+  <div class="pt-4">
+    <input type="text" class="w-100" id="myInput" onkeyup="filtrage()" placeholder="Rechercher dans les articles">
+  </div>
+  <div id="myCard" class="row pt-5 pb-5" >
+    {{#each dbArticle}}
+    <div class="col-md-4 pb-2   " id="myCard">
+      {{!-- IMAGE DB --}}
+      <div class="mb-5 card bg-dark tist border-3 border-primary" style="width: auto;">
+        <img src="{{ image }}" class="card-img-top" alt="" height="250px" />
+        {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
+        <div class="card-body text-center">
+          <h2 class="card-title text-center mb-4" >{{title}}</h2>
+          <p class="card-text" > {{description}} écrit par: {{author_name}} </p>
+          {{#if ../user}}
+          <div class="">
               <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
-              {{else}}
-              <div class="alert alert-danger" role="alert">
-                Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
-              </div>
-              {{/if}}
-            </div>
           </div>
+          {{else}}
+          {{!-- <div class="alert alert-danger" role="alert">
+            Seuls les utilisateurs <span><a href="/auth">connectés</a></span> peuvent lire les articles !
+          </div> --}}
+          {{/if}}
         </div>
-        {{/each}}
-        {{/if}}
       </div>
     </div>
-
+    {{/each}}
+    {{/if}}
   </div>
 </section>
 <script>
@@ -77,7 +79,7 @@
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < div.length; i++) {
       h2 = div[i].getElementsByTagName("h2")[0];
-      p  = div[i].getElementsByTagName("p")[0];
+      p = div[i].getElementsByTagName("p")[0];
       txtValue = h2.textContent || h2.innerText;
       txtValue2 = p.textContent || p.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
@@ -118,4 +120,22 @@
   .tes:hover {
     background-color: white !important;
   }
+
+  #myCard {
+    max-height: 600px;
+  }
 </style>
+
+
+
+{{!-- //
+   $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
+   $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
+   $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
+   $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
+   $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
+   $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
+   $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
+   \_______/  \______/ \_______/   \__|    \______/ 
+                                                 
+              --}}

@@ -50,9 +50,17 @@ exports.editPasswordPost = async (req, res) => {
 
 //GET PAGE AUTH COMPORTANT LES FORMULAIRES 
 exports.get = (req, res) => {
-    res.render('auth',{
-        cook: (req.cookies.Cookie) ? true : false
-    });
+    if(req.session) {
+        res.render('home',{
+            error: 'already logged in',
+            cook: (req.cookies.Cookie) ? true : false
+        })
+    } else {
+        res.render('auth',{
+            cook: (req.cookies.Cookie) ? true : false
+        });
+    }
+    
 }
 
 //REGISTER 
@@ -99,7 +107,6 @@ exports.register = async (req, res) => {
                      VALUES ('${req.body.full_name}','${req.body.nickname}','${req.body.email}','${ await bcrypt.hash(req.body.password, 16) }');`
         //envoi de la requete sql
         query(sql, (err, data) => {
-            if (err) console.log(err)
             //si y'a une erreur , shit happened
             if (err) res.render('auth', {
                 error: 'shit happened !',
@@ -256,3 +263,19 @@ exports.logout = (req, res) => {
         res.redirect('/')
     })
 }
+
+
+
+
+
+// $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
+// $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
+// $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
+// $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
+// $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
+// $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
+// $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
+// \_______/  \______/ \_______/   \__|    \______/ 
+                                                 
+                                                 
+                                                 
