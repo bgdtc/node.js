@@ -7,8 +7,10 @@
     {{#each dbAvis}}
     <div class="row d-flex justify-content-center">
       <div class="card  text-white bg-primary mb-3" style="max-width: 43rem;">
-        <div class="card-header">écrit par: {{ this.author_name }} <span class=" d-flex justify-content-end">publié le {{
-            this.update_date }}</span></div>
+        <div class="card-header text-warning fw-bold">écrit par: <span class="text-white fw-bold">{{ this.author_name }}</span>  <span class=" d-flex text-dark justify-content-end">publié le
+            {{
+            this.update_date }}</span>
+        </div>
         <div class="card-body">
           <h2 class="h5 card-title">{{ this.title }}</h2>
           <p class="card-text">{{ this.content }}</p>
@@ -22,13 +24,13 @@
 
 
 {{!-- //
-   $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
-   $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
-   $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
-   $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
-   $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
-   $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
-   $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
-   \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-              --}}
+$$$$$$$\ $$$$$$\ $$$$$$$\ $$$$$$$$\ $$$$$$\
+$$ __$$\ $$ __$$\ $$ __$$\\__$$ __|$$ __$$\
+$$ | $$ |$$ / \__|$$ | $$ | $$ | $$ / \__|
+$$$$$$$\ |$$ |$$$$\ $$ | $$ | $$ | $$ |
+$$ __$$\ $$ |\_$$ |$$ | $$ | $$ | $$ |
+$$ | $$ |$$ | $$ |$$ | $$ | $$ | $$ | $$\
+$$$$$$$ |\$$$$$$ |$$$$$$$ | $$ | \$$$$$$ |
+\_______/ \______/ \_______/ \__| \______/
+
+--}}

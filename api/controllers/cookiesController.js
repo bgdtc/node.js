@@ -7,7 +7,7 @@ exports.activateCookies = async (req, res, next) => {
              httpOnly: true,
              resave: false
          })
-    res.redirect('/')
+        res.redirect('back')
 }
 
 // exports.getCookies = async (req,res) => {

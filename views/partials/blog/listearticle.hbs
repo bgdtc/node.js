@@ -10,14 +10,14 @@
   {{#if home }}
   <div class="row">
     {{#each ( limitArray dbArticle 3 )}}
-    <div class="col-md-4 pt-3 pb-2">
+    <div class="py-5 col-md-4 pt-3 pb-2">
       <div class="card bg-dark tist border-3 border-primary">
         <img src="{{ image }}" class="card-img-top" height="400px" alt="" />
 
         {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
         <div class="card-body text-center">
-          <h2 class="card-title text-center">{{ upcase title}}</h2>
-          <p class="card-text"> {{description}} {{id}} </p>
+          <h2 class="card-title text-white text-center">{{ upcase title}}</h2>
+          <p class="card-text fw-bold"> {{description}} {{id}} </p>
           {{#if ../user}}
           <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
           {{else}}
@@ -45,8 +45,8 @@
         <img src="{{ image }}" class="card-img-top" alt="" height="250px" />
         {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
         <div class="card-body text-center">
-          <h2 class="card-title text-center mb-4" >{{title}}</h2>
-          <p class="card-text" > {{description}} écrit par: {{author_name}} </p>
+          <h2 class="card-title text-center text-white mb-4" >{{title}}</h2>
+          <p class="card-text fw-bold" > {{description}} écrit par: {{author_name}} </p>
           {{#if ../user}}
           <div class="">
               <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
