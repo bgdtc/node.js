@@ -113,17 +113,17 @@ global.query = query;
 
 
 
-// Express-session
-app.use(expressSession({
-    secret: 'lasecuavantout',
-    name: 'ptiBiscuit',
-    saveUninitialized: true,
-    resave: false,
-    cookie: {
-        maxAge: 8 * 60 * 60 * 1000
-    }
 
-}));
+// app.use(expressSession({
+//     secret: 'lasecuavantout',
+//     name: 'ptiBiscuit',
+//     saveUninitialized: true,
+//     resave: false,
+//     cookie: {
+//         maxAge: 8 * 60 * 60 * 1000
+//     }
+
+// }));
 
 
 //Express static pour le chemin de dossier

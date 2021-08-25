@@ -50,24 +50,24 @@ exports.editPasswordPost = async (req, res) => {
 
 //GET PAGE AUTH COMPORTANT LES FORMULAIRES 
 exports.get = (req, res) => {
-    if(req.session) {
-        res.render('home',{
+    if (req.session.user) {
+        res.render('home', {
             error: 'already logged in',
             cook: (req.cookies.Cookie) ? true : false
         })
     } else {
-        res.render('auth',{
+        res.render('auth', {
             cook: (req.cookies.Cookie) ? true : false
         });
     }
-    
+
 }
 
 //REGISTER 
 exports.register = async (req, res) => {
 
 
-    console.log('AUTH controller register ', req.body)
+    console.log('AUTH controller register ')
 
     //si la case cgu n'est pas cochée ou que les mots de passent de correspondent pas 
     if (req.body.checked !== 'on' || req.body.password !== req.body.passwordConfirm) {
@@ -182,7 +182,7 @@ exports.verifAccountPost = async (req, res) => {
 
 //LOGIN 
 exports.auth = (req, res) => {
-    console.log('AUTH controller auth', req.body)
+    console.log('AUTH controller auth')
 
     // si les cgu sont pas cochées
     if (req.body.checked !== 'on') {
@@ -202,10 +202,11 @@ exports.auth = (req, res) => {
             })
             //si l'email existe dans la db
             else {
-                let dat = data[0].email
-                let uat = data[0].is_verified
+                let mail = data[0].email
+                let banned = data[0].is_banned
+                let verified = data[0].is_verified
                 //si l'email correspond a l'email de la db et que l'user est vérifié 
-                if (dat === req.body.email && uat === 1) {
+                if (mail === req.body.email && verified === 1 && banned === 0) {
 
                     bcrypt.compare(req.body.password, data[0].password, function (err, result) {
                         if (err) console.log(err)
@@ -240,7 +241,7 @@ exports.auth = (req, res) => {
                     // })
                 } else {
                     res.render('home', {
-                        error: 'Veuillez consulter vos mails vous n\'êtes pas vérifiés',
+                        error: 'Veuillez consulter vos mails vous n\'êtes pas vérifiés, si le problème persiste contactez un administrateur',
                         cook: (req.cookies.Cookie) ? true : false
                     })
                 }
@@ -276,6 +277,3 @@ exports.logout = (req, res) => {
 // $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
 // $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
 // \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-                                                 
-                                                 
