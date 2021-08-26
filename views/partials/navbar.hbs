@@ -32,9 +32,11 @@
           <a class="a nav-link text-white ps-1" href="/avis">Avis</a>
         </li>
         {{!-- BOUTON BLOG --}}
+        {{#if user}}
         <li class="nav-item pe-2 pb-1">
           <a class="a nav-link text-white ps-1" href="/blog">Blog</a>
         </li>
+        {{/if}}
         {{#if admin}}
         <li class="nav-item pe-2 pb-1">
           <a class="a nav-link text-danger ps-1" href="/admin">Admin</a>

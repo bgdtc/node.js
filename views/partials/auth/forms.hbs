@@ -102,7 +102,7 @@
         {{!-- INPUT PASSWORD --}}
         <div class="">
           <label for="password" class="form-label">Mot de passe:</label>
-          <input type="password" class="form-control" name='password' id="passwordd" required />
+          <input type="password" onkeyup="checkPass()" class="form-control" name='password' id="passwordd" required />
         </div>
         {{!-- INPUT PASSWORD CONFIRM --}}
         <div class="">
@@ -110,19 +110,30 @@
             passe:</label>
           <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required />
         </div>
-        <div  class=" row pb-5 bg-dark">
-          <div class= bg-dark" col-12 form-check">
+        <div class=" row pb-5 bg-dark">
+          <div class=bg-dark" col-12 form-check">
             <input type="checkbox" class="form-check-input" name='checked' id="checkRegister" required />
             <label class="form-check-label" for="check">J'accepte les <a href="/CGU">CGU</a></label>
           </div>
-          <div  class="bg-dark col-12 text-center">
+          <div class="bg-dark col-12 text-center">
             <button class="btn btn-primary text-center">S'inscrire</button>
-          </div>  
+          </div>
+          <div class="col-6">
+            <p id="bite" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i>mdp
+              OK</p>
+            <p id="bite8" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 8
+              caractères</p>
+            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1 majuscule</p>
+            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1 chiffre </p>
+            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1 caractère spécial</p>
+            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> Correspondance des mots de passes</p>
+
+          </div>
         </div>
-        
-        
+
+
       </form>
-      
+
     </div>
     {{!-- MOT DE PASSE OUBLIE --}}
     <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
@@ -204,17 +215,33 @@
   }
 </script>
 
+<script>
+  function checkPass() {
+    const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+    console.log(document.getElementById('passwordd').value)
+    //if (document.getElementById('passwordd'))
+
+    if (document.getElementById('passwordd').value.length >= 8) {
+      document.getElementById('bite8').style.display = 'block'
+    }
+    if (document.getElementById('passwordd').value.match(regex)) {
+      console.log('mabite')
+      document.getElementById('bite').style.display = 'block'
+    }
+  }
+</script>
+
 
 
 
 {{!-- //
-   $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
-   $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
-   $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
-   $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
-   $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
-   $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
-   $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
-   \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-              --}}
+$$$$$$$\ $$$$$$\ $$$$$$$\ $$$$$$$$\ $$$$$$\
+$$ __$$\ $$ __$$\ $$ __$$\\__$$ __|$$ __$$\
+$$ | $$ |$$ / \__|$$ | $$ | $$ | $$ / \__|
+$$$$$$$\ |$$ |$$$$\ $$ | $$ | $$ | $$ |
+$$ __$$\ $$ |\_$$ |$$ | $$ | $$ | $$ |
+$$ | $$ |$$ | $$ |$$ | $$ | $$ | $$ | $$\
+$$$$$$$ |\$$$$$$ |$$$$$$$ | $$ | \$$$$$$ |
+\_______/ \______/ \_______/ \__| \______/
+
+--}}
