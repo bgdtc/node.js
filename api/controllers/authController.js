@@ -75,7 +75,10 @@ exports.register = async (req, res) => {
         //si tout est ok
     } else {
         //génération de l'id aléatoire
-        rand = Math.floor((Math.random() * 100) + 54)
+         
+        const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+        rand = genRanHex(80)
+        // rand = Math.floor(Math.random() * Math.LN10 * 1000 + 79875464 * Math.random())
         //host = lien de notre site
         host = req.get('host')
         //lien complet
@@ -141,7 +144,13 @@ exports.verifAccount = async (req, res) => {
         // Ici on tcheck notre id du mail avec la variable enregistrer en cache (rand)
         if (req.params.id == mailOptions.rand) {
             console.log("email is verified")
-            consol('verifId', {
+            console.log('verifId', {
+                user: user[0],
+                email: mailOptions.to,
+                cook: (req.cookies.Cookie) ? true : false
+                
+            })
+            res.render('verifId', {
                 user: user[0],
                 email: mailOptions.to,
                 cook: (req.cookies.Cookie) ? true : false
@@ -174,8 +183,15 @@ exports.verifAccountPost = async (req, res) => {
     //si c'est bon ça balance le changement de statut
     if (user) {
         await query(`UPDATE user SET is_verified = 1 WHERE id = ${req.params.id}`)
-        req.session.is_verified = true
-        res.redirect('/')
+        // req.session.is_verified = true
+        req.session.destroy(() => {
+            res.clearCookie('ptiBiscuit')
+            //log de la session pour verifier
+            console.log(req.session)
+            res.redirect('/')
+        })
+        // res.redirect('/')
+        
         //sinon ça renvoie sur home
     } else res.redirect('/')
 }
@@ -198,7 +214,8 @@ exports.auth = (req, res) => {
             if (err) console.log(err)
             //si l'email existe pas dans la db
             if (!data[0]) res.render('auth', {
-                error: 'shit happened !'
+                error: 'shit happened !',
+                cook: (req.cookies.Cookie) ? true : false
             })
             //si l'email existe dans la db
             else {
@@ -214,7 +231,8 @@ exports.auth = (req, res) => {
                         console.log('RESULT: ', result)
 
                         if (!result) console.log('les mot de passe ne correspondent pas'), res.render('auth', {
-                            error: 'shit happened !'
+                            error: 'shit happened !',
+                            cook: (req.cookies.Cookie) ? true : false
                         })
 
                         else console.log('Mot de passe OK !'),
@@ -260,7 +278,7 @@ exports.logout = (req, res) => {
     req.session.destroy(() => {
         res.clearCookie('ptiBiscuit')
         //log de la session pour verifier
-        console.log(req.session)
+        console.log('user disconnected')
         res.redirect('/')
     })
 }

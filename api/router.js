@@ -26,6 +26,7 @@ const nmap = require('./middleware/nmapIpVisitor')
 const is_admin = require('./middleware/is_admin')
 
 
+
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
@@ -96,13 +97,13 @@ router.route('/comment/:id')
 //MON COMPTE -------------------------------------------------------
 router.route('/account')
    .get(accountController.get)
-
+   
 
 //MON COMPTE ID USER MODIFY ACCOUNT -------------------------------------------------
 router.route('/account/user/:id')
    .get(accountController.get)
    .put(upload.single('image'), accountController.modifyAccount)
-
+   .delete(accountController.deleteAccount)
    
 //MON COMPTE ID COMMENTS& AVIS MODIFY AND DELETE
 router.route('/account/:id')

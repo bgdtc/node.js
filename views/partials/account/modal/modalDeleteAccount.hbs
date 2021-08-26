@@ -1,28 +1,26 @@
 <!-- Modal -->
-<div class="modal fade" id="modalDeleteUser{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="modalDeleteAccount" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de vouloir
-                    supprimer cet utilisateur ?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Suppression Du Compte</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-dark">
-                -Suppression de : {{ user.full_name }} id: {{ user.id }}
+                Êtes vous sur de vouloir supprimer Votre compte  ?
+                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                <form method="POST" action="/user/{{ user.id }}?_method=DELETE">
-                    <button type="submit" class="btn btn-primary">Appliquer</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                <form action="/account/user/{{ user.id }}?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger">Oui</button>
                 </form>
-                {{!-- <a href="/user/{{ user.id }}?_method=DELETE" class="btn btn-success">Appliquer</a> --}}
 
             </div>
         </div>
     </div>
 </div>
-
 
 
 {{!-- //

@@ -5,6 +5,7 @@ module.exports = {
     get: async (req, res) => {
         res.render('avis', {
             dbAvis: await query(`SELECT * FROM comments WHERE is_avis = 1`),
+            dbAvisUser: await query(`SELECT * FROM comments WHERE id = ${req.session.user.id}`),
             cook: (req.cookies.Cookie) ? true : false
         })
     },

@@ -153,7 +153,21 @@ module.exports = {
 
         }
 
+    },
+    deleteAccount: async (req, res) => {
+        console.log('delete account')
+        const sql = `DELETE FROM user WHERE id = ${req.session.user.id}`
+        await query(sql)
+        //destruction du cookie de session de l'utilisateur
+        req.session.destroy(() => {
+            res.clearCookie('ptiBiscuit')
+            //log de la session pour verifier
+            console.log(req.session)
+            res.redirect('/')
+        })
+
     }
+
 
 }
 
@@ -166,5 +180,3 @@ module.exports = {
 // $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
 // $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
 // \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-             

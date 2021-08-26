@@ -5,16 +5,21 @@ PARTIAL ARTICLES
 
 {{!-- PARTIAL ARTICLES ADMIN --}}
 {{!-- TABLEAU --}}
-<div class="pb-3 table-responsive-lg">
-    <table class="table" >
+
+    <div class="pb-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddArticle">Ajouter
+            un
+            article</button>
+        {{> modal/addArticle }}
+    </div>
+    <table class="table table-bordered table-responsive-lg table-responsive-sm" >
         {{!-- LEGENDE TABLEAU --}}
         <thead>
             <tr>
                 <th scope="col">#id</th>
                 <th scope="col">Auteur</th>
-                <th scope="col">Titre Article</th>
+                <th scope="col">Titre</th>
                 <th scope="col">Description</th>
-                <th  scope="col">Image</th>
                 <th scope="col">Aperçu</th>
                 <th scope="col">Modifier</th>
                 <th scope="col">Supprimer</th>
@@ -28,7 +33,6 @@ PARTIAL ARTICLES
                 <td>{{ this.author_name }}</td>
                 <td>{{ this.title }}</td>
                 <td>{{ this.description }}</td>
-                <td>{{ this.image }}</td>
                 <td><img src="{{ this.image }}" height="125px" width="150px" style="height: 125px; width: 150px;" alt=""></td>
                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#modalModifArticle{{ this.id }}"><i class="fas fa-edit"><svg
@@ -55,13 +59,8 @@ PARTIAL ARTICLES
         </tbody>
     </table>
     {{!-- BOUTON AJOUTER UN ARTICLE --}}
-    <div class="pb-5">
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAddArticle">Ajouter
-            un
-            article</button>
-        {{> modal/addArticle }}
-    </div>
-</div>
+    
+
 
 
 
