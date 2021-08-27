@@ -4,80 +4,125 @@ Partial: table User
 --}}
 {{!-- BOUTON AJOUTER UN UTILISATEUR --}}
 <div class="container bg-white pb-5 pt-5">
-<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAddUser">Ajouter un
+    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAddUser">Ajouter un
         Utilisateur</button>
-<div class="pb-5">
-    
-    {{> modal/addUser }}
+    <div class="pb-5">
+
+        {{> modal/addUser }}
+    </div>
+    <table class="pb-5 bg-white table table-sm table-bordered ">
+        {{!-- LEGENDE TABLEAU --}}
+        <thead>
+            {{!-- TITRES ELEMENTS TABLEAU --}}
+            <tr>
+                <th scope="col">#id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Pseudo</th>
+                <th scope="col">Email</th>
+                <th id="verified" scope="col">Verified</th>
+                <th scope="col">Admin</th>
+                <th scope="col">Banned</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        {{!-- CONTENU TABLEAU --}}
+        <tbody class="pb-5">
+            {{#each dbuser}}
+            <tr class="pb-5">
+
+                {{!-- Req.flash --}}
+
+                <th scope="row">{{ this.id }}</th>
+                <td style="margin-top: 10vh" class=""> {{ this.full_name }} </td>
+                <td style="margin-top: 10vh" class=""> {{ this.nickname }} </td>
+                <td style="margin-top: 10vh" class=""> {{ this.email }} </td>
+                <td style="margin-top: 10vh" class="verified"> {{ this.is_verified }}</td>
+                <td style="margin-top: 10vh" class="admin"> {{ this.is_admin }}</td>
+                <td style="margin-top: 10vh" class="banned"> {{ this.is_banned }}</td>
+                <td style="margin-top: 10vh" class="">
+                    <div class="pt-2 ">
+                        <button type="button" class="btn btn-danger  mb-2" data-bs-toggle="modal"
+                            data-bs-target="#modalDeleteUser{{ this.id }}"><i class="bi bi-trash"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg></i> </button>
+                        <button type="button" class="btn btn-primary mb-2 " data-bs-toggle="modal"
+                            data-bs-target="#modalModifyUser{{ this.id }}"> <i class="bi bi-pen"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path
+                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg></i> </button>
+                    </div>
+
+                </td>
+                {{> modal/deleteUser user=this }}
+                {{> modal/modifyUser user=this }}
+            </tr>
+            {{/each }}
+        </tbody>
+    </table>
 </div>
-<table class="pb-5 bg-white table table-sm table-bordered ">
-    {{!-- LEGENDE TABLEAU --}}
-    <thead>
-        {{!-- TITRES ELEMENTS TABLEAU --}}
-        <tr>
-            <th scope="col">#id</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Pseudo</th>
-            <th scope="col">Email</th>
-            <th scope="col">Verified</th>
-            <th scope="col">Admin</th>
-            <th scope="col">Banned</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    {{!-- CONTENU TABLEAU --}}
-    <tbody class="pb-5">
-        {{#each dbuser}}
-        <tr class="pb-5">
+<script>
 
-            {{!-- Req.flash --}}
+    let verif = document.getElementsByClassName('verified')
+    let admin = document.getElementsByClassName('admin')
+    let banned = document.getElementsByClassName('banned')
 
-            <th scope="row">{{ this.id }}</th>
-            <td style="margin-top: 10vh" class=""> {{ this.full_name }} </td>
-            <td style="margin-top: 10vh" class=""> {{ this.nickname }} </td>
-            <td style="margin-top: 10vh" class=""> {{ this.email }} </td>
-            <td style="margin-top: 10vh" class=""> {{ this.is_verified }}</td>
-            <td style="margin-top: 10vh" class=""> {{ this.is_admin }}</td>
-            <td style="margin-top: 10vh" class=""> {{ this.is_banned }}</td>
-            <td style="margin-top: 10vh" class="">
-                <div class="pt-2 ">
-                    <button type="button" class="btn btn-danger  mb-2" data-bs-toggle="modal"
-                        data-bs-target="#modalDeleteUser{{ this.id }}"><i class="bi bi-trash"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-trash" viewBox="0 0 16 16">
-                                <path
-                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                <path fill-rule="evenodd"
-                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                            </svg></i> </button>
-                    <button type="button" class="btn btn-primary mb-2 " data-bs-toggle="modal"
-                        data-bs-target="#modalModifyUser{{ this.id }}"> <i class="bi bi-pen"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-pen" viewBox="0 0 16 16">
-                                <path
-                                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
-                            </svg></i> </button>
-                </div>
+    //console.log(verif[0].innerText)
+    for (i = 0; i < verif.length; i++) {
+        if (verif[i].innerHTML == 1) {
+            console.log('test')
+            verif[i].innerHTML = "oui"
+        }
+        if (verif[i].innerHTML == 0) {
+            verif[i].innerHTML = "non"
+        }
+    }
 
-            </td>
-            {{> modal/deleteUser user=this }}
-            {{> modal/modifyUser user=this }}
-        </tr>
-        {{/each }}
-    </tbody>
-</table>
-</div>
+    for (i = 0; i < admin.length; i++) {
+        if (admin[i].innerHTML == 1) {
+            console.log('test')
+            admin[i].innerHTML = "oui"
+        }
+        if (admin[i].innerHTML == 0) {
+            admin[i].innerHTML = "non"
+        }
+    }
 
+    for (i = 0; i < banned.length; i++) {
+        if (banned[i].innerHTML == 1) {
+            console.log('test')
+            banned[i].innerHTML = "oui"
+        }
+        if (banned[i].innerHTML == 0) {
+            banned[i].innerHTML = "non"
+        }
+    }
+
+
+
+
+
+
+
+
+
+</script>
 
 
 {{!-- //
-   $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
-   $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
-   $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
-   $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
-   $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
-   $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
-   $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
-   \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-              --}}
+$$$$$$$\ $$$$$$\ $$$$$$$\ $$$$$$$$\ $$$$$$\
+$$ __$$\ $$ __$$\ $$ __$$\\__$$ __|$$ __$$\
+$$ | $$ |$$ / \__|$$ | $$ | $$ | $$ / \__|
+$$$$$$$\ |$$ |$$$$\ $$ | $$ | $$ | $$ |
+$$ __$$\ $$ |\_$$ |$$ | $$ | $$ | $$ |
+$$ | $$ |$$ | $$ |$$ | $$ | $$ | $$ | $$\
+$$$$$$$ |\$$$$$$ |$$$$$$$ | $$ | \$$$$$$ |
+\_______/ \______/ \_______/ \__| \______/
+
+--}}

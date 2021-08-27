@@ -33,13 +33,13 @@
       {{/if}}
     {{!-- ZONE POUR POSTER UN COMMENTAIRE --}}
     <div>
-      <form action="/article/{{artID.id}}" method="POST" class=" pt-3  row  border-3 ">
+      <form action="/article/{{artID.id}}" method="POST" class=" pt-3 pb-2 row  border-3 ">
         <div class="col-12">
           <label for="comment" class="form-label text-white">Votre Commentaire:</label>
           <textarea name="content" class="form-control bg-gradient text-primary" id="comment" cols="30" rows="10"
             required></textarea>
         </div>
-        <div class="col-6 pt-2">
+        <div class="col-6 pb-2 pt-2">
           <div class="form-check">
             <input type="checkbox" class="form-check-input " name="checked" id="check" required>
             <label for="gridCheck" class="form-check-label text-white">

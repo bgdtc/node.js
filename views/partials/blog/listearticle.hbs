@@ -35,7 +35,7 @@
 
   {{else}}
   <div class="pt-4">
-    <input type="text" class="w-100" id="myInput" onkeyup="filtrage()" placeholder="Rechercher dans les articles">
+    <input type="search" class="form-control w-100" id="myInput" onkeyup="filtrage()" placeholder="Rechercher dans les articles">
   </div>
   <div id="myCard" class="row pt-5 pb-5" >
     {{#each dbArticle}}
@@ -90,26 +90,26 @@
       console.log('test', document.getElementsByTagName("h2"))
     }
   }
-  function filtrageDescr() {
+ // function filtrageDescr() {
 
-    let input, filter, ul, div, p, i, txtValue;
-    input = document.getElementById('myInput');
-    filter = input.value.toUpperCase();
-    card = document.getElementById("myCard");
-    div = card.getElementsByTagName('div');
+    //let input, filter, ul, div, p, i, txtValue;
+    //input = document.getElementById('myInput');
+    //filter = input.value.toUpperCase();
+    //card = document.getElementById("myCard");
+    //div = card.getElementsByTagName('div');
 
     // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < div.length; i++) {
-      p = div[i].getElementsByTagName("p")[0];
-      txtValue = p.textContent || p.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        div[i].style.display = "";
-      } else {
-        div[i].style.display = "none";
-      }
-      console.log('test', document.getElementsByTagName("p"))
-    }
-  }
+    //for (i = 0; i < div.length; i++) {
+      //p = div[i].getElementsByTagName("p")[0];
+      //txtValue = p.textContent || p.innerText;
+      //if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //div[i].style.display = "";
+      //} else {
+        //div[i].style.display = "none";
+      //}
+     // console.log('test', document.getElementsByTagName("p"))
+    //}
+  //}
 
 
 

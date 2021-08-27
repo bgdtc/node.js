@@ -1,6 +1,10 @@
 {{!-- HEADER PAGE D'ACCUEIL --}}
 <section class="bg-gradient pt-5">
-  <header id="vantajs">
+  <canvas class="fixed" id="q">
+    
+  </canvas>
+  <header id="f">
+    
     <div class="container pt-5 pb-1  tist">
       {{!-- TITRES SITE --}}
       <div class="">
@@ -25,7 +29,6 @@
               qui
               officia deserunt mollit anim id est laborum.</p>
             <img class="bg-dark rounded-pill" height="130px" src="../assets/images/bleu.jpg" alt="" />
-
           </div>
           {{!-- AUTRE TEXTE --}}
           <p class="text-dark test fw-bold">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -33,62 +36,35 @@
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
             est
             laborum.
-
-
-
           </p>
         </div>
-
-
       </div>
-
     </div>
   </header>
 </section>
 
 
 
-<script src="/assets/js/p5.min.js"></script>
-<script src="/assets/js/vanta.topology.min.js"></script>
+<script src="/assets/js/canvas.js"></script>
 
-<script>
-
-  VANTA.TOPOLOGY({
-    el: "#vantajs",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0x1762c5,
-    backgroundColor: 0xffffff
-  })
-</script>
 
 <style>
-  #vantajs>canvas {
-    width: 100% !important;
-    height: 15vh !important;
-  }
-
-  #ven,
-  #jeu {
-    text-shadow: 0 0 3px #fcfcfc, 0 0 5px #0000FF;
-  }
-</style>
+ canvas {
+   height: 200px;
+   width: 100%;
+ }
+</style> 
 
 
 
 {{!-- //
-   $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
-   $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
-   $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
-   $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
-   $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
-   $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
-   $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
-   \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-              --}}
+$$$$$$$\ $$$$$$\ $$$$$$$\ $$$$$$$$\ $$$$$$\
+$$ __$$\ $$ __$$\ $$ __$$\\__$$ __|$$ __$$\
+$$ | $$ |$$ / \__|$$ | $$ | $$ | $$ / \__|
+$$$$$$$\ |$$ |$$$$\ $$ | $$ | $$ | $$ |
+$$ __$$\ $$ |\_$$ |$$ | $$ | $$ | $$ |
+$$ | $$ |$$ | $$ |$$ | $$ | $$ | $$ | $$\
+$$$$$$$ |\$$$$$$ |$$$$$$$ | $$ | \$$$$$$ |
+\_______/ \______/ \_______/ \__| \______/
+
+--}}

@@ -1,9 +1,9 @@
 {{!-- FORMULAIRES DE CONNEXION / INSCRIPTION / MOT DE PASSE OUBLIE --}}
 
-<section class="pt-5 container-fluid bg-dark" style="height: 100vh;">
+<section class="pt-5  bg-dark" style="height: 100vh;">
 
   {{! TABS AUTH }}
-  <ul class="nav nav-tabs d-flex justify-content-center  container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+  <ul class="nav nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5" id="myTab" role="tablist">
     {{!-- BOUTON CONNEXION --}}
     <li class="nav-item pt-2 ps-2 pe-2" role="presentation">
       <button class="nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab"
@@ -25,7 +25,7 @@
   </ul>
 
   {{! CONTENU TABS AUTH }}
-  <div class="tab-content ">
+  <div class="tab-content bg-dark container ">
     {{!-- FORMULAIRE DE CONNEXION --}}
     <div class=" tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <form class="container" action='/auth' method="POST">
@@ -74,8 +74,9 @@
       </form>
     </div>
     {{! FORMULAIRE D'INSCRIPTION }}
-    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <form id="form" onsubmit="checkForm(event)" class="container pb-5" action='/auth/register' method="POST">
+    <div class="tab-pane bg-dark" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <form id="form" onsubmit="checkForm(event)" class=" pb-5" action='/auth/register' method="POST">
+            {{!-- INPUTE NAME --}}
         <div class="row">
           {{!-- INPUT NOM --}}
           <h1 class="text-white text-center pt-4">Inscription</h1>
@@ -105,35 +106,36 @@
           <input type="password" onkeyup="checkPass()" class="form-control" name='password' id="passwordd" required />
         </div>
         {{!-- INPUT PASSWORD CONFIRM --}}
-        <div class="">
+        <div class="pb-2">
           <label for="passwordConfirm" class="form-label">Confirmer le mot de
             passe:</label>
-          <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required />
+          <input type="password" class="form-control" onkeyup="checkCor()" id="passwordConfirm" name="passwordConfirm" required />
         </div>
-        <div class=" row pb-5 bg-dark">
-          <div class=bg-dark" col-12 form-check">
+        <div class="pb-2">
+          <div class="bg-dark col-12 form-check">
             <input type="checkbox" class="form-check-input" name='checked' id="checkRegister" required />
             <label class="form-check-label" for="check">J'accepte les <a href="/CGU">CGU</a></label>
           </div>
-          <div class="bg-dark col-12 text-center">
-            <button class="btn btn-primary text-center">S'inscrire</button>
+          <div class="bg-dark  col-12 text-center">
+            <button class="btn btn-primary col-6 text-center">S'inscrire</button>
           </div>
           <div class="col-6">
             <p id="bite" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i>mdp
               OK</p>
             <p id="bite8" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 8
               caractères</p>
-            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1 majuscule</p>
-            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1 chiffre </p>
-            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1 caractère spécial</p>
-            <p><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> Correspondance des mots de passes</p>
+            <p id="maj" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1
+              majuscule</p>
+            <p id="num" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1
+              chiffre </p>
+            <p id="spe" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i> 1
+              caractère spécial</p>
+            <p id="same" style="display: none;"><i><img class="text-info" src="/assets/images/done.svg" alt=""></i>
+              Correspondance des mots de passes</p>
 
           </div>
         </div>
-
-
-      </form>
-
+       </form>
     </div>
     {{!-- MOT DE PASSE OUBLIE --}}
     <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
@@ -216,18 +218,78 @@
 </script>
 
 <script>
-  function checkPass() {
-    const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-    console.log(document.getElementById('passwordd').value)
-    //if (document.getElementById('passwordd'))
 
-    if (document.getElementById('passwordd').value.length >= 8) {
-      document.getElementById('bite8').style.display = 'block'
+   //verification mots de passes ===  
+  function checkCor() {
+    let pass = document.getElementById('passwordd').value
+    let passconf = document.getElementById('passwordConfirm').value
+    if (passconf === pass) {
+      document.getElementById('same').style.display = 'block'
+    } else {
+      document.getElementById('same').style.display = 'none'
     }
-    if (document.getElementById('passwordd').value.match(regex)) {
+  }
+
+  //verification regex +  ===
+  function checkPass() {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    console.log(document.getElementById('passwordd').value)
+    let string = document.getElementById('passwordd').value
+    let maj = new RegExp("[A-Z]");
+    let num = new RegExp("[0-9]");
+    let spe = new RegExp("[!@#$%^&*,;:/-]");
+    let pass = document.getElementById('passwordd').value
+    let passconf = document.getElementById('passwordConfirm').value
+
+    if (passconf === pass) {
+      document.getElementById('same').style.display = 'block'
+    } else {
+      document.getElementById('same').style.display = 'none'
+    }
+    
+
+
+    if (string.match(regex)) {
       console.log('mabite')
       document.getElementById('bite').style.display = 'block'
+    } else {
+      document.getElementById('bite').style.display = 'none'
     }
+
+    if (string.length >= 8) {
+      document.getElementById('bite8').style.display = 'block'
+    } else {
+      document.getElementById('bite8').style.display = 'none'
+    }
+
+
+
+    if (spe.test(string)) {
+      console.log('special')
+      document.getElementById('spe').style.display = 'block'
+    } else {
+      document.getElementById('spe').style.display = 'none'
+    }
+
+
+    if (num.test(string)) {
+      console.log('num')
+      document.getElementById('num').style.display = 'block'
+    } else {
+      document.getElementById('num').style.display = 'none'
+    }
+    if (maj.test(string)) {
+      console.log('maju')
+      document.getElementById('maj').style.display = 'block'
+      return;
+    } else {
+      console.log('minu')
+      document.getElementById('maj').style.display = 'none'
+      return;
+    }
+
+
+
   }
 </script>
 

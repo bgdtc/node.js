@@ -4,17 +4,18 @@
 
     {{#each userID }}
     <div class="pt-5">
-        <h5 class="text-center pt-5">Bonjour {{ this.full_name }} |  ton email est: {{
+        <h1 class="text-center h6 pt-5">Bonjour {{ this.full_name }} | ton email est: {{
             this.email }} <img class="rounded-pill" src="{{ this.image }}" height="100px" style="height: 100px;" alt="">
-        </h5>
+        </h1>
     </div>
 
     {{/each }}
 
     {{! TABS ACCOUNT }}
-    <ul class="nav nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5" id="myTab" role="tablist">
+    <ul class="nav border-primary border-top border-2  nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5"
+        id="myTab" role="tablist">
         {{!-- TAB GESTION DU COMPTE --}}
-        <li class="nav-item ps-2 pe-2" role="presentation">
+        <li class="nav-item ps-2 pb-2 pe-2" role="presentation">
             <button class="nav-link  border-2 border-primary active bg-gradient" id="home-tab" data-bs-toggle="tab"
                 data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Mon
                 Compte</button>
@@ -59,28 +60,28 @@
                         <input type="password" class="form-control pb-2" value="" name='NewPassword' id="newPassword"
                             aria-describedby="none" />
                         <label class="fw-bold" for="passConfirm">Confirmez mot de passe:</label>
-                        <input type="password" class="form-control" value="" name='passwordConfirm' id="passwordConfirm"
+                        <input type="password" class="form-control pb-2" value="" name='passwordConfirm' id="passwordConfirm"
                             aria-describedby="none" />
                     </div>
                     <div class="col-md-6">
                         <label for="image" class="pb-2 fw-bold">Séléctionnez une image de profil :</label>
                         <input type="file" name="image" id="">
-                        <img src="{{ this.image }}" class="rounded-pill" height="90px" alt="">
+                        <img src="{{ this.image }}" class="pb-2 pt-2 rounded-pill" height="90px" alt="">
                     </div>
                     <div class="col-md-6 pt-3">
                         <button class="btn btn-primary" type="submit">Appliquer les modifications</button>
                     </div>
                 </div>
 
+                <div class="col-md-6 pt-3">
 
+                    <button type="button" data-bs-toggle="modal" class="btn btn-sm btn-danger"
+                        data-bs-target="#modalDeleteAccount">Supprimer mon compte</button>
+                </div>
 
 
             </form>
-            <div class="col-md-6 pt-3">
 
-                <button type="button" data-bs-toggle="modal" class="btn btn-sm btn-danger"
-                    data-bs-target="#modalDeleteAccount">Supprimer mon compte</button>
-            </div>
             {{> account/modal/modalDeleteAccount user=this }}
         </div>
         {{/each}}
