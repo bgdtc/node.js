@@ -10,7 +10,7 @@ exports.getBlog = async (req, res) => {
     })
     //si utilisateur connecté
   } else {
-    const dbArticle =  await query(`SELECT * FROM articles`)
+    const dbArticle =  await query(`SELECT * FROM articles WHERE is_banned = 0`)
     const reverse = dbArticle.reverse()
     const sql = `SELECT user.is_verified FROM user WHERE id = ${req.session.user.id};`;
     await query(sql, (error, data) => {
@@ -27,7 +27,7 @@ exports.getBlog = async (req, res) => {
 
 //AFFICHAGE DE LA PAGE ID SELON LE STATUT 
 exports.getID = async (req, res) => {
-  let artIDd =  await query(`SELECT * FROM articles WHERE id = ${req.params.id}`)
+  let artIDd =  await query(`SELECT * FROM articles WHERE id = ${req.params.id} AND  is_banned = 0`)
   let comsIDd = await query(`SELECT * FROM comments WHERE article_id = ${req.params.id}`)
   const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
 

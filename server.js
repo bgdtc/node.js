@@ -8,6 +8,7 @@ const
     expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
+    moment = require('moment'),
     mysql = require('mysql2'),
     util = require('util'),
     port = process.env.PORT;
@@ -24,6 +25,7 @@ app.disable('x-powered-by');
 
 let MySQLStore = require('express-mysql-session')(expressSession);
 
+moment().format();
 
 let options = {
     host: process.env.DB_HOST,

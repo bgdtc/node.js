@@ -94,9 +94,9 @@
                     <tr>
                         <th scope="col">#id</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Avis / Commentaire</th>
+                        <th scope="col">Avis</th>
                         <th scope="col">Contenu</th>
-                        <th scope="col">Is Avis</th>
+                       
                         <th scope="col">Is Banned</th>
                         <th scope="col">Supprimer</th>
                         <th scope="col">Modifier</i></th>
@@ -108,10 +108,10 @@
                     <tr>
                         <th scope="row">{{ this.id }}</th>
                         <td>{{ this.author_id }}</td>
-                        <td>{{ this.is_avis }}</td>
+                        <td class="avis">{{ this.is_avis }}</td>
                         <td>{{ this.content }}</td>
-                        <td>{{ this.is_avis }}</td>
-                        <td>{{ this.is_banned }}</td>
+                        
+                        <td class="banned">{{ this.is_banned }}</td>
                         <td>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#modalDeleteComment{{ this.id }}"><i class="fas fa-trash-alt"><svg
@@ -147,6 +147,34 @@
 <script>
     var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
         = new bootstrap.Tab(firstTabEl) firstTab.show()
+
+</script>
+
+<script>
+
+    let avise = document.getElementsByClassName('avis')
+    let banneds = document.getElementsByClassName('banned')
+
+     for (i = 0; i < banneds.length; i++) {
+        if (banneds[i].innerHTML == 1) {
+            console.log('test')
+            banneds[i].innerHTML = "oui"
+        }
+        if (banneds[i].innerHTML == 0) {
+            banneds[i].innerHTML = "non"
+        }
+    }
+
+
+        for (i = 0; i < avise.length; i++) {
+        if (avise[i].innerHTML == 1) {
+            console.log('test')
+            avise[i].innerHTML = "oui"
+        }
+        if (avise[i].innerHTML == 0) {
+            avise[i].innerHTML = "non"
+        }
+    }
 </script>
 
 

@@ -58,18 +58,28 @@ PARTIAL AVIS ET COMMENTAIRES
 
 
 <script>
-    let avis = document.getElementsByClassName('avis')
-    let banned = document.getElementsByClassName('banned')
+    let aviss = document.getElementsByClassName('avis')
+    let bannedd = document.getElementsByClassName('banned')
   
-     for (i = 0; i < banned.length; i++) {
-        if (banned[i].innerHTML == 1) {
+    for (i = 0; i < bannedd.length; i++) {
+        if (bannedd[i].innerHTML == 1) {
             console.log('test')
-            banned[i].innerHTML = "oui"
+            bannedd[i].innerHTML = "oui"
         }
-        if (banned[i].innerHTML == 0) {
-            banned[i].innerHTML = "non"
+        if (bannedd[i].innerHTML == 0) {
+            bannedd[i].innerHTML = "non"
         }
-     }
+    }
+
+    for (i = 0; i < aviss.length; i++) {
+        if (aviss[i].innerHTML == 1) {
+            console.log('test')
+            aviss[i].innerHTML = "oui"
+        }
+        if (aviss[i].innerHTML == 0) {
+            aviss[i].innerHTML = "non"
+        }
+    }
     
 </script>
 
