@@ -12,33 +12,33 @@
                     <div class="modal-body text-dark">
                         -Modification de : {{ user.full_name }} id: {{ user.id }}
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="full_name">Full Name :</label>
-                        <input type="text" value="{{ user.full_name }}" name="full_name" required>
+                        <input class="form-control" type="text" value="{{ user.full_name }}" name="full_name" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="nickname">Nickname :</label>
-                        <input type="text" value="{{ user.nickname  }}" name="nickname" required>
+                        <input class="form-control" type="text" value="{{ user.nickname  }}" name="nickname" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="email">Email :</label>
-                        <input type="email" value="{{  user.email   }}" name="email" required>
+                        <input class="form-control" type="email" value="{{  user.email   }}" name="email" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="password">Password :</label>
-                        <input type="password" name="password">
+                        <input class="form-control" type="password" name="password">
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="is_verified">Is Verified ( 0 / 1 ) :</label>
-                        <input type="number" value="{{ user.is_verified }}" name="is_verified" required>
+                        <input class="form-control" min="0" max="1" type="number" value="{{ user.is_verified }}" name="is_verified" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="is_admin">Is Admin ( 0 / 1 ) :</label>
-                        <input type="number" value="{{ user.is_admin }}" name="is_admin" required>
+                        <input class="form-control" min="0" max="1" type="number" value="{{ user.is_admin }}" name="is_admin" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="is_banned">Is Banned ( 0 / 1 ) :</label>
-                        <input type="number" value="{{ user.is_banned }}" name="is_banned" required>
+                        <input class="form-control" min="0" max="1" type="number" value="{{ user.is_banned }}" name="is_banned" required>
                     </div>
 
 

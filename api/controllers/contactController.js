@@ -43,7 +43,7 @@ module.exports = {
             if (err) console.log(err)
             else {
                 console.log(info)
-                res.render('contact', {
+                res.render('home', {
                     success: 'votre message à bien été transmit',
                     cook: (req.cookies.Cookie) ? true : false
                 })

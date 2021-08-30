@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modifiez L'utilisateur {{ user.nickname }}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modifier Le commentaire :  </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="text-center" method="POST" action="/comment/{{ comment.id }}?_method=PUT">
@@ -13,17 +13,17 @@
                         -Modification de : {{ comment.content }} id: {{ comment.id }}
                     </div>
 
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="content">Content :</label>
-                        <input type="text" value="{{ comment.content }}" name="content" required>
+                        <input class="form-control pt-2 pb-2" type="text" value="{{ comment.content }}" name="content" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="is_avis">Avis 0 / Comment 1 :</label>
-                        <input type="number" value="{{ comment.is_avis }}" name="is_avis" required>
+                        <input class="form-control pt-2 pb-2" type="number" value="{{ comment.is_avis }}" min="0" max="1" name="is_avis" required>
                     </div>
-                    <div>
+                    <div class="pt-2 pb-2">
                         <label for="is_banned">Banned :</label>
-                        <input type="number" value="{{ comment.is_banned }}" name="is_banned" required>
+                        <input class="form-control pt-2 pb-2" type="number" value="{{ comment.is_banned }}" min="0" max="1" name="is_banned" required>
                     </div>
 
 

@@ -28,7 +28,8 @@ exports.getBlog = async (req, res) => {
 //AFFICHAGE DE LA PAGE ID SELON LE STATUT 
 exports.getID = async (req, res) => {
   let artIDd =  await query(`SELECT * FROM articles WHERE id = ${req.params.id} AND  is_banned = 0`)
-  let comsIDd = await query(`SELECT * FROM comments WHERE article_id = ${req.params.id}`)
+  // let comsIDd = await query(`SELECT * FROM comments WHERE article_id = ${req.params.id}`)
+  let comsIDd = await query(`SELECT user.nickname, comments.content, comments.id FROM user LEFT JOIN comments ON user.id = comments.author_id WHERE article_id = ${req.params.id}`)
   const sql = `SELECT user.is_verified FROM user WHERE id = '${req.session.user.id}';`;
 
  await query(sql, (error, data) => {

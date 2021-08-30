@@ -4,8 +4,10 @@
 
     {{#each userID }}
     <div class="pt-5">
-        <h1 class="text-center h6 pt-5">Bonjour {{ this.full_name }} | ton email est: {{
-            this.email }} <img class="rounded-pill" src="{{ this.image }}" height="100px" style="height: 100px;" alt="">
+        <h1 class="text-center text-secondary h6 pt-5">Bonjour <span class="text-primary">{{ this.full_name }}</span> |
+            ton email est: <span class="text-primary">{{
+                this.email }}</span> <img class="rounded-pill" src="{{ this.image }}" height="100px"
+                style="height: 100px;" alt="">
         </h1>
     </div>
 
@@ -33,7 +35,8 @@
         {{!-- MON COMPTE --}}
         {{#each userID}}
         <div class="tab-pane container-fluid    active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <form class="" action='/account/user/{{ this.id }}?_method=PUT' enctype="multipart/form-data" method="POST">
+            <form onsubmit="checkForm(event)" id="form" action='/account/user/{{ this.id }}?_method=PUT'
+                enctype="multipart/form-data" method="POST">
                 <div class="d-flex justify-content-center row">
                     <div class="mb-3">
                         <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
@@ -57,11 +60,32 @@
                     <div class="mb-3">
                         {{!-- INPUT CHANGE PASSWORD --}}
                         <label class="fw-bold pb-2" for="password">Nouveau mot de passe : </label>
-                        <input type="password" class="form-control pb-2" value="" name='NewPassword' id="newPassword"
-                            aria-describedby="none" />
+                        <input type="password" onkeyup="checkPasse()" class="form-control pb-2" value=""
+                            name='NewPassword' id="newPassword" aria-describedby="none" />
                         <label class="fw-bold" for="passConfirm">Confirmez mot de passe:</label>
-                        <input type="password" class="form-control pb-2" value="" name='passwordConfirm' id="passwordConfirm"
-                            aria-describedby="none" />
+                        <input type="password" class="form-control pb-2" value="" name='passwordConfirm'
+                            id="passwordConfirm" aria-describedby="none" />
+                    </div>
+                    <div class="col-6">
+                        <p id="bite" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                    src="/assets/images/done.svg" alt=""></i>mdp
+                            OK</p>
+                        <p id="bite8" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                    src="/assets/images/done.svg" alt=""></i> 8
+                            caractères</p>
+                        <p id="maj" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                    src="/assets/images/done.svg" alt=""></i> 1
+                            majuscule</p>
+                        <p id="num" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                    src="/assets/images/done.svg" alt=""></i> 1
+                            chiffre </p>
+                        <p id="spe" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                    src="/assets/images/done.svg" alt=""></i> 1
+                            caractère spécial</p>
+                        <p id="same" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                    src="/assets/images/done.svg" alt=""></i>
+                            Correspondance des mots de passes</p>
+
                     </div>
                     <div class="col-md-6">
                         <label for="image" class="pb-2 fw-bold">Séléctionnez une image de profil :</label>
@@ -71,6 +95,7 @@
                     <div class="col-md-6 pt-3">
                         <button class="btn btn-primary" type="submit">Appliquer les modifications</button>
                     </div>
+
                 </div>
 
                 <div class="col-md-6 pt-3">
@@ -87,16 +112,16 @@
         {{/each}}
         {{! MES COMMENTAIRES ET AVIS }}
         <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <h1 class="h5 text-center">Mes Commentaires & avis</h1>
+            <h1 class="h5 pb-2 text-center">Mes Commentaires & avis</h1>
             <table class="table table-sm table-bordered">
                 {{!-- LEGENDE TABLEAU --}}
                 <thead>
                     <tr>
                         <th scope="col">#id</th>
-                        <th scope="col">Nom</th>
+
                         <th scope="col">Avis</th>
                         <th scope="col">Contenu</th>
-                       
+
                         <th scope="col">Is Banned</th>
                         <th scope="col">Supprimer</th>
                         <th scope="col">Modifier</i></th>
@@ -107,10 +132,10 @@
                     {{#each userComments}}
                     <tr>
                         <th scope="row">{{ this.id }}</th>
-                        <td>{{ this.author_id }}</td>
+
                         <td class="avis">{{ this.is_avis }}</td>
                         <td>{{ this.content }}</td>
-                        
+
                         <td class="banned">{{ this.is_banned }}</td>
                         <td>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -150,12 +175,127 @@
 
 </script>
 
+{{!-- REGEX FORMULAIRE --}}
+<script>
+    //RECUPERATION INPUT ET FORMULAIRE
+    const form = document.getElementById('form');
+    const input = document.getElementsByTagName('input');
+
+    //FONCTION VERIFICATION DU FORMULAIRE
+    function checkForm(event) {
+        event.preventDefault()
+        //RECUPÉRATION DU MOT DE PASSE, DE LA CHECKBOX ET DE LA REGEX ET DU FLASH 
+        const pass = document.getElementById('newPassword').value;
+
+        const passConfirm = document.getElementById('passwordConfirm').value;
+        const flash = document.getElementById('flash');
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+
+        //SI LE PASSWORD NE CORRESPOND PAS A LA REGEX
+        if (pass !== '' && !pass.match(regex)) {
+            // Gestion du flash (error)
+            alert('pasbon')
+            // Condition pour checker si password est bien égale avec passwordConfim
+            //SI LES MOTS DE PASSES NE SONT PAS IDENTIQUES      
+        } else if (pass !== '' && pass !== passConfirm) {
+            // Gestion du flash (error)
+            alert('pasbon')
+            // Condition pour checker si les conditions on été acceptez
+            //SI LA CHECKBOX N'EST PAS CHECKÉE      
+        } else if (pass.match(regex) && pass === passConfirm || pass === '') {
+            // C'est ici que le formulaire s'envoie
+            form.submit();
+        }
+
+
+    }
+</script>
+
+{{!-- check pass et corres --}}
+
+<script>
+
+    //verification mots de passes ===  
+    function checkCor() {
+        let pass = document.getElementById('newPassword').value
+        let passconf = document.getElementById('passwordConfirm').value
+        if (passconf === pass) {
+            document.getElementById('same').style.display = 'block'
+        } else {
+            document.getElementById('same').style.display = 'none'
+        }
+    }
+
+    //verification regex +  ===
+    function checkPass() {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        let string = document.getElementById('newPassword').value
+        let maj = new RegExp("[A-Z]");
+        let num = new RegExp("[0-9]");
+        let spe = new RegExp("[!@#$%^&*,;:/-]");
+        let pass = document.getElementById('newPassword').value
+        let passconf = document.getElementById('passwordConfirm').value
+
+        if (pass !== '' && passconf === pass) {
+            document.getElementById('same').style.display = 'block'
+        } else {
+            document.getElementById('same').style.display = 'none'
+        }
+
+
+
+        if ( pass !== '' && string.match(regex)) {
+            document.getElementById('bite').style.display = 'block'
+        } else {
+            document.getElementById('bite').style.display = 'none'
+        }
+
+        if ( pass !== '' && string.length >= 8) {
+            document.getElementById('bite8').style.display = 'block'
+        } else {
+            document.getElementById('bite8').style.display = 'none'
+        }
+
+
+
+        if (pass !== '' && spe.test(string)) {
+            document.getElementById('spe').style.display = 'block'
+        } else {
+            document.getElementById('spe').style.display = 'none'
+        }
+
+
+        if (pass !== '' && num.test(string)) {
+            document.getElementById('num').style.display = 'block'
+        } else {
+            document.getElementById('num').style.display = 'none'
+        }
+        if (pass !== '' && maj.test(string)) {
+            document.getElementById('maj').style.display = 'block'
+            return;
+        } else {
+
+            document.getElementById('maj').style.display = 'none'
+            return;
+        }
+
+
+
+    }
+    function checkPasse() {
+           if (document.getElementById('newPassword') !== '') {
+        checkPass()
+    }
+    }
+   
+</script>
+
 <script>
 
     let avise = document.getElementsByClassName('avis')
     let banneds = document.getElementsByClassName('banned')
 
-     for (i = 0; i < banneds.length; i++) {
+    for (i = 0; i < banneds.length; i++) {
         if (banneds[i].innerHTML == 1) {
             console.log('test')
             banneds[i].innerHTML = "oui"
@@ -166,7 +306,7 @@
     }
 
 
-        for (i = 0; i < avise.length; i++) {
+    for (i = 0; i < avise.length; i++) {
         if (avise[i].innerHTML == 1) {
             console.log('test')
             avise[i].innerHTML = "oui"

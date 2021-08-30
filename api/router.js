@@ -29,6 +29,7 @@ const is_user_not_banned_and_verified = require ('./middleware/is_user_not_banne
 
 
 
+
  
 //ROUTES\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
@@ -93,8 +94,8 @@ router.route('/avis')
 
 //COMMENTS DELETE COMMENT ET MODIFY COMMENT ---------------------------------------------------------
 router.route('/comment/:id')
-    .delete(is_user_not_banned_and_verified, commentController.deleteCommentById)
-    .put(is_user_not_banned_and_verified, commentController.modifyComment)
+    .delete(is_user_not_banned_and_verified, accountController.deleteCommentById)
+    .put(is_user_not_banned_and_verified, accountController.modifyComment)
 
 //MON COMPTE -------------------------------------------------------
 router.route('/account')
@@ -115,7 +116,7 @@ router.route('/account/:id')
 
 //FLUX RSS ---------------------------------------------------------
 router.route('/feed')
-   .get(feedController.get)
+   .get(is_user_not_banned_and_verified, feedController.get)
 
 //ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN
 

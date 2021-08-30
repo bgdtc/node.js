@@ -233,7 +233,7 @@
   //verification regex +  ===
   function checkPass() {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    console.log(document.getElementById('passwordd').value)
+    
     let string = document.getElementById('passwordd').value
     let maj = new RegExp("[A-Z]");
     let num = new RegExp("[0-9]");
@@ -250,7 +250,7 @@
 
 
     if (string.match(regex)) {
-      console.log('mabite')
+     
       document.getElementById('bite').style.display = 'block'
     } else {
       document.getElementById('bite').style.display = 'none'
@@ -265,7 +265,7 @@
 
 
     if (spe.test(string)) {
-      console.log('special')
+      
       document.getElementById('spe').style.display = 'block'
     } else {
       document.getElementById('spe').style.display = 'none'
@@ -273,17 +273,17 @@
 
 
     if (num.test(string)) {
-      console.log('num')
+      
       document.getElementById('num').style.display = 'block'
     } else {
       document.getElementById('num').style.display = 'none'
     }
     if (maj.test(string)) {
-      console.log('maju')
+      
       document.getElementById('maj').style.display = 'block'
       return;
     } else {
-      console.log('minu')
+      
       document.getElementById('maj').style.display = 'none'
       return;
     }

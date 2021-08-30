@@ -7,21 +7,25 @@
     {{#each dbAvis}}
     <div class="row d-flex justify-content-center">
       <div class="card  text-white bg-primary mb-3" style="max-width: 43rem;">
-        <div class="card-header text-warning fw-bold">écrit par: <span class="text-white fw-bold">{{ this.author_name }}</span>  <span class=" d-flex text-dark justify-content-end">publié le
+        <div class="card-header text-warning fw-bold">écrit par: <span class="text-white fw-bold">{{ this.author_name
+            }}</span> <span class=" d-flex text-dark justify-content-end">publié le
             {{
             this.update_date }}</span>
         </div>
         <div class="card-body">
-          {{#if dbAvisUser}}
-            
-            {{/if}}
+          {{!-- {{#if ../dbUserAvis}}
+          <div class="d-flex justify-content-end">
+              <button class="btn btn-danger"><i><img height="20px" src="/assets/images/notdone.svg" alt=""></i></button>
+          </div>
+          
+          {{/if}} --}}
           <h2 class="h5 card-title">{{ this.title }}</h2>
           <p class="card-text">{{ this.content }}</p>
         </div>
       </div>
     </div>
-
     {{/each}}
+
   </div>
 </div>
 

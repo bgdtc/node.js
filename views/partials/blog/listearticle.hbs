@@ -76,12 +76,14 @@
     card = document.getElementById("myCard");
     div = card.getElementsByTagName('div');
 
+
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < div.length; i++) {
-      h2 = div[i].getElementsByTagName("h2")[0];
-      p = div[i].getElementsByTagName("p")[0];
-      txtValue = h2.textContent || h2.innerText;
-      txtValue2 = p.textContent || p.innerText;
+      h2 = div[i].getElementsByTagName("h2");
+      p = div[i].getElementsByTagName("p");
+      txtValue =  h2[0].innerHTML;
+      txtValue2 = p[0].innerHTML;
+      console.log(txtValue2)
       if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
         div[i].style.display = "";
       } else {
