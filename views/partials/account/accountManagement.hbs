@@ -1,174 +1,173 @@
-{{!-- FORMULAIRES DE CONNEXION / INSCRIPTION / MOT DE PASSE OUBLIE --}}
+{{!-- FORMULAIRES MANAGEMENT DU COMPTE + TABLE COMMENTS --}}
 
-{{!-- <section class="pt-5 container bg-light" style="height: 100vh;"> --}}
 
-    {{#each userID }}
-    <div class="pt-5">
-        <h1 class="text-center text-secondary h6 pt-5">Bonjour <span class="text-primary">{{ this.full_name }}</span> |
-            ton email est: <span class="text-primary">{{
-                this.email }}</span> <img class="rounded-pill" src="{{ this.image }}" height="100px"
-                style="height: 100px;" alt="">
-        </h1>
-    </div>
+{{!-- Affichage mail et nom --}}
+{{#each userID }}
+<div class="pt-5">
+    <h1 class="text-center text-secondary h6 pt-5">Bonjour <span class="text-primary">{{ this.full_name }}</span> |
+        ton email est: <span class="text-primary">{{
+            this.email }}</span> <img class="rounded-pill" src="{{ this.image }}" height="100px" style="height: 100px;"
+            alt="">
+    </h1>
+</div>
+{{/each }}
 
-    {{/each }}
+{{! TABS ACCOUNT }}
+<ul class="nav border-primary border-top border-2  nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5" id="myTab"
+    role="tablist">
+    {{!-- TAB GESTION DU COMPTE --}}
+    <li class="nav-item ps-2 pb-2 pe-2" role="presentation">
+        <button class="nav-link  border-2 border-primary active bg-gradient" id="home-tab" data-bs-toggle="tab"
+            data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Mon
+            Compte</button>
+    </li>
+    {{!-- TAB AVIS ET COMMENTAIRES --}}
+    <li class="nav-item pe-2" role="presentation">
+        <button class="nav-link  bggradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
+            data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes
+            Avis & commentaires</button>
+    </li>
+</ul>
 
-    {{! TABS ACCOUNT }}
-    <ul class="nav border-primary border-top border-2  nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5"
-        id="myTab" role="tablist">
-        {{!-- TAB GESTION DU COMPTE --}}
-        <li class="nav-item ps-2 pb-2 pe-2" role="presentation">
-            <button class="nav-link  border-2 border-primary active bg-gradient" id="home-tab" data-bs-toggle="tab"
-                data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Mon
-                Compte</button>
-        </li>
-        {{!-- TAB AVIS ET COMMENTAIRES --}}
-        <li class="nav-item pe-2" role="presentation">
-            <button class="nav-link  bggradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
-                data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes
-                Avis & commentaires</button>
-        </li>
-    </ul>
-
-    {{! CONTENU TABS ACCOUNT }}
-    <div class="tab-content container pb-5 d-flex justify-content-end  ">
-        {{!-- MON COMPTE --}}
-        {{#each userID}}
-        <div class="tab-pane container-fluid    active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <form onsubmit="checkForm(event)" id="form" action='/account/user/{{ this.id }}?_method=PUT'
-                enctype="multipart/form-data" method="POST">
-                <div class="d-flex justify-content-center row">
-                    <div class="mb-3">
-                        <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
-                        {{!-- INPUT FULLNAME --}}
-                        <label for="full_name" class="form-label fw-bold">Nom Complet:</label>
-                        <input type="text" class="form-control" value="{{ this.full_name }}" name='full_name'
-                            id="full_name" aria-describedby="none" required />
-                    </div>
-                    <div class="mb-3">
-                        {{!-- INPUT NICKNAME --}}
-                        <label for="nickname" class="form-label fw-bold">Pseudo:</label>
-                        <input type="text" class="form-control" value="{{ this.nickname }}" name='nickname'
-                            id="nickname" aria-describedby="none" required />
-                    </div>
-                    <div class="mb-3">
-                        {{!-- INPUT EMAIL --}}
-                        <label for="email" class="form-label fw-bold">Email:</label>
-                        <input type="email" class="form-control" value="{{ this.email }}" name='email' id="email"
-                            aria-describedby="none" required />
-                    </div>
-                    <div class="mb-3">
-                        {{!-- INPUT CHANGE PASSWORD --}}
-                        <label class="fw-bold pb-2" for="password">Nouveau mot de passe : </label>
-                        <input type="password" onkeyup="checkPasse()" class="form-control pb-2" value=""
-                            name='NewPassword' id="newPassword" aria-describedby="none" />
-                        <label class="fw-bold" for="passConfirm">Confirmez mot de passe:</label>
-                        <input type="password" class="form-control pb-2" value="" name='passwordConfirm'
-                            id="passwordConfirm" aria-describedby="none" />
-                    </div>
-                    <div class="col-6">
-                        <p id="bite" style="display: none;"><i><img class=" bg-success rounded text-info"
-                                    src="/assets/images/done.svg" alt=""></i>mdp
-                            OK</p>
-                        <p id="bite8" style="display: none;"><i><img class=" bg-success rounded text-info"
-                                    src="/assets/images/done.svg" alt=""></i> 8
-                            caractères</p>
-                        <p id="maj" style="display: none;"><i><img class=" bg-success rounded text-info"
-                                    src="/assets/images/done.svg" alt=""></i> 1
-                            majuscule</p>
-                        <p id="num" style="display: none;"><i><img class=" bg-success rounded text-info"
-                                    src="/assets/images/done.svg" alt=""></i> 1
-                            chiffre </p>
-                        <p id="spe" style="display: none;"><i><img class=" bg-success rounded text-info"
-                                    src="/assets/images/done.svg" alt=""></i> 1
-                            caractère spécial</p>
-                        <p id="same" style="display: none;"><i><img class=" bg-success rounded text-info"
-                                    src="/assets/images/done.svg" alt=""></i>
-                            Correspondance des mots de passes</p>
-
-                    </div>
-                    <div class="col-md-6">
-                        <label for="image" class="pb-2 fw-bold">Séléctionnez une image de profil :</label>
-                        <input type="file" name="image" id="">
-                        <img src="{{ this.image }}" class="pb-2 pt-2 rounded-pill" height="90px" alt="">
-                    </div>
-                    <div class="col-md-6 pt-3">
-                        <button class="btn btn-primary" type="submit">Appliquer les modifications</button>
-                    </div>
+{{! CONTENU TABS ACCOUNT }}
+<div class="tab-content container pb-5 d-flex justify-content-end  ">
+    {{!-- MON COMPTE --}}
+    {{#each userID}}
+    <div class="tab-pane container-fluid    active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <form onsubmit="checkForm(event)" id="form" action='/account/user/{{ this.id }}?_method=PUT'
+            enctype="multipart/form-data" method="POST">
+            <div class="d-flex justify-content-center row">
+                <div class="mb-3">
+                    <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
+                    {{!-- INPUT FULLNAME --}}
+                    <label for="full_name" class="form-label fw-bold">Nom Complet:</label>
+                    <input type="text" class="form-control" value="{{ this.full_name }}" name='full_name' id="full_name"
+                        aria-describedby="none" required />
+                </div>
+                <div class="mb-3">
+                    {{!-- INPUT NICKNAME --}}
+                    <label for="nickname" class="form-label fw-bold">Pseudo:</label>
+                    <input type="text" class="form-control" value="{{ this.nickname }}" name='nickname' id="nickname"
+                        aria-describedby="none" required />
+                </div>
+                <div class="mb-3">
+                    {{!-- INPUT EMAIL --}}
+                    <label for="email" class="form-label fw-bold">Email:</label>
+                    <input type="email" class="form-control" value="{{ this.email }}" name='email' id="email"
+                        aria-describedby="none" required />
+                </div>
+                <div class="mb-3">
+                    {{!-- INPUT CHANGE PASSWORD --}}
+                    <label class="fw-bold pb-2" for="password">Nouveau mot de passe : </label>
+                    <input type="password" onkeyup="checkPasse()" class="form-control pb-2" value="" name='NewPassword'
+                        id="newPassword" aria-describedby="none" />
+                    <label class="fw-bold" for="passConfirm">Confirmez mot de passe:</label>
+                    <input type="password" class="form-control pb-2" value="" name='passwordConfirm'
+                        id="passwordConfirm" aria-describedby="none" />
+                </div>
+                <div class="col-6">
+                    <p id="bite" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                src="/assets/images/done.svg" alt=""></i>mdp
+                        OK</p>
+                    <p id="bite8" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                src="/assets/images/done.svg" alt=""></i> 8
+                        caractères</p>
+                    <p id="maj" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                src="/assets/images/done.svg" alt=""></i> 1
+                        majuscule</p>
+                    <p id="num" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                src="/assets/images/done.svg" alt=""></i> 1
+                        chiffre </p>
+                    <p id="spe" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                src="/assets/images/done.svg" alt=""></i> 1
+                        caractère spécial</p>
+                    <p id="same" style="display: none;"><i><img class=" bg-success rounded text-info"
+                                src="/assets/images/done.svg" alt=""></i>
+                        Correspondance des mots de passes</p>
 
                 </div>
-
+                <div class="col-md-6">
+                    <label for="image" class="pb-2 fw-bold">Séléctionnez une image de profil :</label>
+                    <input type="file" name="image" id="">
+                    <img src="{{ this.image }}" class="pb-2 pt-2 rounded-pill" height="90px" alt="">
+                </div>
                 <div class="col-md-6 pt-3">
-
-                    <button type="button" data-bs-toggle="modal" class="btn btn-sm btn-danger"
-                        data-bs-target="#modalDeleteAccount">Supprimer mon compte</button>
+                    <button class="btn btn-primary" type="submit">Appliquer les modifications</button>
                 </div>
 
-
-            </form>
-
-            {{> account/modal/modalDeleteAccount user=this }}
-        </div>
-        {{/each}}
-        {{! MES COMMENTAIRES ET AVIS }}
-        <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <h1 class="h5 pb-2 text-center">Mes Commentaires & avis</h1>
-            <table class="table table-sm table-bordered">
-                {{!-- LEGENDE TABLEAU --}}
-                <thead>
-                    <tr>
-                        <th scope="col">#id</th>
-
-                        <th scope="col">Avis</th>
-                        <th scope="col">Contenu</th>
-
-                        <th scope="col">Is Banned</th>
-                        <th scope="col">Supprimer</th>
-                        <th scope="col">Modifier</i></th>
-                    </tr>
-                </thead>
-                {{!-- CONTENU DU TABLEAU --}}
-                <tbody>
-                    {{#each userComments}}
-                    <tr>
-                        <th scope="row">{{ this.id }}</th>
-
-                        <td class="avis">{{ this.is_avis }}</td>
-                        <td>{{ this.content }}</td>
-
-                        <td class="banned">{{ this.is_banned }}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#modalDeleteComment{{ this.id }}"><i class="fas fa-trash-alt"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-trash" viewBox="0 0 16 16">
-                                        <path
-                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                        <path fill-rule="evenodd"
-                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                    </svg></i></button>
-                        </td>
-                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modalModifyComment{{ this.id }}"><i class="fas fa-edit"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-pen" viewBox="0 0 16 16">
-                                        <path
-                                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
-                                    </svg></i></button>
-                        </td>
-                        {{> account/modal/modalDeleteComment comment=this }}
-                        {{> account/modal/modalModifyComment comment=this }}
-                    </tr>
-                    {{/each }}
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-end">
             </div>
+
+            <div class="col-md-6 pt-3">
+
+                <button type="button" data-bs-toggle="modal" class="btn btn-sm btn-danger"
+                    data-bs-target="#modalDeleteAccount">Supprimer mon compte</button>
+            </div>
+
+
+        </form>
+
+        {{> account/modal/modalDeleteAccount user=this }}
+    </div>
+    {{/each}}
+    {{! MES COMMENTAIRES ET AVIS }}
+    <div class="tab-pane container-fluid " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <h1 class="h5 pb-2 text-center">Mes Commentaires & avis</h1>
+        <table class="table table-sm table-bordered">
+            {{!-- LEGENDE TABLEAU --}}
+            <thead>
+                <tr>
+                    <th scope="col">#id</th>
+
+                    <th scope="col">Avis</th>
+                    <th scope="col">Contenu</th>
+
+                    <th scope="col">Is Banned</th>
+                    <th scope="col">Supprimer</th>
+                    <th scope="col">Modifier</i></th>
+                </tr>
+            </thead>
+            {{!-- CONTENU DU TABLEAU --}}
+            <tbody>
+                {{#each userComments}}
+                <tr>
+                    <th scope="row">{{ this.id }}</th>
+
+                    <td class="avis">{{ this.is_avis }}</td>
+                    <td>{{ this.content }}</td>
+
+                    <td class="banned">{{ this.is_banned }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modalDeleteComment{{ this.id }}"><i class="fas fa-trash-alt"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg></i></button>
+                    </td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#modalModifyComment{{ this.id }}"><i class="fas fa-edit"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path
+                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg></i></button>
+                    </td>
+                    {{> account/modal/modalDeleteComment comment=this }}
+                    {{> account/modal/modalModifyComment comment=this }}
+                </tr>
+                {{/each }}
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
         </div>
     </div>
-    {{!--
-</section> --}}
+</div>
 
+
+{{!-- script tabs --}}
 <script>
     var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
         = new bootstrap.Tab(firstTabEl) firstTab.show()
@@ -211,8 +210,7 @@
     }
 </script>
 
-{{!-- check pass et corres --}}
-
+{{!-- REGEX AFFICHAGE MDP --}}
 <script>
 
     //verification mots de passes ===  
@@ -244,13 +242,13 @@
 
 
 
-        if ( pass !== '' && string.match(regex)) {
+        if (pass !== '' && string.match(regex)) {
             document.getElementById('bite').style.display = 'block'
         } else {
             document.getElementById('bite').style.display = 'none'
         }
 
-        if ( pass !== '' && string.length >= 8) {
+        if (pass !== '' && string.length >= 8) {
             document.getElementById('bite8').style.display = 'block'
         } else {
             document.getElementById('bite8').style.display = 'none'
@@ -283,13 +281,14 @@
 
     }
     function checkPasse() {
-           if (document.getElementById('newPassword') !== '') {
-        checkPass()
+        if (document.getElementById('newPassword') !== '') {
+            checkPass()
+        }
     }
-    }
-   
+
 </script>
 
+{{!-- REPLACE 0 OU 1 PAR OUI OU NON --}}
 <script>
 
     let avise = document.getElementsByClassName('avis')
@@ -317,7 +316,7 @@
     }
 </script>
 
-
+{{!-- RESPONSIVE TABLEAU --}}
 <style>
     @media only screen and (max-width: 760px),
     (min-device-width: 768px) and (max-device-width: 1024px) {

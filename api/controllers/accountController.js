@@ -29,15 +29,36 @@ module.exports = {
     },
     //MODIFY COMMENTS POSTÉS PAR L'USER
     modifyComment: async (req, res) => {
-        const sql = `UPDATE comments
+        const isAdmin = await query(`SELECT user.is_admin FROM user WHERE id = ${req.session.user.id}`)
+        if (isAdmin[0].is_admin === 0) {
+
+            const sql = `UPDATE comments
                      SET
                         content = '${req.body.content}',
                         update_date = CURRENT_TIMESTAMP
                      WHERE id = ${req.params.id};`
 
-        await query(sql)
+            await query(sql)
 
-        res.redirect('/account')
+            res.redirect('/account')
+        } else {
+
+
+            const sql = `UPDATE comments
+            SET
+               content = '${req.body.content}',
+               update_date = CURRENT_TIMESTAMP
+            WHERE id = ${req.params.id};`
+
+            await query(sql)
+            if (req.url.indexOf('comment') > -1) {
+                res.redirect('/admin')
+            } else {
+                res.redirect('/account')
+            }
+
+
+        }
     },
     //DELETE COMMENTS POSTÉS PAR L'USER
     deleteCommentById: async (req, res) => {
@@ -45,8 +66,13 @@ module.exports = {
         let values = [req.params.id];
 
         await query(sql, [values])
+        if (req.url.indexOf('account') > -1) {
+            res.redirect('/admin')
+        } else {
+            res.redirect('/account')
+        }
 
-        res.redirect('/account')
+
 
     },
     //MODIFY INFORMATIONS DU COMPTE

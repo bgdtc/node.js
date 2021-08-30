@@ -5,8 +5,8 @@
   <div class=" pt-5 border-bottom border-1 border-primary">
     <h3 class="tist text-center bg-gradient fw-bold rounded">Articles récents</h3>
   </div>
-  <!-- AFFICHAGE CARDS DB -->
 
+  <!-- AFFICHAGE CARDS DB -->
   {{#if home }}
   <div class="row">
     {{#each ( limitArray dbArticle 3 )}}
@@ -32,24 +32,26 @@
     </div>
     {{/each}}
   </div>
-
   {{else}}
+  {{!-- searchbar --}}
   <div class="pt-4">
-    <input type="search" class="form-control w-100" id="myInput" onkeyup="filtrage()" placeholder="Rechercher dans les articles">
+    <input type="search" class="form-control w-100" id="search" onkeyup="filtre()"
+      placeholder="Rechercher dans les articles">
   </div>
-  <div id="myCard" class="row pt-5 pb-5" >
+  {{!-- cards --}}
+  <div id="myCard" class="row pt-5 pb-5">
     {{#each dbArticle}}
-    <div class="col-md-4 pb-2   " id="myCard">
+    <div class="col-md-4 pb-2   " id="">
       {{!-- IMAGE DB --}}
-      <div class="mb-5 card bg-dark tist border-3 border-primary" style="width: auto;">
+      <div class="mb-5 card bg-dark tist border-3 border-primary" id="" style="width: auto;">
         <img src="{{ image }}" class="card-img-top" alt="" height="250px" />
         {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
         <div class="card-body text-center">
-          <h2 class="card-title text-center text-white mb-4" >{{title}}</h2>
-          <p class="card-text fw-bold" > {{description}} écrit par: {{author_name}} </p>
+          <h2 id="content" class="card-title text-center text-white mb-4">{{title}}</h2>
+          <p class="card-text fw-bold"> {{description}} écrit par: {{author_name}} </p>
           {{#if ../user}}
           <div class="">
-              <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
+            <a class="btn btn-primary" href="/article/{{id}}">Lire la suite</a>
           </div>
           {{else}}
           {{!-- <div class="alert alert-danger" role="alert">
@@ -59,59 +61,39 @@
         </div>
       </div>
     </div>
-    {{/each}}
-    {{/if}}
+  </div>
+  {{/each}}
+  {{/if}}
   </div>
 </section>
+<script>
+ function filtre() {
+        var input, filter, div1, div2, h2, i, txtValue;
+        input = document.getElementById('search');
+        filter = input.value.toUpperCase();
+        div1 = document.getElementById("myCard");
+        div2 = div1.getElementsByTagName('div');
+        for (i = 0; i < div2.length; i++) {
+            h2 = div2[i].getElementsByTagName("h2")[0];
+            console.log('INFO DE H2 :', h2)
+            txtValue = h2.textContent || h2.innerText;
+            console.log('INFO DE TXTVALUE :', txtValue)
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                div2[i].style.display = "";
+            } else {
+                div2[i].style.display = "none";
+            }
+        }
+    }
+
+</script>
+
 <script>
   function checkID() {
     console.log(document.getElementById('id').innerText)
     console.log('bonjour')
   }
-  function filtrage() {
 
-    let input, filter, ul, div, p, h2, i, txtValue, txtValue2;
-    input = document.getElementById('myInput');
-    filter = input.value.toUpperCase();
-    card = document.getElementById("myCard");
-    div = card.getElementsByTagName('div');
-
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < div.length; i++) {
-      h2 = div[i].getElementsByTagName("h2");
-      p = div[i].getElementsByTagName("p");
-      txtValue =  h2[0].innerHTML;
-      txtValue2 = p[0].innerHTML;
-      console.log(txtValue2)
-      if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
-        div[i].style.display = "";
-      } else {
-        div[i].style.display = "none";
-      }
-      console.log('test', document.getElementsByTagName("h2"))
-    }
-  }
- // function filtrageDescr() {
-
-    //let input, filter, ul, div, p, i, txtValue;
-    //input = document.getElementById('myInput');
-    //filter = input.value.toUpperCase();
-    //card = document.getElementById("myCard");
-    //div = card.getElementsByTagName('div');
-
-    // Loop through all list items, and hide those who don't match the search query
-    //for (i = 0; i < div.length; i++) {
-      //p = div[i].getElementsByTagName("p")[0];
-      //txtValue = p.textContent || p.innerText;
-      //if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        //div[i].style.display = "";
-      //} else {
-        //div[i].style.display = "none";
-      //}
-     // console.log('test', document.getElementsByTagName("p"))
-    //}
-  //}
 
 
 
@@ -131,13 +113,13 @@
 
 
 {{!-- //
-   $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$$$\  $$$$$$\  
-   $$  __$$\ $$  __$$\ $$  __$$\\__$$  __|$$  __$$\ 
-   $$ |  $$ |$$ /  \__|$$ |  $$ |  $$ |   $$ /  \__|
-   $$$$$$$\ |$$ |$$$$\ $$ |  $$ |  $$ |   $$ |      
-   $$  __$$\ $$ |\_$$ |$$ |  $$ |  $$ |   $$ |      
-   $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
-   $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
-   \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-              --}}
+$$$$$$$\ $$$$$$\ $$$$$$$\ $$$$$$$$\ $$$$$$\
+$$ __$$\ $$ __$$\ $$ __$$\\__$$ __|$$ __$$\
+$$ | $$ |$$ / \__|$$ | $$ | $$ | $$ / \__|
+$$$$$$$\ |$$ |$$$$\ $$ | $$ | $$ | $$ |
+$$ __$$\ $$ |\_$$ |$$ | $$ | $$ | $$ |
+$$ | $$ |$$ | $$ |$$ | $$ | $$ | $$ | $$\
+$$$$$$$ |\$$$$$$ |$$$$$$$ | $$ | \$$$$$$ |
+\_______/ \______/ \_______/ \__| \______/
+
+--}}

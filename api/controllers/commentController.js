@@ -15,7 +15,14 @@ module.exports = {
 
                 await query(sql, [values])
 
-                res.redirect('/admin')
+
+                if (req.url.indexOf('comment') > -1) {
+                    res.redirect('/admin')
+                } else {
+                    res.redirect('/admin')
+                }
+
+
 
             } else {
                 res.json({
@@ -74,5 +81,3 @@ module.exports = {
 // $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
 // $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
 // \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-             
