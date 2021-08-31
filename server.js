@@ -1,5 +1,7 @@
+//IMPORT DE DOTENV
 require('dotenv').config()
-//import modules
+
+//IMPORT DES MODULES
 const
     express = require('express'),
     app = express(),
@@ -10,24 +12,32 @@ const
     bodyParser = require('body-parser'),
     moment = require('moment'),
     mysql = require('mysql2'),
+    cookieParser = require('cookie-parser'),
     util = require('util'),
     port = process.env.PORT;
 
 
-// Network interfaces
+// NETWORK INTERFACES
 let ifaces = require('os').networkInterfaces();
+
+//HELMET SÉCU
 let helmet = require('helmet');
-const cookieParser = require('cookie-parser');
+
+
+
+//UTILISATION C-PARSER ET HELMET
 app.use(cookieParser());
-
-
 app.use(helmet());
 app.disable('x-powered-by');
 
+
+//STORE MYSQL POUR EXPRESS SESSION
 let MySQLStore = require('express-mysql-session')(expressSession);
 
+//FORMATAGE DE DATE AVEC MOMENT
 moment().format();
 
+//CONFIG DB 
 let options = {
     host: process.env.DB_HOST,
     port: 3306,
@@ -36,8 +46,10 @@ let options = {
     database: process.env.DB_NAME
 };
 
+//ATTRIBUTION DU STORE SESSION MYSQL
 let sessionStore = new MySQLStore(options);
 
+//CONFIGURATION DU COOKIE DE SESSION
 app.use(expressSession({
     key: 'ptiBiscuit',
     secret: 'lasecuavantout',
@@ -47,15 +59,15 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
-//moment hbs
 
+//CONFIG MOMENT HANDLEBARS FORMAT DATE
 let Handlebars = require('handlebars');
 let MomentHandler = require('handlebars.moment');
 MomentHandler.registerHelpers(Handlebars);
 moment.locale('fr')
 
 
-
+//IMPORT CSP HEADER MODULE CSP
 const {
     expressCspHeader,
     INLINE,
@@ -63,6 +75,7 @@ const {
     SELF
 } = require('express-csp-header');
 
+//CONFIG CSP HEADERS
 app.use(expressCspHeader({
     directives: {
         'default-src': 'http://localhost:4000',
@@ -75,16 +88,17 @@ app.use(expressCspHeader({
     }
 }));
 
-// Iterate over interfaces ...
+// INTERNET INTERFACES 2
 let adresses = Object.keys(ifaces).reduce(function (result, dev) {
     return result.concat(ifaces[dev].reduce(function (result, details) {
         return result.concat(details.family === 'IPv4');
     }, []));
 });
 
-
+//METHOD OVERRIDE 
 app.use(methodOverride('_method'))
 
+//CONST HELPERS 
 const {
     limitArray,
     upcase,
@@ -92,25 +106,29 @@ const {
 } = require('./api/helpers/hbs')
 
 
-// Cors
+// CORS CONFIG
 app.use(cors({
     origin: ['http://localhost:4000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
 
-// 
+//CONFIG MYSQL
 db = mysql.createConnection(options);
 
+//EN CAS D'ERREUR DE CO À LA DB
 db.connect((err) => {
     if (err) console.error('erreur de connection a la db: ' + err.stack);
 });
 
+//CONFIG POUR ASYNCHRONE DES REQUÊTES SQL
 const query = util.promisify(db.query).bind(db);
+
+//EXPORT DANS UNE VARIABLE GLOBALE
 global.query = query;
 
 
-//Express static pour le chemin de dossier
+//EXPRESS STATIC CHEMIN DU DOSSIER PUBLIC ROUTE ASSETS
 app.use('/assets', express.static('public'));
 
 //BODY PARSER 
@@ -118,6 +136,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+//GESTION D'ATTRIBUTS DE SESSION
 app.use('*', (req, res, next) => {
 
     res.locals.user = req.session.user
@@ -129,7 +148,7 @@ app.use('*', (req, res, next) => {
 })
 
 
-//Handlebars
+//CONFIG HANDLEBARS
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -145,16 +164,16 @@ app.engine('hbs', hbs({
 
 
 
-//Router dirige chemins sur les controllers
+//CONFIG ROUTER -> CONTROLLEURS
 const ROUTER = require('./api/router');
 app.use('/', ROUTER)
 
 
-
+//EN CAS DE 404
 app.get('*', function (req, res) {
     res.render('404')
 });
-//Run express notre projet
+//LISTEN DU PROJET EXECUTION DU SERVEUR, MESSAGE D'ACCUEIL
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });
