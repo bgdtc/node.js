@@ -2,26 +2,26 @@
 <div class="modal fade" id="modalAddUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-bottom border-2 border-primary text-center">
                 <h5 class="modal-title" id="exampleModalLabel">Ajouter un utilisateur</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/user/add" method="POST">
                 <div class=" container modal-body text-dark">
                     <div class="col-md-12 pt-2 pb-2">
-                        <label for="full_name">Nom Complet : </label>
+                        <label class="fw-bold text-primary" for="full_name">Nom Complet : </label>
                         <input type="text" class="bg-dark text-white form-control" name="full_name" required>
                     </div>
                     <div class="col-md-12 pt-2 pb-2">
-                        <label for="nickname">Pseudo : </label>
+                        <label class="fw-bold text-primary" for="nickname">Pseudo : </label>
                         <input type="text" class="bg-dark text-white form-control" name="nickname" required>
                     </div>
                     <div class="col-md-12 pt-2 pb-2">
-                        <label for="email">Mail : </label>
+                        <label class="fw-bold text-primary" for="email">Mail : </label>
                         <input type="email" class="bg-dark text-white form-control" name="email" required>
                     </div>
                     <div class="col-md-12 pt-2 pb-2">
-                        <label for="password">Mot de Passe : </label>
+                        <label class="fw-bold text-primary" for="password">Mot de Passe : </label>
                         <input type="password" class="bg-dark text-white form-control" name="password" required>
                     </div>
 

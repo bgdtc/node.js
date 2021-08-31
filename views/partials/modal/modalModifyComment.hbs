@@ -3,7 +3,7 @@
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-bottom border-2 border-primary">
                 <h5 class="modal-title" id="exampleModalLabel">Modifier Le commentaire :  </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -14,16 +14,16 @@
                     </div>
 
                     <div class="pt-2 pb-2">
-                        <label for="content">Content :</label>
-                        <input class="form-control pt-2 pb-2" type="text" value="{{ comment.content }}" name="content" required>
+                        <label class="fw-bold text-primary" for="content">Contenu :</label>
+                        <input class="form-control pt-2 pb-2 bg-dark text-white" type="text" value="{{ comment.content }}" name="content" required>
                     </div>
                     <div class="pt-2 pb-2">
-                        <label for="is_avis">Avis 0 / Comment 1 :</label>
-                        <input class="form-control pt-2 pb-2" type="number" value="{{ comment.is_avis }}" min="0" max="1" name="is_avis" required>
+                        <label class="fw-bold text-primary" for="is_avis">Avis (0) / Commentaire (1) :</label>
+                        <input class="form-control pt-2 pb-2 bg-dark text-white" type="number" value="{{ comment.is_avis }}" min="0" max="1" name="is_avis" required>
                     </div>
                     <div class="pt-2 pb-2">
-                        <label for="is_banned">Banned :</label>
-                        <input class="form-control pt-2 pb-2" type="number" value="{{ comment.is_banned }}" min="0" max="1" name="is_banned" required>
+                        <label class="fw-bold text-primary" for="is_banned">Banni :</label>
+                        <input class="form-control pt-2 pb-2 bg-dark text-white" type="number" value="{{ comment.is_banned }}" min="0" max="1" name="is_banned" required>
                     </div>
 
 

@@ -14,14 +14,16 @@
           </p>
       
         <p class="card-text date"><small class="date text-muted">publié le
-            {{ artID.update_date }}</small>
+            {{moment artID.update_date lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss" }}</small>
+                         
         </p>
       </div>
     </div>
     {{!-- AFFICHAGE DES COMMENTAIRES --}}
     {{#each comsIDd }}
     <div class="card text-white bg-primary mb-3">
-      <div class="card-header">Commentaire n°{{this.id}}, écrit par: {{this.nickname}}</div>
+      <div class="card-header">Commentaire n°{{this.id}}, écrit par: {{this.nickname}}, le      {{moment this.update_date lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss"}}</div>
+
       <div class="card-body">
         <p class="card-text text-white">{{this.content}}</p>
       </div>

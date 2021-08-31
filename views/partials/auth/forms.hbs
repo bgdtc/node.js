@@ -6,19 +6,19 @@
   <ul class="nav nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5" id="myTab" role="tablist">
     {{!-- BOUTON CONNEXION --}}
     <li class="nav-item pt-2 ps-2 pe-2" role="presentation">
-      <button class="nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab"
+      <button class="fw-bold nav-link text-primary border-2 border-primary active bg-gradient" id="home-tab"
         data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home"
         aria-selected="true">Connexion</button>
     </li>
     {{!-- BOUTON INSCRIPTION --}}
     <li class="nav-item pt-2 pe-2" role="presentation">
-      <button class="nav-link text-primary bg-gradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
+      <button class="fw-bold nav-link text-primary bg-gradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
         aria-selected="false">Inscription</button>
     </li>
     {{!-- BOUTON MOT DE PASSE OUBLIE --}}
     <li class="nav-item pt-2" role="presentation">
-      <button class="nav-link bg-gradient border-2 border-primary text-primary" id="messages-tab" data-bs-toggle="tab"
+      <button class="fw-bold nav-link bg-gradient border-2 border-primary text-primary" id="messages-tab" data-bs-toggle="tab"
         data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Mot de passe
         oublié</button>
     </li>
@@ -30,30 +30,29 @@
     <div class=" tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <form class="container" action='/auth' method="POST">
         <div class="mb-3">
-          <h1 class="text-white pt-4 text-center">Connexion</h1>
+          <h1 class="text-white pt-4  text-center">Connexion</h1>
           {{!-- INPUT MAIL --}}
-          <label for="email" class="form-label">Email:</label>
+          <label for="email" class="fw-bold form-label">Email:</label>
           <input type="email" class="form-control" name='email' id="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         {{!-- INPUT PASSWORD --}}
         <div class="mb-3">
-          <label for="password" class="form-label">Mot de passe:</label>
+          <label for="password" class="fw-bold form-label">Mot de passe:</label>
           <input type="password" class=" form-control" name='password' id="password" required />
         </div>
         <div class="pb-4 text-muted">
           <div>
             <button type="submit" id="oui" class=" button btn btn-primary">Se connecter</button>
-            <div>
+            <div class="pt-2 pb-1">
               <input type="checkbox" class=" form-check-input justify-content-end" name='checked' id="check" required />
-              <label class="form-check-label pe-3" for="check">J'accepte les <span><a href="/CGU">CGU</a></span>
+               <label class="form-check-label text-primary pe-3" for="check">J'accepte les <span><a href="/CGU">CGU</a></span>
               </label>
             </div>
 
           </div>
-
-          <input type="checkbox" class="" onclick="showPass()">Afficher MDP
-
+          <input type="checkbox" id="show" class=" form-check-input justify-content-end" onclick="showPass()" />
+          <label class="form-check-label text-primary pe-3" for="show">Afficher MDP
         </div>
 
         <div>
@@ -81,13 +80,13 @@
           {{!-- INPUT NOM --}}
           <h1 class="text-white text-center pt-4">Inscription</h1>
           <div class="col-md-6">
-            <label for="name" class="form-label">Nom:</label>
+            <label for="name" class="fw-bold form-label">Nom:</label>
             <input type="text" class="form-control" id="name" name='full_name' aria-describedby="emailHelp" required />
             <div id="emailHelp" class="form-text"></div>
           </div>
           {{!-- INPUT PSEUDO --}}
           <div class="col-md-6">
-            <label for="nickname" class="form-label">Pseudo:</label>
+            <label for="nickname" class="fw-bold form-label">Pseudo:</label>
             <input type="text" class="form-control" id="nickname" name='nickname' aria-describedby="emailHelp"
               required />
             <div id="emailHelp" class="form-text"></div>
@@ -96,18 +95,18 @@
         {{!-- INPUT EMAIL --}}
         <div class="">
 
-          <label for="email" class="form-label">Email:</label>
+          <label for="email" class="fw-bold form-label">Email:</label>
           <input type="email" class="form-control" id="email" name='email' aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>
         {{!-- INPUT PASSWORD --}}
         <div class="">
-          <label for="password" class="form-label">Mot de passe:</label>
+          <label for="password" class="fw-bold form-label">Mot de passe:</label>
           <input type="password" onkeyup="checkPass()" class="form-control" name='password' id="passwordd" required />
         </div>
         {{!-- INPUT PASSWORD CONFIRM --}}
         <div class="pb-2">
-          <label for="passwordConfirm" class="form-label">Confirmer le mot de
+          <label for="passwordConfirm" class="fw-bold form-label">Confirmer le mot de
             passe:</label>
           <input type="password" class="form-control" onkeyup="checkCor()" id="passwordConfirm" name="passwordConfirm" required />
         </div>
@@ -143,7 +142,7 @@
         <div class="mb-3">
           <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
           {{!-- INPUT EMAIL --}}
-          <label for="email" class="form-label">Email:</label>
+          <label for="email" class="fw-bold form-label">Email:</label>
           <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required />
           <div id="emailHelp" class="form-text"></div>
         </div>

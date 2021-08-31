@@ -45,6 +45,13 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
+//moment hbs
+
+let Handlebars = require('handlebars');
+let MomentHandler = require('handlebars.moment');
+MomentHandler.registerHelpers(Handlebars);
+
+
 
 const {
     expressCspHeader,

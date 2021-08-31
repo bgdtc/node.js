@@ -26,6 +26,7 @@
     "express-mysql-session": "^2.1.6",
     "express-session": "^1.17.2",
     "handlebars": "^4.7.7",
+    "handlebars.moment": "^1.0.4",
     "helmet": "^4.6.0",
     "ipware": "^2.0.0",
     "method-override": "^3.0.0",
