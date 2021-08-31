@@ -35,16 +35,16 @@
   {{else}}
   {{!-- searchbar --}}
   <div class="pt-4">
-    <input type="search" class="form-control w-100" id="search" onkeyup="filtre()"
+    <input type="search" class="form-control searchbox-input w-100" id="search" onkeyup="filtre(event)"
       placeholder="Rechercher dans les articles">
   </div>
   {{!-- cards --}}
-  <div class="row row-cols-1 row-cols-md-3 g-4 pt-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4 pt-5" id="myCard">
     {{#each dbArticle}}
 
     <div class="col">
       {{!-- IMAGE DB --}}
-      <div class="card bg-dark tist border-3 border-primary">
+      <div class="didiv card bg-dark tist border-3 border-primary">
         <img src="{{ image }}" class="card-img-top" alt="" height="250px" />
         {{!-- TITRE DESCRIPTION ET ID DE L'ARTICLE --}}
         <div class="card-body text-center">
@@ -65,24 +65,19 @@
   {{/if}}
 </section>
 <script>
-  function filtre() {
-    var input, filter, div1, div2, h2, i, txtValue;
-    input = document.getElementById('search');
-    filter = input.value.toUpperCase();
-    div1 = document.getElementById("myCard");
-    div2 = div1.getElementsByTagName('div');
-    for (i = 0; i < div2.length; i++) {
-      h2 = div2[i].getElementsByTagName("h2")[0];
-      console.log('INFO DE H2 :', h2)
-      txtValue = h2.textContent || h2.innerText;
-      console.log('INFO DE TXTVALUE :', txtValue)
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        div2[i].style.display = "";
-      } else {
-        div2[i].style.display = "none";
-      }
+var filtre = () => {
+    const input = document.querySelector(".searchbox-input");
+    const cards = document.getElementsByClassName("card");
+    let filter = input.value
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].querySelector(".card-body");
+        if (title.innerText.indexOf(filter) > -1) {
+            cards[i].classList.remove("d-none")
+        } else {
+            cards[i].classList.add("d-none")
+        }
     }
-  }
+}
 
 </script>
 

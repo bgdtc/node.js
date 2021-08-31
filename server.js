@@ -50,6 +50,7 @@ app.use(expressSession({
 let Handlebars = require('handlebars');
 let MomentHandler = require('handlebars.moment');
 MomentHandler.registerHelpers(Handlebars);
+moment.locale('fr')
 
 
 

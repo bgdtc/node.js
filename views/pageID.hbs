@@ -22,7 +22,7 @@
     {{!-- AFFICHAGE DES COMMENTAIRES --}}
     {{#each comsIDd }}
     <div class="card text-white bg-primary mb-3">
-      <div class="card-header">Commentaire n°{{this.id}}, écrit par: {{this.nickname}}, le      {{moment this.update_date lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss"}}</div>
+      <div class="card-header">Commentaire n°{{this.id}}, écrit par: {{this.nickname}}, le      {{moment this.update_date  format="dddd, DD MMMM YYYY HH:mm:ss"}}</div>
 
       <div class="card-body">
         <p class="card-text text-white">{{this.content}}</p>
