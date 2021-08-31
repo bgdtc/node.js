@@ -13,6 +13,7 @@
                 </i>
             </a>
             <form action="/cookies" method="GET" >
+               <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                 <button class="btn btn-dark mt-4  px-4" type="submit">J'accepte les cookies
                 </button>
             </form>
@@ -23,16 +24,6 @@
 
 </section>
 {{/if}}
-
-<style>
-    .df {
-        background-color: rgb(255, 252, 239);
-    }
-</style>
-
-<script>
-
-</script>
 
 
 

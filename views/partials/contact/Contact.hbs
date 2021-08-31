@@ -9,6 +9,7 @@
         </div>
         {{!-- formulaire de contact --}}
         <form action="/contact" method="POST" class=" pt-3  row  ">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             {{!-- input mail --}}
             <div class="col-md-6 pb-1 pt-5">
                 <label for="email" class="form-label text-primary">Adresse mail :</label>

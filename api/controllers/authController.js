@@ -201,7 +201,7 @@ exports.auth = (req, res) => {
     console.log('AUTH controller auth')
 
     // si les cgu sont pas cochées
-    if (req.body.checked !== 'on') {
+    if (req.body.checked !== 'on' || !req.body.email) {
         console.log('Not Checked form !')
         res.render('auth', {
             error: 'Pas de bd !',
@@ -211,14 +211,13 @@ exports.auth = (req, res) => {
     } else {
         const sql = `SELECT * FROM user WHERE email = '${req.body.email}';`
         query(sql, (err, data) => {
-            if (err) console.log(err)
             //si l'email existe pas dans la db
-            if (!data[0]) res.render('auth', {
+            if (!data || !req.body.email) res.render('auth', {
                 error: 'shit happened !',
                 cook: (req.cookies.Cookie) ? true : false
             })
-            //si l'email existe dans la db
-            else {
+          
+             else if (data && req.body.email) {
                 let mail = data[0].email
                 let banned = data[0].is_banned
                 let verified = data[0].is_verified

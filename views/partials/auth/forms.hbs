@@ -29,6 +29,7 @@
     {{!-- FORMULAIRE DE CONNEXION --}}
     <div class=" tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <form class="container" action='/auth' method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="mb-3">
           <h1 class="text-white pt-4  text-center">Connexion</h1>
           {{!-- INPUT MAIL --}}
@@ -40,6 +41,7 @@
         <div class="mb-3">
           <label for="password" class="fw-bold form-label">Mot de passe:</label>
           <input type="password" class=" form-control" name='password' id="password" required />
+          <input type="hidden" name='_csrf' value="<%= csrfToken %>" />
         </div>
         <div class="pb-4 text-muted">
           <div>
@@ -75,6 +77,7 @@
     {{! FORMULAIRE D'INSCRIPTION }}
     <div class="tab-pane bg-dark" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <form id="form" onsubmit="checkForm(event)" class=" pb-5" action='/auth/register' method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             {{!-- INPUTE NAME --}}
         <div class="row">
           {{!-- INPUT NOM --}}
@@ -139,6 +142,7 @@
     {{!-- MOT DE PASSE OUBLIE --}}
     <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
       <form class="container" action='/auth/lost_pwd' method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="mb-3">
           <h1 class="text-white text-center pt-4">Mot de passe oublié</h1>
           {{!-- INPUT EMAIL --}}

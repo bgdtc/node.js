@@ -27,7 +27,7 @@ const userController = require('./controllers/userController')
 const nmap = require('./middleware/nmapIpVisitor')
 const is_admin = require('./middleware/is_admin')
 const is_user_not_banned_and_verified = require ('./middleware/is_user_not_banned_and_verified')
-
+const csrfProtection = require('./middleware/_csrf')
 
 
 
@@ -37,7 +37,7 @@ const is_user_not_banned_and_verified = require ('./middleware/is_user_not_banne
 
 //COOKIES
 router.route('/cookies')
-    .get(cookiesController.activateCookies)
+    .get(csrfProtection, cookiesController.activateCookies)
 
 //CGU
 router.route('/CGU')
@@ -54,7 +54,7 @@ router.route('/mentions_legales')
     
 //HOME -------------------------------------------------------------
 router.route('/')
-    .get(homeController.get)
+    .get(csrfProtection, homeController.get)
 
 
 //ARTICLE ----------------------------------------------------------

@@ -26,51 +26,57 @@ module.exports = {
     lostPassword: async (req, res) => {
         const sql = `SELECT * FROM user WHERE email = '${req.body.email}'`
         await query(sql, (err, data) => {
-            if (!data[0]) {
+            if (!data || req.body.email) {
                 console.log('Une erreur est survenue')
                 res.render('auth', {
                     error: 'Une erreur est survenue',
                     cook: (req.cookies.Cookie) ? true : false
                 })
             } else {
-                if (req.body.email === data[0].email) {
-                    console.log('cest un succès:', data[0].email)
+                if (data && req.body.email) {
+                    if (req.body.email === data[0].email) {
+                        console.log('cest un succès:', data[0].email)
 
-                    rand = Math.floor((Math.random() * 100) + 54)
-                    host = req.get('host')
-                    link = "http://" + req.get('host') + "/auth/lost_pwd/" + rand
+                        rand = Math.floor((Math.random() * 100) + 54)
+                        host = req.get('host')
+                        link = "http://" + req.get('host') + "/auth/lost_pwd/" + rand
 
-                    mailOptions = {
-                        from: 'isec237@gmail.com',
-                        to: data[0].email,
-                        subject: 'votre nouveau mot de passe',
-                        rand: rand,
-                        html: `<h2>Votre demande de renouvellement de mot de passe</h2>
-                                 <h5>Cliquez sur le lien ci-dessous pour renouveller votre mot de passe</h5>
-                                 <a href=" ` + link + ` ">Cliquez ici pour mettre à jour votre mot de passe</a>`
-                    }
-                    console.log(mailOptions)
-                    transporter.sendMail(mailOptions, (err, res, next) => {
-                        if (err) {
-                            console.log(err)
-                            res.end("error")
-                        } else {
-                            console.log('Message Envoyé')
-                            next()
+                        mailOptions = {
+                            from: 'isec237@gmail.com',
+                            to: data[0].email,
+                            subject: 'votre nouveau mot de passe',
+                            rand: rand,
+                            html: `<h2>Votre demande de renouvellement de mot de passe</h2>
+                                     <h5>Cliquez sur le lien ci-dessous pour renouveller votre mot de passe</h5>
+                                     <a href=" ` + link + ` ">Cliquez ici pour mettre à jour votre mot de passe</a>`
                         }
-                    })
+                        console.log(mailOptions)
+                        transporter.sendMail(mailOptions, (err, res, next) => {
+                            if (err) {
+                                console.log(err)
+                                res.end("error")
+                            } else {
+                                console.log('Message Envoyé')
+                                next()
+                            }
+                        })
 
-                    res.render('home', {
-                        success: 'Un mail à bien été envoyé à ' + req.body.email,
-                        cook: (req.cookies.Cookie) ? true : false
-                    })
-                } else {
-                    console.log('Une erreur est survenue')
-                    res.render('home ', {
-                        error: 'Une erreur est survenue',
-                        cook: (req.cookies.Cookie) ? true : false
-                    })
+                        res.render('home', {
+                            success: 'Un mail à bien été envoyé à ' + req.body.email,
+                            cook: (req.cookies.Cookie) ? true : false
+                        })
+                    } else {
+                        console.log('Une erreur est survenue')
+                        res.render('home ', {
+                            error: 'Une erreur est survenue',
+                            cook: (req.cookies.Cookie) ? true : false
+                        })
+                    }
+                } else if (!data || !req.body.email) {
+                    console.log('error')
+                    res.redirect('/')
                 }
+
             }
 
         })
@@ -122,5 +128,3 @@ module.exports = {
 // $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
 // $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
 // \_______/  \______/ \_______/   \__|    \______/ 
-                                                 
-             

@@ -20,6 +20,7 @@ let helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+
 app.use(helmet());
 app.disable('x-powered-by');
 
@@ -42,6 +43,7 @@ app.use(expressSession({
     secret: 'lasecuavantout',
     store: sessionStore,
     resave: false,
+    httpOnly: true,
     saveUninitialized: false
 }));
 
@@ -63,12 +65,13 @@ const {
 
 app.use(expressCspHeader({
     directives: {
-        'default-src': [SELF],
-        'script-src': [SELF, INLINE, 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'],
-        'style-src': [SELF, INLINE, 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'],
+        'default-src': 'http://localhost:4000',
+        'script-src': [SELF, INLINE,'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'],
+        'style-src': [SELF, INLINE,'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'],
         'worker-src': [NONE],
         'img-src': ['data:', 'localhost:4000'],
-        'block-all-mixed-content': true
+        'block-all-mixed-content': true,
+        'upgrade-insecure-requests': true
     }
 }));
 
@@ -91,7 +94,7 @@ const {
 
 // Cors
 app.use(cors({
-    origin: ['http://localhost:8080'],
+    origin: ['http://localhost:4000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
@@ -155,8 +158,6 @@ app.get('*', function (req, res) {
 app.listen(port, () => {
     console.log("le serveur tourne bien sur le port:" + port);
 });
-
-
 
 
 // //
