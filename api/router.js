@@ -18,6 +18,7 @@ const express = require('express'),
     errorController = require('./controllers/404Controller'),
     nodeMailerController = require('./controllers/nodemailerController'),
     cguController = require('./controllers/cgu'),
+    robot = require('./controllers/robot'),
     cookiesController = require('./controllers/cookiesController')
     
 
@@ -179,6 +180,8 @@ router.route('/messages')
    .post(is_admin, adminController.sendMessage)     
 
 
+router.route('/robots.txt')
+    .get(robot.getRobot)
     
 //EXPORT SERVER.JS -------------------------------------------------
 module.exports = router;

@@ -72,19 +72,6 @@ app.use(expressCspHeader({
     }
 }));
 
-// const { expressCspHeader, NONCE } = require('express-csp-header');
-
-// app.use(expressCspHeader({
-//     directives: {
-//         'script-src': [NONCE]
-//     }
-// }));
-// express will send header with a random nonce key "Content-Security-Policy: script-src 'nonce-pSQ9TwXOMI+HezKshnuRaw==';"
-
-// app.use((req, res) => {
-//     console.log(req.nonce); // 'pSQ9TwXOMI+HezKshnuRaw=='
-// })
-
 // Iterate over interfaces ...
 let adresses = Object.keys(ifaces).reduce(function (result, dev) {
     return result.concat(ifaces[dev].reduce(function (result, details) {
@@ -120,22 +107,6 @@ const query = util.promisify(db.query).bind(db);
 global.query = query;
 
 
-
-
-
-
-// app.use(expressSession({
-//     secret: 'lasecuavantout',
-//     name: 'ptiBiscuit',
-//     saveUninitialized: true,
-//     resave: false,
-//     cookie: {
-//         maxAge: 8 * 60 * 60 * 1000
-//     }
-
-// }));
-
-
 //Express static pour le chemin de dossier
 app.use('/assets', express.static('public'));
 
@@ -145,16 +116,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('*', (req, res, next) => {
-    // if (res.status(404)){
-    //     res.render('404', {url: req.url});
-    //     return;
-    // }
+
     res.locals.user = req.session.user
 
     if (req.session.is_admin === true) res.locals.admin = req.session.is_admin
 
     next()
-    // res.status(404).send('sorry cant find that')
+
 })
 
 
@@ -173,9 +141,6 @@ app.engine('hbs', hbs({
 
 
 
-// const {
-//     request
-// } = require('http');
 
 //Router dirige chemins sur les controllers
 const ROUTER = require('./api/router');
@@ -203,5 +168,3 @@ app.listen(port, () => {
 //     $$ |  $$ |$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$\ 
 //     $$$$$$$  |\$$$$$$  |$$$$$$$  |  $$ |   \$$$$$$  |
 //     \_______/  \______/ \_______/   \__|    \______/ 
-                                                  
-        
