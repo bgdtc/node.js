@@ -18,7 +18,7 @@
     "bootstrap": "^4.6.1",
     "bootstrap-icons": "^1.7.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-handlebars": "^5.3.5",
     "handlebars": "^4.7.7",
     "ipware": "^2.0.0",
